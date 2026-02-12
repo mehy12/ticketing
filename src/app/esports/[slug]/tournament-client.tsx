@@ -123,9 +123,8 @@ export default function TournamentClient({
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black" />
           <div
-            className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(${
-              tournament.game === "valorant" ? "255,70,85" : "31,133,222"
-            },0.15),transparent_70%)]`}
+            className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(${tournament.game === "valorant" ? "255,70,85" : "31,133,222"
+              },0.15),transparent_70%)]`}
           />
         </div>
 
@@ -171,7 +170,7 @@ export default function TournamentClient({
               borderColor: `${themeColor}30`,
             }}
           >
-            CLOVER CREW PRESENTS
+            LASTROUND PRESENTS
           </motion.div>
 
           <motion.h1
@@ -288,9 +287,8 @@ export default function TournamentClient({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`pb-4 px-1 text-sm font-medium transition-colors relative ${
-                    activeTab === tab.id ? "" : "text-gray-400 hover:text-white"
-                  }`}
+                  className={`pb-4 px-1 text-sm font-medium transition-colors relative ${activeTab === tab.id ? "" : "text-gray-400 hover:text-white"
+                    }`}
                   style={{
                     color: activeTab === tab.id ? themeColor : undefined,
                   }}
@@ -432,7 +430,7 @@ export default function TournamentClient({
                       />
                       Registration Fees
                     </h3>
-                    <Link href="mailto:tattva.vemanothsav@gmail.com">
+                    <Link href="mailto:Ekyam.vemanothsav@gmail.com">
                       Email Us
                     </Link>
 
@@ -768,30 +766,28 @@ export default function TournamentClient({
                           >
                             <div className="flex items-center">
                               <div
-                                className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
-                                  index === 0
-                                    ? `bg-[${themeColor}]/20`
-                                    : index === 1
+                                className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${index === 0
+                                  ? `bg-[${themeColor}]/20`
+                                  : index === 1
                                     ? "bg-gray-700/20"
                                     : "bg-[#CD7F32]/20"
-                                }`}
+                                  }`}
                                 style={{
                                   backgroundColor:
                                     index === 0
                                       ? `${themeColor}20`
                                       : index === 1
-                                      ? "rgba(107, 114, 128, 0.2)"
-                                      : "rgba(205, 127, 50, 0.2)",
+                                        ? "rgba(107, 114, 128, 0.2)"
+                                        : "rgba(205, 127, 50, 0.2)",
                                 }}
                               >
                                 <span
-                                  className={`font-bold ${
-                                    index === 0
-                                      ? ""
-                                      : index === 1
+                                  className={`font-bold ${index === 0
+                                    ? ""
+                                    : index === 1
                                       ? "text-gray-300"
                                       : "text-[#CD7F32]"
-                                  }`}
+                                    }`}
                                   style={{
                                     color: index === 0 ? themeColor : undefined,
                                   }}
@@ -804,9 +800,8 @@ export default function TournamentClient({
                               </span>
                             </div>
                             <span
-                              className={`font-bold ${
-                                index === 0 ? "" : "text-gray-300"
-                              }`}
+                              className={`font-bold ${index === 0 ? "" : "text-gray-300"
+                                }`}
                               style={{
                                 color: index === 0 ? themeColor : undefined,
                               }}
@@ -1043,7 +1038,7 @@ export default function TournamentClient({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="mailto:tattva.vemanothsav@gmail.com"
+                  href="mailto:Ekyam.vemanothsav@gmail.com"
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white px-6 py-3 rounded-sm transition-colors"
                 >
                   Email Us

@@ -1,112 +1,109 @@
-"use client";
-import { useAnimate } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+"use client"
 
-// NOTE: Change this date to whatever date you want to countdown to :)
-const COUNTDOWN_FROM = "2025-04-04";
+import { useEffect, useState } from "react"
+import DigitReel from "./digit-reel"
 
-const SECOND = 1000;
-const MINUTE = SECOND * 60;
-const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
+const TARGET_DATE = new Date("2026-03-27T08:30:00+05:30")
 
-type Units = "Day" | "Hour" | "Minute" | "Second";
+interface TimeLeft {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+}
 
-const ShiftingCountdown = () => {
-  return (
-    <div className="bg-transparent p-2 rounded-[48px] shadow-lg">
-      <div className="mx-auto flex w-full max-w-xl items-center text-white">
-        <CountdownItem unit="Day" text="days" /> <h1 className="text-6xl">:</h1>
-        <CountdownItem unit="Hour" text="hours" />{" "}
-        <h1 className="text-6xl">:</h1>
-        <CountdownItem unit="Minute" text="minutes" />{" "}
-        <h1 className="text-6xl">:</h1>
-        <CountdownItem unit="Second" text="seconds" />
-      </div>
-    </div>
-  );
-};
+function getTimeLeft(): TimeLeft {
+  const now = new Date()
+  const distance = TARGET_DATE.getTime() - now.getTime()
 
-const CountdownItem = ({ unit, text }: { unit: Units; text: string }) => {
-  const { ref, time } = useTimer(unit);
+  if (distance <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
 
-  return (
-    <div className="flex h-12 w-1/4 flex-col items-center justify-center gap-1 rounded-xl border-[1px] border-slate-200 backdrop-blur-sm md:h-24 md:gap-2">
-      <div className="relative w-full overflow-hidden text-center">
-        <span
-          ref={ref}
-          className="block text-xl font-medium text-white md:text-2xl lg:text-4xl xl:text-5xl"
-        >
-          {time}
-        </span>
-      </div>
-      <span className="text-xs text-red-400 md:text-sm lg:text-base">
-        {text}
-      </span>
-    </div>
-  );
-};
+  return {
+    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+    seconds: Math.floor((distance % (1000 * 60)) / 1000),
+  }
+}
 
-export default ShiftingCountdown;
-const useTimer = (unit: Units) => {
-  const [ref, animate] = useAnimate();
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const timeRef = useRef(0);
-  const [time, setTime] = useState(0);
-
-  // Memoize the animation function
-  const animateExitEnter = useCallback(
-    async (newTime: number) => {
-      if (!ref.current) return;
-
-      // Exit animation
-      await animate(
-        ref.current,
-        { y: ["0%", "-50%"], opacity: [1, 0] },
-        { duration: 0.35 }
-      );
-
-      setTime(newTime);
-
-      // Enter animation
-      await animate(
-        ref.current,
-        { y: ["50%", "0%"], opacity: [0, 1] },
-        { duration: 0.35 }
-      );
-    },
-    [animate, ref]
-  );
-
-  // Memoize the countdown function
-  const handleCountdown = useCallback(async () => {
-    if (!ref.current) return; // Ensure ref is assigned before animating
-
-    const end = new Date(COUNTDOWN_FROM);
-    const now = new Date();
-    const distance = +end - +now;
-
-    let newTime = 0;
-    if (unit === "Day") {
-      newTime = Math.floor(distance / DAY);
-    } else if (unit === "Hour") {
-      newTime = Math.floor((distance % DAY) / HOUR);
-    } else if (unit === "Minute") {
-      newTime = Math.floor((distance % HOUR) / MINUTE);
-    } else {
-      newTime = Math.floor((distance % MINUTE) / SECOND);
-    }
-
-    if (newTime !== timeRef.current) {
-      timeRef.current = newTime;
-      await animateExitEnter(newTime);
-    }
-  }, [unit, animateExitEnter, ref]); // ✅ Included missing dependencies
+export default function ShiftingCountdown() {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeft())
 
   useEffect(() => {
-    intervalRef.current = setInterval(handleCountdown, 1000);
-    return () => clearInterval(intervalRef.current || undefined);
-  }, [handleCountdown]); // ✅ Included `handleCountdown` in dependencies
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeLeft())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
 
-  return { ref, time };
-};
+  const days = timeLeft.days.toString().padStart(2, "0")
+  const hours = timeLeft.hours.toString().padStart(2, "0")
+  const minutes = timeLeft.minutes.toString().padStart(2, "0")
+  const seconds = timeLeft.seconds.toString().padStart(2, "0")
+
+  return (
+    <div className="bg-transparent p-2 rounded-[48px]">
+      <div className="mx-auto flex w-full max-w-2xl items-center justify-center gap-2 sm:gap-4 text-white">
+        {/* Days */}
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="-mr-1 sm:-mr-2">
+              <DigitReel value={days[0]} />
+            </div>
+            <div className="-ml-1 sm:-ml-2">
+              <DigitReel value={days[1]} />
+            </div>
+          </div>
+          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">days</span>
+        </div>
+
+        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
+
+        {/* Hours */}
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="-mr-1 sm:-mr-2">
+              <DigitReel value={hours[0]} />
+            </div>
+            <div className="-ml-1 sm:-ml-2">
+              <DigitReel value={hours[1]} />
+            </div>
+          </div>
+          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">hours</span>
+        </div>
+
+        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
+
+        {/* Minutes */}
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="-mr-1 sm:-mr-2">
+              <DigitReel value={minutes[0]} />
+            </div>
+            <div className="-ml-1 sm:-ml-2">
+              <DigitReel value={minutes[1]} />
+            </div>
+          </div>
+          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">mins</span>
+        </div>
+
+        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
+
+        {/* Seconds */}
+        <div className="flex flex-col items-center">
+          <div className="flex items-center">
+            <div className="-mr-1 sm:-mr-2">
+              <DigitReel value={seconds[0]} />
+            </div>
+            <div className="-ml-1 sm:-ml-2">
+              <DigitReel value={seconds[1]} />
+            </div>
+          </div>
+          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">secs</span>
+        </div>
+      </div>
+    </div>
+  )
+}

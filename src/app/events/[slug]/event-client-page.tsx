@@ -36,7 +36,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/brochure.pdf"; // Ensure the file is placed in the public folder
-    link.download = "Tattva_2025_Brochure.pdf";
+    link.download = "Ekyam_2026_Brochure.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -275,15 +275,14 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                         key={index}
                         variants={fadeIn}
                         custom={index}
-                        className={`relative overflow-hidden rounded-xl p-6 border border-white/10 ${
-                          index === 0
-                            ? "bg-gradient-to-b from-yellow-500/20 to-transparent"
-                            : index === 1
+                        className={`relative overflow-hidden rounded-xl p-6 border border-white/10 ${index === 0
+                          ? "bg-gradient-to-b from-yellow-500/20 to-transparent"
+                          : index === 1
                             ? "bg-gradient-to-b from-gray-400/20 to-transparent"
                             : index === 2
-                            ? "bg-gradient-to-b from-amber-700/20 to-transparent"
-                            : "bg-white/5"
-                        }`}
+                              ? "bg-gradient-to-b from-amber-700/20 to-transparent"
+                              : "bg-white/5"
+                          }`}
                       >
                         {index === 0 && (
                           <div className="absolute -top-6 -right-6 h-12 w-24 bg-yellow-500 rotate-45 flex items-end justify-center pb-1">
@@ -294,15 +293,14 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                           {prize.position}
                         </h3>
                         <p
-                          className={`text-3xl font-bold ${
-                            index === 0
-                              ? "text-yellow-500"
-                              : index === 1
+                          className={`text-3xl font-bold ${index === 0
+                            ? "text-yellow-500"
+                            : index === 1
                               ? "text-gray-300"
                               : index === 2
-                              ? "text-amber-700"
-                              : "text-white"
-                          } mb-2`}
+                                ? "text-amber-700"
+                                : "text-white"
+                            } mb-2`}
                         >
                           {prize.amount}
                         </p>
@@ -401,7 +399,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                 </div>
 
                 <div className="space-y-3">
-                  <Link href={"https://linktr.ee/tattva.vemanothsav"}>
+                  <Link href={"https://linktr.ee/Ekyam.vemanothsav"}>
                     <Button
                       className={`w-full bg-gradient-to-r ${event.gradient} hover:opacity-90 transition-opacity`}
                     >
@@ -484,9 +482,8 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     onClick={() => setIsLiked(!isLiked)}
                   >
                     <Heart
-                      className={`h-4 w-4 ${
-                        isLiked ? "fill-red-500 text-red-500" : "text-gray-400"
-                      }`}
+                      className={`h-4 w-4 ${isLiked ? "fill-red-500 text-red-500" : "text-gray-400"
+                        }`}
                     />
                     {isLiked ? "Saved" : "Save"}
                   </Button>

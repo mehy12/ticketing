@@ -15,7 +15,7 @@ const anton = Anton_SC({
 });
 
 export const metadata: Metadata = {
-  title: "ValorFest 2025 | College Esports Championship",
+  title: "LastRound 2026 | College Esports Championship",
   description:
     "Join the ultimate college esports championship powered by Samsung",
 };

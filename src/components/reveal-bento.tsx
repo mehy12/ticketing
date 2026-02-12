@@ -73,7 +73,7 @@ const Block = ({ className, ...rest }: BlockProps) => {
 const HeaderBlock = () => (
   <Block className="col-span-12 row-span-2 md:col-span-6">
     <h1 className="mb-12 text-4xl font-medium leading-tight">
-      Welcome to Tattva 2025! 🎉
+      Welcome to Ekyam 2026! 🎉
       <span className="text-zinc-400">
         Celebrating 25 Years of Culture, Talent & Entertainment!
       </span>
@@ -99,7 +99,7 @@ const SocialsBlock = () => (
     </Block>
     <Block className="col-span-6 bg-fuchsia-700 md:col-span-3">
       <Link
-        href="mailto:tattva.vemanothsav@gmail.com"
+        href="mailto:Ekyam.vemanothsav@gmail.com"
         className="grid h-full place-content-center text-3xl text-white"
       >
         <MailIcon />
@@ -156,7 +156,7 @@ const LocationBlock = () => (
 
 const EmailListBlock = () => (
   <Block className="col-span-12 md:col-span-9">
-    <p className="mb-3 text-lg">Stay Updated with Tattva 2025!</p>
+    <p className="mb-3 text-lg">Stay Updated with Ekyam 2026!</p>
     <form
       onSubmit={(e) => e.preventDefault()}
       className="flex items-center gap-2"
@@ -182,7 +182,7 @@ const Logo = () => {
       width={400}
       height={400}
       src="/logo.png"
-      alt="Tattva 2025 Logo"
+      alt="Ekyam 2026 Logo"
       className="mx-auto "
     />
   );

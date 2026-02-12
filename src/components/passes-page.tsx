@@ -220,11 +220,11 @@ export default function PassesPage() {
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-              Tattva 2025 Passes
+              Ekyam 2026 Passes
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-            Choose the perfect pass for your Tattva experience. Unlock access to
+            Choose the perfect pass for your Ekyam experience. Unlock access to
             exciting events and competitions!
           </p>
         </motion.div>
@@ -243,9 +243,8 @@ export default function PassesPage() {
               whileHover={{ y: -5 }}
             >
               <Card
-                className={`h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 bg-black/40 backdrop-blur-sm border-gray-800 group ${
-                  selectedPass === pass.id ? "ring-2 ring-purple-500" : ""
-                }`}
+                className={`h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 bg-black/40 backdrop-blur-sm border-gray-800 group ${selectedPass === pass.id ? "ring-2 ring-purple-500" : ""
+                  }`}
                 onClick={() => handlePassSelect(pass.id)}
                 key={i}
               >
@@ -379,13 +378,13 @@ export default function PassesPage() {
           className="bg-gradient-to-r from-purple-900/70 to-indigo-900/70 backdrop-blur-md rounded-2xl p-8 text-center max-w-3xl mx-auto mb-12 border border-purple-500/20"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-            Ready to Join Tattva 2025?
+            Ready to Join Ekyam 2026?
           </h2>
           <p className="text-lg text-gray-300 mb-6">
             Register now to secure your pass and be part of the most exciting
             cultural fest of the year!
           </p>
-          <Link href={"https://linktr.ee/tattva.vemanothsav"}>
+          <Link href={"https://linktr.ee/Ekyam.vemanothsav"}>
             <Button
               size="lg"
               className="px-8 py-6 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold rounded-lg hover:from-yellow-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg"

@@ -66,12 +66,12 @@ function GameCard({
 export function FeaturedGames() {
   const games = [
     {
-      title: "VALORANT",
+      title: "FREE FIRE",
       description:
-        "5v5 tactical shooter with unique agent abilities. Precision gunplay meets strategic team play.",
-      image: "/esports/valorant.jfif",
-      slug: "valorant-championship",
-      color: "valorant-red",
+        "4v4 tactical shooter with unique agent abilities. Precision gunplay meets strategic team play.",
+      image: "/esports/freefire.jpg",
+      slug: "freefire-championship",
+      color: "freefire-red",
     },
     {
       title: "BATTLEGROUNDS MOBILE INDIA",
@@ -80,6 +80,22 @@ export function FeaturedGames() {
       image: "/esports/bgmi.jfif",
       slug: "bgmi-pro-league",
       color: "bgmi-blue",
+    },
+    {
+      title: "CALL OF DUTY MOBILE",
+      description:
+        "5v5 action with intense survival gameplay. Squad up and be the last team standing.",
+      image: "/esports/codm.jpg",
+      slug: "codm-championship",
+      color: "codm-blue",
+    },
+    {
+      title: "VALORANT",
+      description:
+        "5v5 action with intense survival gameplay. Squad up and be the last team standing.",
+      image: "/esports/valorant.jfif",
+      slug: "valorant-championship",
+      color: "valorant-blue",
     },
   ];
 

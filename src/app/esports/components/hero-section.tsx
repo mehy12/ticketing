@@ -150,7 +150,7 @@ export function HeroSection() {
               className="inline-block"
             >
               <span className="inline-block px-4 py-1 mb-4 text-sm font-medium bg-[#FF4655]/20 text-[#FF4655] rounded-sm border border-[#FF4655]/30">
-                APRIL 4-5, 2025
+                MARCH 27-28, 2026
               </span>
             </motion.div>
 
@@ -161,18 +161,18 @@ export function HeroSection() {
               className="text-6xl md:text-8xl font-black mb-4 font-[family-name:var(--font-anton)] text-shadow-lg"
             >
               <span className="inline-block transform -skew-x-12 text-[#FF4655] text-shadow-md">
-                VAL
+                LAS
               </span>
               <span className="inline-block transform text-red-200 text-shadow-md">
-                OR
+                TRO
               </span>
               <span className="inline-block transform skew-x-12 text-white text-shadow-md">
-                FEST
+                UND
               </span>
               <span className="block mt-2 text-white text-shadow-md">
                 <span className="inline-block transform -skew-x-12">20</span>
                 <span className="inline-block transform skew-x-12 text-[#FF4655] text-shadow-md">
-                  25
+                  26
                 </span>
               </span>
             </motion.h1>
@@ -207,7 +207,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex justify-center mb-12"
           >
-            <Countdown targetDate={new Date("2025-04-04T10:00:00")} />
+            <Countdown targetDate={new Date("2026-04-04T10:00:00")} />
           </motion.div>
 
           {/* Event details with parallax */}
@@ -223,10 +223,10 @@ export function HeroSection() {
             >
               <Calendar className="text-[#FF4655] mb-3 w-5 h-5 group-hover:scale-110 transition-transform" />
               <h3 className="text-white text-base font-bold mb-1">
-                April 4-5th
+                March 27-28th
               </h3>
               <p className="text-gray-400 text-sm">
-                Three days of intense competition
+                Two days of intense competition
               </p>
             </motion.div>
 

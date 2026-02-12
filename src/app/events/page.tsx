@@ -7,7 +7,7 @@ export default function EventPage() {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/brochure.pdf"; // Ensure the file is placed in the public folder
-    link.download = "Tattva_2025_Brochure.pdf";
+    link.download = "Ekyam_2026_Brochure.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -15,68 +15,111 @@ export default function EventPage() {
 
   const events: Event[] = [
     {
-      title: "Solo Singing",
-      description: "Showcase your singing talent on stage.",
-      isPublished: true,
-    },
-    {
-      title: "Group Singing",
-      description: "Sing in harmony with your team.",
-      isPublished: true,
-    },
-    {
       title: "Solo Dance",
-      description: "A stage to express your emotions through dance.",
+      image: "/events/solo-dance.jpg",
+      description: "Show your moves in Hip-Hop, Breakdance, Freestyle or any dance style.",
+      isPublished: true,
+    },
+    {
+      title: "Western Group Dance",
+      image: "/events/western-group-dance.jpg",
+      description: "High-energy group choreography in Western dance styles.",
+      isPublished: true,
+    },
+    {
+      title: "Indian Group Dance",
+      image: "/events/indian-group-dance.jpg",
+      description: "Celebrate classical, folk, Bollywood, and Indian fusion dance forms.",
+      isPublished: true,
+    },
+    {
+      title: "On Spot Choreography",
+      image: "/events/on-spot-choreography.jpg",
+      description: "Perform instantly to a surprise track — no preparation time.",
       isPublished: true,
     },
     {
       title: "Duo Dance",
-      description: "Pair up and show your best moves.",
+      image: "/events/duo-dance.jpg",
+      description: "Two dancers. One stage. Perfect synchronization.",
       isPublished: true,
     },
     {
-      title: "Group Dance",
-      description: "A high-energy performance with your crew.",
+      title: "Solo Singing",
+      image: "/events/solo-singing.jpg",
+      description: "Showcase your vocal talent across any genre.",
       isPublished: true,
     },
     {
-      title: "Mime",
-      description: "Express without words through the art of mime.",
+      title: "Group Singing",
+      image: "/events/group-singing.jpg",
+      description: "Perform live with harmony, rhythm, and coordination.",
       isPublished: true,
     },
     {
-      title: "Mad Ads",
-      description: "A fun advertising competition with a creative twist.",
+      title: "Rap & Boxing",
+      image: "/events/rap-and-boxing.jpg",
+      description: "Bring rhythm, flow, and lyrical energy to the stage.",
       isPublished: true,
     },
     {
-      title: "Ad Making",
-      description: "Create an impactful advertisement in a limited time.",
+      title: "Stand Up Comedy",
+      image: "/events/stand-up-comedy.jpg",
+      description: "Make the audience laugh with your original comedic performance.",
       isPublished: true,
     },
     {
-      title: "Photography",
-      description: "Capture the perfect shot in this photography contest.",
+      title: "Reel Making Competition",
+      image: "/events/reel-making-competition.jpg",
+      description: "Create and edit a 60-second reel on the spot.",
       isPublished: true,
     },
     {
-      title: "Short Film",
-      description: "Direct and present a compelling short film.",
+      title: "Final Cut – Short Film",
+      image: "/events/final-cut-short-film.jpg",
+      description: "Present an original short film at the Vemanotsava Film Festival.",
       isPublished: true,
     },
     {
-      title: "Treasure Hunt",
-      description: "Solve clues and find the hidden treasure.",
+      title: "Esports Tournament",
+      image: "/events/esports-tournament.jpg",
+      description: "Compete in BGMI, Call of Duty Mobile, and Free Fire.",
+      isPublished: true,
+    },
+    {
+      title: "The Great Hunt – Treasure Hunt",
+      image: "/events/the-great-hunt.jpg",
+      description: "Solve clues across campus and race to the final destination.",
+      isPublished: true,
+    },
+    {
+      title: "Can You Guess? – Quiz Competition",
+      image: "/events/can-you-guess.jpg",
+      description: "Test your knowledge in a multi-round quiz challenge.",
+      isPublished: true,
+    },
+    {
+      title: "Mr. & Ms. Aura",
+      image: "/events/mr-ms-aura.jpg",
+      description: "Showcase personality, confidence, and stage presence.",
+      isPublished: true,
+    },
+    {
+      title: "Canvas Painting",
+      image: "/events/canvas-painting.jpg",
+      description: "Express creativity through art on canvas.",
+      isPublished: true,
+    },
+    {
+      title: "Shark Tank – Capital Quest",
+      image: "/events/shark-tank.jpg",
+      description: "Pitch your innovative business idea to a panel of judges.",
       isPublished: true,
     },
     {
       title: "Fashion Show",
-      description: "Walk the ramp and showcase your fashion sense.",
-      isPublished: true,
-    },
-    {
-      title: "Bigg boss",
-      description: "Survive. Strategize. Win.",
+      image: "/events/fashion-show.jpg",
+      description: "Present a creative theme with coordinated ramp performance.",
       isPublished: true,
     },
   ];
@@ -95,7 +138,7 @@ export default function EventPage() {
         <div className="text-center mb-12 mt-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-              Tattva 2025 Events
+              Ekyam 2026 Events
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">

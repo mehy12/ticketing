@@ -9,17 +9,17 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Vemanothsav 2025 - The Grand Cultural Fest",
+  title: "Vemanothsav 2026 - The Grand Cultural Fest",
   description:
-    "Join us for Vemanothsav 2025, the ultimate cultural festival celebrating 25 years of talent, music, dance, and entertainment at Vemana Institute of Technology, Bangalore.",
+    "Join us for Vemanothsav 2026, the ultimate cultural festival celebrating 25 years of talent, music, dance, and entertainment at Vemana Institute of Technology, Bangalore.",
   keywords:
-    "Vemanothsav 2025, cultural fest, Bangalore events, music, dance, competitions, Vemana Institute of Technology, college fest, Bigg Boss Kannada",
+    "Vemanothsav 2026, cultural fest, Bangalore events, music, dance, competitions, Vemana Institute of Technology, college fest, Bigg Boss Kannada",
   openGraph: {
-    title: "Vemanothsav 2025 - The Grand Cultural Fest",
+    title: "Vemanothsav 2026 - The Grand Cultural Fest",
     description:
-      "Experience the magic of Vemanothsav 2025, featuring music, dance, fashion, drama, and exclusive collaborations with Bigg Boss Kannada.",
+      "Experience the magic of Vemanothsav 2026, featuring music, dance, fashion, drama, and exclusive collaborations with Bigg Boss Kannada.",
     url: "https://vemanothsav.in",
-    siteName: "Vemanothsav 2025",
+    siteName: "Vemanothsav 2026",
     type: "website",
   },
 };
@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="Vemanothsav 2025 Team" />
+        <meta name="author" content="Vemanothsav 2026 Team" />
         <meta property="og:locale" content="en_US" />
         <meta name="theme-color" content="#FFD700" />
         <link rel="canonical" href="https://vemanothsav.in" />

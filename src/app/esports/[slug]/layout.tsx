@@ -7,7 +7,7 @@ import { Suspense } from "react";
 const inter = Rajdhani({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "ValorFest 2025 | College Esports Championship",
+  title: "LAST ROUND 2026 | College Esports Championship",
   description:
     "Join the ultimate college esports championship powered by Samsung",
 };

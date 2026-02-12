@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-yellow-400">
             About <span className="text-glow text-purple-400">Vemanotsav</span>{" "}
-            & <span className="text-glow text-blue-400">Tattva</span>
+            & <span className="text-glow text-blue-400">Ekyam</span>
           </h1>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto mt-4">
             <strong className="text-yellow-300">Vemanotsav</strong> is the{" "}
@@ -31,13 +31,13 @@ export default function AboutPage() {
             experience the spirit of festivity.
           </p>
           <p className="text-lg text-gray-300 max-w-3xl mx-auto mt-4">
-            <strong className="text-yellow-300">Tattva</strong> is the{" "}
+            <strong className="text-yellow-300">Ekyam</strong> is the{" "}
             <span className="text-glow text-indigo-300">
               flagship cultural event
             </span>{" "}
             of Vemanotsav, featuring an electrifying mix of music, dance,
             theater, and fashion.{" "}
-            <span className="text-glow text-pink-300">Tattva 2025</span> marks
+            <span className="text-glow text-pink-300">Ekyam 2026</span> marks
             25 years of grandeur, with a special collaboration with{" "}
             <span className="text-glow text-red-400">Bigg Boss Kannada</span> to
             elevate the entertainment quotient.
@@ -83,11 +83,11 @@ export default function AboutPage() {
           <p className="text-lg text-gray-300 mt-2">
             For inquiries, reach out to us at:
             <Link
-              href="mailto:tattva.vemanothsav@gmail.com"
+              href="mailto:Ekyam.vemanothsav@gmail.com"
               className="text-yellow-300 underline"
             >
               {" "}
-              tattva.vemanothsav@gmail.com
+              Ekyam.vemanothsav@gmail.com
             </Link>
           </p>
           <p className="text-lg text-gray-300 mt-2">
