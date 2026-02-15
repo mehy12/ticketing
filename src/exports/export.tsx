@@ -75,6 +75,7 @@ export const evento: Event[] = [
     minTeamSize: 1,
     featured: true,
     gradient: "from-pink-500 to-rose-600",
+    price: 99,
   },
   //western group dance
   {
@@ -149,6 +150,7 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-yellow-500 to-orange-500",
+    price: 1000,
   },
   // indian group dance
   {
@@ -223,6 +225,7 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-orange-500 to-amber-600",
+    price: 1000,
   },
   // on spot choreography
   {
@@ -297,6 +300,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-purple-500 to-pink-600",
+    price: 99,
   },
 
   //duo dance
@@ -373,6 +377,7 @@ export const evento: Event[] = [
     maxTeamSize: 2,
     featured: true,
     gradient: "from-indigo-500 to-purple-600",
+    price: 179,
   },
   //solo singing
   {
@@ -447,6 +452,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: true,
     gradient: "from-blue-500 to-indigo-600",
+    price: 99,
   },
   //group singing
   {
@@ -521,6 +527,7 @@ export const evento: Event[] = [
     maxTeamSize: 6,
     featured: true,
     gradient: "from-emerald-500 to-teal-600",
+    price: 269,
   },
   //rap and boxing
   {
@@ -595,6 +602,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-red-500 to-orange-600",
+    price: 99,
   },
   //stand up comedy
   {
@@ -668,6 +676,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-yellow-500 to-orange-500",
+    price: 99,
   },
 
   //reel making
@@ -744,6 +753,7 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: false,
     gradient: "from-blue-500 to-cyan-500",
+    price: 99,
   },
   // final cut short film
   {
@@ -818,6 +828,7 @@ export const evento: Event[] = [
     maxTeamSize: 10,
     featured: true,
     gradient: "from-indigo-500 to-blue-600",
+    price: 99,
   },
   //esports
   {
@@ -899,10 +910,11 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: true,
     gradient: "from-red-500 to-orange-600",
+    price: 269,
   },
   // treasure hunt
   {
-    slug: "treasure-hunt",
+    slug: "the-great-hunt-treasure-hunt",
     name: "The Great Hunt – Treasure Hunt",
     tagline: "Crack the Clues. Race the Clock. Claim the Treasure.",
     description:
@@ -911,7 +923,7 @@ export const evento: Event[] = [
     time: "11:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Adventure",
-    image: "/events/treasure-hunt.jpg",
+    image: "/events/the-great-hunt.jpg",
     rules: [
       "Team size: 3–5 members.",
       "Each clue will lead to the next checkpoint.",
@@ -973,11 +985,12 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: false,
     gradient: "from-green-500 to-yellow-400",
+    price: 269,
   },
   //can you guess
   {
-    slug: "can-you-guess-quiz",
-    name: "Can You Guess? – Quiz Competition",
+    slug: "can-you-guess-quiz-competition",
+    name: "Can You Guess?",
     tagline: "Think Fast. Answer Smart. Win Big.",
     description:
       "A multi-round quiz competition designed to test participants' knowledge, logical thinking, and quick decision-making skills across various domains including general knowledge, current affairs, entertainment, and more.",
@@ -985,7 +998,7 @@ export const evento: Event[] = [
     time: "3:00 PM – 4:00 PM",
     venue: "ISE Seminar Hall (3rd Floor), Vemana Institute of Technology",
     category: "Quiz",
-    image: "/events/quiz-competition.jpg",
+    image: "/events/can-you-guess.jpg",
     rules: [
       "Team size: 2 members per team.",
       "Multiple rounds will be conducted.",
@@ -1046,6 +1059,7 @@ export const evento: Event[] = [
     maxTeamSize: 2,
     featured: false,
     gradient: "from-cyan-500 to-blue-600",
+    price: 269,
   },
   //mr ms aura
   {
@@ -1119,26 +1133,28 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: true,
     gradient: "from-pink-500 to-purple-600",
+    price: 99,
   },
   // canvas painting
   {
-    slug: "mr-ms-aura",
-    name: "Mr. & Ms. Aura",
-    tagline: "Confidence. Charisma. Crown the Aura.",
+    slug: "canvas-painting",
+    name: "Canvas Painting",
+    tagline: "Paint Your Imagination. Frame Your Vision.",
     description:
-      "A personality-based competition that celebrates confidence, talent, intelligence, and stage presence. Participants go through multiple rounds including introduction, talent showcase, and Q&A to compete for the prestigious Mr. & Ms. Aura title.",
+      "A creative art competition where participants express their imagination and artistic skills on canvas based on a given theme. This event celebrates originality, technique, and visual storytelling.",
     date: "March 27, 2026",
-    time: "12:00 PM",
+    time: "4:00 PM",
     venue: "Vemana Institute of Technology",
-    category: "Personality",
-    image: "/events/mr-ms-aura.jpg",
+    category: "Art",
+    image: "/events/canvas-painting.jpg",
     rules: [
       "Solo participation only.",
-      "Participants must be bonafide college students.",
-      "Event consists of multiple rounds (Introduction, Talent, Q&A).",
-      "Time limits must be strictly followed for each round.",
-      "Content must be respectful and appropriate.",
-      "Judges’ decision will be final and binding.",
+      "Theme will be announced on the spot.",
+      "Time limit: 2–3 hours.",
+      "Participants must bring their own art materials.",
+      "Canvas will be provided by organizers (if mentioned during briefing).",
+      "Artwork must be original.",
+      "No pre-drawn sketches allowed.",
     ],
     eligibility: [
       "Open to bonafide college students.",
@@ -1152,27 +1168,27 @@ export const evento: Event[] = [
     },
     prizes: [
       {
-        position: "Mr. Aura",
+        position: "Winner",
         amount: "To Be Announced",
-        description: "Crown + Trophy + Certificate",
+        description: "Trophy + Certificate",
       },
       {
-        position: "Ms. Aura",
+        position: "Runner-Up",
         amount: "To Be Announced",
-        description: "Crown + Trophy + Certificate",
+        description: "Certificate",
       },
     ],
     coordinators: [
       {
-        name: "Jeeva M",
-        contact: "8904094150",
+        name: "Chaitra G",
+        contact: "9738485144",
         email: "",
         role: "Student Coordinator",
         image: "",
       },
       {
-        name: "B. Yashaswini",
-        contact: "9080971372",
+        name: "Meghana B N",
+        contact: "6366039762",
         email: "",
         role: "Student Coordinator",
         image: "",
@@ -1180,19 +1196,21 @@ export const evento: Event[] = [
     ],
     faqs: [
       {
-        question: "Is prior modeling experience required?",
-        answer: "No. Confidence and personality matter more than experience.",
+        question: "Will the theme be given beforehand?",
+        answer: "No. The theme will be announced on the spot.",
       },
       {
-        question: "What rounds will be conducted?",
-        answer: "The event includes Introduction, Talent Showcase, and Q&A rounds.",
+        question: "Do we need to bring our own materials?",
+        answer: "Yes. Participants must bring their own paints and brushes.",
       },
     ],
     minTeamSize: 1,
     maxTeamSize: 1,
-    featured: true,
-    gradient: "from-pink-500 to-purple-600",
+    featured: false,
+    gradient: "from-amber-500 to-orange-600",
+    price: 99,
   },
+
   // shark tank
   {
     slug: "shark-tank-capital-quest",
@@ -1265,6 +1283,7 @@ export const evento: Event[] = [
     maxTeamSize: 4,
     featured: true,
     gradient: "from-emerald-500 to-teal-600",
+    price: 269,
   },
   //fashion show
   {
@@ -1339,5 +1358,6 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-rose-500 to-pink-600",
+    price: 2000,
   },
 ];

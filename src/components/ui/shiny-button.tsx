@@ -3,11 +3,13 @@ import clsx from "clsx";
 
 interface ShinyButtonProps extends React.PropsWithChildren {
   variant?: "blue" | "red" | "green" | "gold" | "purple";
+  className?: string; // ✅ ADD THIS
 }
 
 export default function ShinyButton({
   variant = "blue",
   children,
+  className, // ✅ ADD THIS
 }: ShinyButtonProps) {
   const variants = {
     blue: {
@@ -40,12 +42,13 @@ export default function ShinyButton({
   return (
     <button
       className={clsx(
-        "relative py-2 px-3 rounded-lg font-medium text-sm text-white bg-gradient-to-b",
+        "relative py-2 px-4 rounded-lg font-medium text-sm text-white bg-gradient-to-b transition-all duration-300 hover:scale-105",
         variants[variant].bg,
-        variants[variant].shadow
+        variants[variant].shadow,
+        className // ✅ now extra styling works
       )}
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <div className="border border-white/20 absolute inset-0 rounded-lg [mask-image:linear-gradient(to_bottom,black,transparent)]"></div>
         <div className="absolute border inset-0 border-white/40 [mask-image:linear-gradient(to_top,black,transparent)] rounded-lg"></div>
         <div

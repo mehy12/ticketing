@@ -3,7 +3,7 @@ import ShiftingCountdown from "./countdown";
 import { motion } from "framer-motion";
 import ShinyButton from "./ui/shiny-button";
 import Link from "next/link";
-import { CalendarDays, MapPin, PartyPopper } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
@@ -11,42 +11,51 @@ export default function Hero() {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-  return (
-    <section className="container flex min-h-screen  flex-col space-y-8 bg-gradient-to-b from-transparent to-transparent/50">
-      <div className="relative w-full  flex  items-center justify-center text-white overflow-hidden">
-        {/* Background Overlay */}
-        <div className="absolute w-full h-full " />
 
-        {/* Content */}
-        <div className="relative z-10 text-center px-6">
-          {/* Highlight Banner */}
+  return (
+    <section className="relative min-h-screen bg-gradient-to-b from-transparent to-transparent/50">
+      <div className="container mx-auto px-6 pt-14 md:pt-16 flex min-h-screen items-center justify-center text-white">
+        <div className="w-full text-center">
+
+          {/* Banner */}
           <motion.div
             variants={item}
-            className="my-6 sm:mb-6 inline-flex items-center rounded-full border border-yellow-400/30 bg-yellow-400/10 px-4 py-1.5 text-sm font-medium text-yellow-400"
+            initial="hidden"
+            animate="show"
+            className="flex justify-center mb-3"
           >
-            <PartyPopper className="mr-2 h-5 w-5" />
-            <span>26th Anniversary Edition</span>
+            <Image
+              src="/bannerr.png"
+              alt="Vemana Institute Banner"
+              width={1600}
+              height={400}
+              priority
+              className="w-[340px] sm:w-[450px] md:w-[600px] lg:w-[750px] xl:w-[900px] h-auto"
+            />
           </motion.div>
 
-          {/* Main Heading */}
+          {/* EKYAM Logo */}
           <motion.h1
             variants={item}
-            className="mb-4 sm:mb-6 flex justify-center items-center"
+            initial="hidden"
+            animate="show"
+            className="mb-4 flex justify-center"
           >
             <Image
               src="/logo.png"
-              alt="Logo"
+              alt="EKYAM Logo"
               width={500}
               height={500}
-              className="mx-auto"
+              className="w-[260px] sm:w-[360px] md:w-[430px] lg:w-[500px] h-auto"
             />
           </motion.h1>
-
 
           {/* Tagline */}
           <motion.p
             variants={item}
-            className="mb-6 sm:mb-8 max-w-3xl text-lg sm:text-xl lg:text-2xl text-white/80"
+            initial="hidden"
+            animate="show"
+            className="mb-8 max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl text-white/80"
           >
             Where Talent Unites. Where Legends Rise
           </motion.p>
@@ -54,45 +63,52 @@ export default function Hero() {
           {/* Event Details */}
           <motion.div
             variants={item}
-            className="mb-6 sm:mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-white/70"
+            initial="hidden"
+            animate="show"
+            className="mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-white/70"
           >
             <div className="flex items-center">
               <CalendarDays className="mr-2 h-5 w-5 text-yellow-400" />
-              <span className="text-base font-medium">March 27-28, 2026</span>
+              <span className="font-medium">March 27-28, 2026</span>
             </div>
-            <div className="hidden sm:block text-white/50">•</div>
+
+            <div className="hidden sm:block text-white/40">•</div>
+
             <div className="flex items-center">
               <MapPin className="mr-2 h-5 w-5 text-yellow-400" />
-              <span className="text-base font-medium">
+              <span className="font-medium">
                 Vemana Institute of Technology, Bangalore
               </span>
             </div>
           </motion.div>
 
-
-
-          {/* CTA Buttons */}
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href="/passes" passHref>
-              <ShinyButton variant="purple">🎟️ Get Your Passes</ShinyButton>
+          {/* Buttons */}
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <Link href="/passes">
+              <ShinyButton variant="purple">
+                🎟️ Get Your Passes
+              </ShinyButton>
             </Link>
-            <Link href="/events" passHref>
-              <ShinyButton>📜 Explore Events</ShinyButton>
+
+            <Link href="/events">
+              <ShinyButton>
+                📜 Explore Events
+              </ShinyButton>
             </Link>
-            <Link
-              href="https://linktr.ee/Ekyam.vemanothsav"
-              passHref
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ShinyButton variant="green">🔗 Register Now</ShinyButton>
+
+            {/* 🔥 Custom Gold Register Button */}
+            <Link href="/events">
+              <ShinyButton className="bg-gradient-to-r from-yellow-400 to-amber-500 text-black shadow-[0_0_25px_rgba(255,200,0,0.5)] hover:scale-105 transition">
+                🔗 Register Now
+              </ShinyButton>
             </Link>
           </div>
 
-          {/* Countdown Timer */}
-          <div className="mt-4">
+          {/* Countdown (Outside buttons now) */}
+          <div className="mt-8">
             <ShiftingCountdown />
           </div>
+
         </div>
       </div>
     </section>

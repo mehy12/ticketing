@@ -18,6 +18,7 @@ export interface Event {
     minTeamSize?: number;
     featured?: boolean;
     gradient: string;
+    price: number;
 }
 export interface Coordinator {
     name: string;

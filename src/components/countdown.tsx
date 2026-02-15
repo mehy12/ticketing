@@ -44,66 +44,59 @@ export default function ShiftingCountdown() {
   const seconds = timeLeft.seconds.toString().padStart(2, "0")
 
   return (
-    <div className="bg-transparent p-2 rounded-[48px]">
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-center gap-2 sm:gap-4 text-white">
-        {/* Days */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center">
-            <div className="-mr-1 sm:-mr-2">
-              <DigitReel value={days[0]} />
-            </div>
-            <div className="-ml-1 sm:-ml-2">
-              <DigitReel value={days[1]} />
-            </div>
-          </div>
-          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">days</span>
+    <div className="mt-12 flex justify-center">
+      <div className="mt-8 sm:mt-12 flex justify-center scale-[0.8] sm:scale-100 origin-center">
+
+
+
+        <TimeBlock label="Days" first={days[0]} second={days[1]} />
+        <Colon />
+
+        <TimeBlock label="Hours" first={hours[0]} second={hours[1]} />
+        <Colon />
+
+        <TimeBlock label="Minutes" first={minutes[0]} second={minutes[1]} />
+        <Colon />
+
+        <TimeBlock label="Seconds" first={seconds[0]} second={seconds[1]} />
+
+      </div>
+    </div>
+  )
+}
+
+/* ---------- Components ---------- */
+
+function TimeBlock({
+  label,
+  first,
+  second,
+}: {
+  label: string
+  first: string
+  second: string
+}) {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="flex items-center">
+        <div className="-mr-1">
+          <DigitReel value={first} />
         </div>
-
-        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
-
-        {/* Hours */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center">
-            <div className="-mr-1 sm:-mr-2">
-              <DigitReel value={hours[0]} />
-            </div>
-            <div className="-ml-1 sm:-ml-2">
-              <DigitReel value={hours[1]} />
-            </div>
-          </div>
-          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">hours</span>
-        </div>
-
-        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
-
-        {/* Minutes */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center">
-            <div className="-mr-1 sm:-mr-2">
-              <DigitReel value={minutes[0]} />
-            </div>
-            <div className="-ml-1 sm:-ml-2">
-              <DigitReel value={minutes[1]} />
-            </div>
-          </div>
-          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">mins</span>
-        </div>
-
-        <div className="text-4xl sm:text-6xl text-white/40 font-light -mt-5 sm:-mt-6">:</div>
-
-        {/* Seconds */}
-        <div className="flex flex-col items-center">
-          <div className="flex items-center">
-            <div className="-mr-1 sm:-mr-2">
-              <DigitReel value={seconds[0]} />
-            </div>
-            <div className="-ml-1 sm:-ml-2">
-              <DigitReel value={seconds[1]} />
-            </div>
-          </div>
-          <span className="text-xs sm:text-sm text-yellow-400/80 mt-1">secs</span>
+        <div className="-ml-1">
+          <DigitReel value={second} />
         </div>
       </div>
+      <span className="mt-3 text-xs tracking-widest uppercase text-yellow-400/80">
+        {label}
+      </span>
+    </div>
+  )
+}
+
+function Colon() {
+  return (
+    <div className="text-3xl sm:text-5xl text-white/30 font-light">
+      :
     </div>
   )
 }

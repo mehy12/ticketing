@@ -37,8 +37,9 @@ export const Navbar = () => {
             <Link href="/team" className="hover:text-white transition">
               Team
             </Link>
-            <Link href="/passes" className="hover:text-white transition">
-              Passes
+
+            <Link href="/register" className="hover:text-white transition">
+              <ShinyButton variant="purple">Register</ShinyButton>
             </Link>
             <Link href="/esports" className="hover:text-white transition">
               <ShinyButton variant="purple">Esports</ShinyButton>
@@ -90,12 +91,13 @@ export const Navbar = () => {
                   >
                     Team
                   </Link>
+
                   <Link
-                    href="/passes"
-                    className="text-lg text-white/80 transition hover:text-white"
+                    href="/register"
+                    className="hover:text-white transition"
                     onClick={() => setIsOpen(false)}
                   >
-                    Passes
+                    <ShinyButton variant="purple">Register</ShinyButton>
                   </Link>
                   <Link
                     href="/esports"
