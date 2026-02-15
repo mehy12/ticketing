@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import DigitReel from "./digit-reel"
+import { useEffect, useRef, useState, useCallback } from "react"
+import "./flip-clock.css"
 
 const TARGET_DATE = new Date("2026-03-27T08:30:00+05:30")
 
@@ -28,75 +28,65 @@ function getTimeLeft(): TimeLeft {
   }
 }
 
+function FlipCard({ value, label }: { value: number; label: string }) {
+  const displayVal = ("0" + value).slice(-2)
+  const prevRef = useRef(displayVal)
+  const [flip, setFlip] = useState(false)
+  const [current, setCurrent] = useState(displayVal)
+  const [previous, setPrevious] = useState(displayVal)
+
+  useEffect(() => {
+    if (displayVal !== prevRef.current) {
+      setFlip(false)
+      setPrevious(prevRef.current)
+      setCurrent(displayVal)
+      // Force reflow then trigger flip
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setFlip(true)
+        })
+      })
+      prevRef.current = displayVal
+    }
+  }, [displayVal])
+
+  return (
+    <div className="flip-clock__piece">
+      <div className={`flip-clock__card card${flip ? " flip" : ""}`}>
+        {/* Top half – shows current value */}
+        <span className="card__top">{current}</span>
+
+        {/* Bottom half – shows previous value */}
+        <span className="card__bottom" data-value={previous} />
+
+        {/* Back – animated panels */}
+        <span className="card__back" data-value={previous}>
+          <span className="card__bottom" data-value={current} />
+        </span>
+      </div>
+      <span className="flip-clock__slot">{label}</span>
+    </div>
+  )
+}
+
 export default function ShiftingCountdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeft())
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(getTimeLeft())
-    }, 1000)
-    return () => clearInterval(interval)
+  const tick = useCallback(() => {
+    setTimeLeft(getTimeLeft())
   }, [])
 
-  const days = timeLeft.days.toString().padStart(2, "0")
-  const hours = timeLeft.hours.toString().padStart(2, "0")
-  const minutes = timeLeft.minutes.toString().padStart(2, "0")
-  const seconds = timeLeft.seconds.toString().padStart(2, "0")
+  useEffect(() => {
+    const interval = setInterval(tick, 1000)
+    return () => clearInterval(interval)
+  }, [tick])
 
   return (
-    <div className="mt-12 flex justify-center">
-      <div className="mt-8 sm:mt-12 flex justify-center scale-[0.8] sm:scale-100 origin-center">
-
-
-
-        <TimeBlock label="Days" first={days[0]} second={days[1]} />
-        <Colon />
-
-        <TimeBlock label="Hours" first={hours[0]} second={hours[1]} />
-        <Colon />
-
-        <TimeBlock label="Minutes" first={minutes[0]} second={minutes[1]} />
-        <Colon />
-
-        <TimeBlock label="Seconds" first={seconds[0]} second={seconds[1]} />
-
-      </div>
-    </div>
-  )
-}
-
-/* ---------- Components ---------- */
-
-function TimeBlock({
-  label,
-  first,
-  second,
-}: {
-  label: string
-  first: string
-  second: string
-}) {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="flex items-center">
-        <div className="-mr-1">
-          <DigitReel value={first} />
-        </div>
-        <div className="-ml-1">
-          <DigitReel value={second} />
-        </div>
-      </div>
-      <span className="mt-3 text-xs tracking-widest uppercase text-yellow-400/80">
-        {label}
-      </span>
-    </div>
-  )
-}
-
-function Colon() {
-  return (
-    <div className="text-3xl sm:text-5xl text-white/30 font-light">
-      :
+    <div className="flip-clock">
+      <FlipCard value={timeLeft.days} label="Days" />
+      <FlipCard value={timeLeft.hours} label="Hours" />
+      <FlipCard value={timeLeft.minutes} label="Minutes" />
+      <FlipCard value={timeLeft.seconds} label="Seconds" />
     </div>
   )
 }
