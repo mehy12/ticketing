@@ -113,7 +113,7 @@ export const Navbar = () => {
             {/* Centered Logo for Mobile */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <Link href="/" className="flex items-center">
-                <Image src={"/logo.png"} alt="Logo" height={200} width={200} />
+                <Image src={"/logo.png"} alt="Logo" height={70} width={70} />
               </Link>
             </div>
 
