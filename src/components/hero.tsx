@@ -14,7 +14,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-transparent to-transparent/50">
-      <div className="container mx-auto px-6 pt-14 md:pt-16 flex min-h-screen items-center justify-center text-white">
+      <div className="container mx-auto px-6 pt-4 md:pt-16 flex min-h-screen items-center justify-center text-white">
         <div className="w-full text-center">
 
           {/* Banner */}
@@ -22,7 +22,7 @@ export default function Hero() {
             variants={item}
             initial="hidden"
             animate="show"
-            className="flex justify-center mb-3"
+            className="flex justify-center mb-1 md:mb-3"
           >
             <Image
               src="/bannerr.png"
@@ -39,7 +39,7 @@ export default function Hero() {
             variants={item}
             initial="hidden"
             animate="show"
-            className="mb-4 flex justify-center"
+            className="mb-2 md:mb-4 flex justify-center"
           >
             <Image
               src="/logo.png"
