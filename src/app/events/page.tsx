@@ -122,6 +122,42 @@ export default function EventPage() {
       description: "Present a creative theme with coordinated ramp performance.",
       isPublished: true,
     },
+    {
+      title: "Beyond The Lens – Photography",
+      image: "/events/beyond-the-lens.jpg",
+      description: "Mobile photography competition. Capture creativity and present your best shot in 5 minutes.",
+      isPublished: true,
+    },
+    {
+      title: "Chamber of Secrets – Escape Room",
+      image: "/events/chamber-of-secrets.jpg",
+      description: "Team-based escape challenge. Solve puzzles and race against time to break free.",
+      isPublished: true,
+    },
+    {
+      title: "Inkspire – Creative Writing",
+      image: "/events/inkspire.jpg",
+      description: "Team storytelling challenge with a unique Universe Switch concept.",
+      isPublished: true,
+    },
+    {
+      title: "Air Crash",
+      image: "/events/air-crash.jpg",
+      description: "Role-play debate event. Convince the panel why you deserve to survive.",
+      isPublished: true,
+    },
+    {
+      title: "House of Games",
+      image: "/events/house-of-games.jpg",
+      description: "High-energy survival-based team competition with multiple rounds.",
+      isPublished: true,
+    },
+    {
+      title: "Web Designing Competition",
+      image: "/events/web-designing.jpg",
+      description: "Design a website in 90 minutes. AI allowed, originality required.",
+      isPublished: true,
+    },
   ];
 
   return (

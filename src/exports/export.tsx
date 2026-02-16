@@ -1360,4 +1360,449 @@ export const evento: Event[] = [
     gradient: "from-rose-500 to-pink-600",
     price: 2000,
   },
+  {
+    slug: "beyond-the-lens-photography",
+    name: "Beyond The Lens – Photography",
+    tagline: "Capture the Moment. Frame the Story.",
+    description:
+      "A mobile photography competition that challenges participants to capture stunning visuals and present their creativity through powerful storytelling. Showcase your perspective beyond the lens.",
+    date: "March 28, 2026",
+    time: "10:00 AM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Creative",
+    image: "/events/beyond-the-lens.jpg",
+    rules: [
+      "Individual participation only.",
+      "Only mobile photography is allowed.",
+      "Participants must submit original photographs.",
+      "Basic editing is allowed, but excessive manipulation is prohibited.",
+      "Each participant will get 5 minutes to present their work.",
+      "Judging criteria: Creativity, Composition, Storytelling, and Originality.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "Participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 28, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "Vishnu S",
+        contact: "7204672943",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Hemanth",
+        contact: "9742184114",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can DSLR cameras be used?",
+        answer: "No. Only mobile photography is permitted.",
+      },
+      {
+        question: "Is editing allowed?",
+        answer: "Basic editing is allowed, but heavy manipulation is not permitted.",
+      },
+    ],
+    minTeamSize: 1,
+    maxTeamSize: 1,
+    featured: false,
+    gradient: "from-purple-500 to-pink-500",
+    price: 199,
+  },
+  {
+    slug: "chamber-of-secrets-escape-room",
+    name: "Chamber of Secrets – Escape Room",
+    tagline: "Decode. Discover. Escape.",
+    description:
+      "A thrilling team-based escape challenge where participants must solve intricate puzzles, uncover hidden clues, and work together to escape before time runs out. Intelligence, teamwork, and quick thinking are essential.",
+    date: "March 28, 2026",
+    time: "11:00 AM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Technical",
+    image: "/events/chamber-of-secrets.jpg",
+    rules: [
+      "Team size: 2–3 members.",
+      "Time limit will be strictly enforced.",
+      "All clues must be solved in sequence.",
+      "No external help or use of mobile phones is allowed.",
+      "Teams must respect the game setup and props.",
+      "Judging criteria: Time Taken, Accuracy, and Team Coordination.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "Participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 28, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "C Shashank",
+        contact: "9110465773",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Likith S",
+        contact: "6361165164",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can we participate individually?",
+        answer: "No. Participation is strictly in teams of 2–3 members.",
+      },
+      {
+        question: "Can we use the internet to solve puzzles?",
+        answer: "No. Use of mobile phones or internet is strictly prohibited.",
+      },
+    ],
+    minTeamSize: 2,
+    maxTeamSize: 3,
+    featured: false,
+    gradient: "from-indigo-600 to-purple-600",
+    price: 269,
+  }, {
+    slug: "inkspire-creative-writing",
+    name: "Inkspire – Creative Writing",
+    tagline: "Unleash Your Words. Create Your World.",
+    description:
+      "A platform for writers to showcase their imagination and storytelling skills. Participants will craft original pieces based on given prompts across genres such as poetry, short stories, and flash fiction. Creativity, expression, and originality will shine.",
+    date: "March 28, 2026",
+    time: "2:00 PM – 3:30 PM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Literary",
+    image: "/events/inkspire-creative-writing.jpg",
+    rules: [
+      "Individual participation only.",
+      "Topic/prompts will be given on the spot.",
+      "Time limit must be strictly followed.",
+      "Plagiarism will lead to immediate disqualification.",
+      "Participants must write their own original content.",
+      "Judging criteria: Creativity, Language, Structure, and Originality.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "Participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 28, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "Harini Jhonson",
+        contact: "6360787318",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Keerthishree G",
+        contact: "7349432959",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can we choose our own topic?",
+        answer: "No. Topics/prompts will be provided during the event.",
+      },
+      {
+        question: "Can we bring prepared content?",
+        answer: "No. All writing must be done during the event.",
+      },
+    ],
+    minTeamSize: 1,
+    maxTeamSize: 1,
+    featured: false,
+    gradient: "from-pink-500 to-rose-600",
+    price: 199,
+  },
+  {
+    slug: "air-crash",
+    name: "Air Crash",
+    tagline: "Convince. Compete. Survive.",
+    description:
+      "A high-intensity role-play debate event where participants are placed in a survival scenario. Each contestant must convincingly argue why they deserve to survive a hypothetical air crash. Quick thinking, confidence, and persuasion skills are key to success.",
+    date: "March 28, 2026",
+    time: "6:30 PM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Personality",
+    image: "/events/air-crash.jpg",
+    rules: [
+      "Individual participation only.",
+      "Each participant will be assigned a role/scenario.",
+      "2 minutes preparation time will be provided.",
+      "Each participant will get 3–5 minutes to present.",
+      "Participants must stay in character throughout the performance.",
+      "Judging criteria: Creativity, Confidence, Persuasion, and Stage Presence.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "Participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 28, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "Chaithra S",
+        contact: "8904077287",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Pratham J",
+        contact: "9590232811",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can we prepare our speech in advance?",
+        answer: "No. The role and scenario will be given on the spot.",
+      },
+      {
+        question: "Is this a debate event?",
+        answer: "It is a role-play persuasive speaking event with competitive elements.",
+      },
+    ],
+    minTeamSize: 1,
+    maxTeamSize: 1,
+    featured: false,
+    gradient: "from-red-500 to-orange-500",
+    price: 199,
+  },
+  {
+    slug: "house-of-games",
+    name: "House of Games",
+    tagline: "Survive the Rounds. Outplay the Competition.",
+    description:
+      "A high-energy, multi-round team competition packed with fun challenges, strategy-based tasks, and elimination rounds. Teams must survive each round through skill, teamwork, and smart decision-making to emerge victorious.",
+    date: "March 27, 2026",
+    time: "6:30 PM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Entertainment",
+    image: "/events/house-of-games.jpg",
+    rules: [
+      "Team size: 5 members.",
+      "Multiple rounds with eliminations will be conducted.",
+      "Teams must follow instructions given for each round.",
+      "Any unfair means will result in immediate disqualification.",
+      "Judges’ decision will be final.",
+      "Judging criteria: Teamwork, Strategy, Performance, and Completion of tasks.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "All participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 27, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Cash Prize + Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "Bhargav L Reddy",
+        contact: "9686957026",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Hitesh R Sulegai",
+        contact: "7406573131",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can we change team members after registration?",
+        answer: "No. Team members cannot be changed after registration closes.",
+      },
+      {
+        question: "Will all teams participate in every round?",
+        answer: "No. Teams may be eliminated after each round based on performance.",
+      },
+    ],
+    minTeamSize: 5,
+    maxTeamSize: 5,
+    featured: false,
+    gradient: "from-yellow-500 to-red-500",
+    price: 349,
+  },
+  {
+    slug: "web-designing-competition",
+    name: "Web Designing Competition",
+    tagline: "Design the Future. Build the Experience.",
+    description:
+      "A fast-paced web designing challenge where teams create a fully functional website within 90 minutes. Creativity, UI/UX design, responsiveness, and originality are key judging factors. AI tools are allowed, but innovation and uniqueness will set winners apart.",
+    date: "March 27, 2026",
+    time: "6:30 PM",
+    venue: "Vemana Institute of Technology Campus",
+    category: "Technical",
+    image: "/events/web-designing.jpg",
+    rules: [
+      "Team size: 2–4 members.",
+      "Total duration: 90 minutes.",
+      "Website must be developed within the given time.",
+      "Teams must upload their project to GitHub by the 75th minute.",
+      "Internet access is allowed.",
+      "AI tools are allowed, but originality is mandatory.",
+      "Generic templates or copied designs may lose marks.",
+      "Judging criteria: UI/UX, Creativity, Responsiveness, Functionality, and Originality.",
+    ],
+    eligibility: [
+      "Open to bonafide college students.",
+      "Participants must carry valid college ID cards.",
+    ],
+    registration: {
+      method: "Online Registration Only",
+      deadline: "Before March 27, 2026",
+      fee: "As per registration portal",
+      link: "https://linktr.ee/Ekyam.vemanotsava",
+    },
+    prizes: [
+      {
+        position: "Winner",
+        amount: "To Be Announced",
+        description: "Cash Prize + Trophy + Certificate",
+      },
+      {
+        position: "Runner-Up",
+        amount: "To Be Announced",
+        description: "Certificate",
+      },
+    ],
+    coordinators: [
+      {
+        name: "Akshayanshu",
+        contact: "9886667080",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Meesam",
+        contact: "6362029195",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+    ],
+
+    faqs: [
+      {
+        question: "Can we use frameworks like React or Tailwind?",
+        answer: "Yes, any framework or technology stack is allowed.",
+      },
+      {
+        question: "Is AI usage allowed?",
+        answer: "Yes, but originality and creativity will carry significant weight in judging.",
+      },
+    ],
+    minTeamSize: 2,
+    maxTeamSize: 4,
+    featured: true,
+    gradient: "from-blue-500 to-purple-600",
+    price: 299,
+  }
 ];
