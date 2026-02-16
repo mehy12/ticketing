@@ -22,8 +22,14 @@ export default function TeamPage() {
     >
       <Navbar />
 
-      {/* Dark overlay for readability */}
-      <div className="flex-1 flex flex-col items-center justify-start px-4 py-12 md:py-20 bg-black/60">
+      {/* Gradient overlay for readability — fades smoothly from transparent */}
+      <div
+        className="flex-1 flex flex-col items-center justify-start px-4 py-12 md:py-20"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.65) 100%)",
+        }}
+      >
         {/* Page Title */}
         <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-2 tracking-tight drop-shadow-lg">
           Our Team
