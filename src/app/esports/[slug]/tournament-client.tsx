@@ -430,7 +430,7 @@ export default function TournamentClient({
                       />
                       Registration Fees
                     </h3>
-                    <Link href="mailto:Ekyam.vemanothsav@gmail.com">
+                    <Link href="mailto:Ikyam.vemanothsav@gmail.com">
                       Email Us
                     </Link>
 
@@ -1038,7 +1038,7 @@ export default function TournamentClient({
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="mailto:Ekyam.vemanothsav@gmail.com"
+                  href="mailto:Ikyam.vemanothsav@gmail.com"
                   className="inline-flex items-center justify-center bg-white/10 hover:bg-white/15 text-white px-6 py-3 rounded-sm transition-colors"
                 >
                   Email Us

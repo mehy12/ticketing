@@ -34,7 +34,7 @@ export default function Hero() {
             />
           </motion.div>
 
-          {/* EKYAM Logo */}
+          {/* Ikyam Logo */}
           <motion.h1
             variants={item}
             initial="hidden"
@@ -43,7 +43,7 @@ export default function Hero() {
           >
             <Image
               src="/logo.png"
-              alt="EKYAM Logo"
+              alt="Ikyam Logo"
               width={500}
               height={500}
               className="w-[260px] sm:w-[360px] md:w-[430px] lg:w-[500px] h-auto"

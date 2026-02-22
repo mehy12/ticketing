@@ -27,7 +27,7 @@ const AboutSection = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             className="text-6xl  font-extrabold text-[#D4AF37] mb-6 drop-shadow-lg"
           >
-            About Ekyam 2026 🎭
+            About Ikyam 2026 🎭
           </motion.h2>
 
           {/* Description */}
@@ -40,7 +40,7 @@ const AboutSection = () => {
             Celebrating{" "}
             <span className="text-[#FFD700] font-semibold">25 Years</span> of
             culture, creativity, and passion,{" "}
-            <span className="text-[#E5C100] font-semibold">Ekyam 2026</span> is
+            <span className="text-[#E5C100] font-semibold">Ikyam 2026</span> is
             a one-of-a-kind cultural extravaganza at{" "}
             <span className="text-[#FAE9B4] font-medium">
               Vemana Institute of Technology, Bangalore
@@ -121,7 +121,7 @@ const AboutSection = () => {
 
             {/* Call-to-Action Button */}
             <div className="mt-8">
-              <Link href="https://linktr.ee/Ekyam.vemanothsav">
+              <Link href="https://linktr.ee/Ikyam.vemanothsav">
                 <Button
                   variant="secondary"
                   className="bg-[#E5C100] text-black hover:bg-[#C4A000]"

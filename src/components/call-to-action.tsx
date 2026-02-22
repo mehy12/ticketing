@@ -19,7 +19,7 @@ export const CallToAction = () => {
       <div className="container">
         <div className="max-w-lg mx-auto">
           <h1 className="text-white font-bold text-3xl md:text-5xl text-center mt-8 tracking-wide">
-            Join Us at Ekyam 2026
+            Join Us at Ikyam 2026
           </h1>
           <p className="text-center text-lg font-semibold text-orange-500">
             25 Years of Culture & Celebration!

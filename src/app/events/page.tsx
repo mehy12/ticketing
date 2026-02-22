@@ -7,7 +7,7 @@ export default function EventPage() {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/brochure.pdf"; // Ensure the file is placed in the public folder
-    link.download = "Ekyam_2026_Brochure.pdf";
+    link.download = "Ikyam_2026_Brochure.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -153,11 +153,11 @@ export default function EventPage() {
       isPublished: true,
     },
     {
-      title: "Web Designing Competition",
+      title: "Echoes of Poetry",
       image: "/events/web-designing.jpg",
-      description: "Design a website in 90 minutes. AI allowed, originality required.",
+      description: "Unleash your inner poet and let your words paint vivid pictures on canvas.",
       isPublished: true,
-    },
+    }
   ];
 
   return (
@@ -174,7 +174,7 @@ export default function EventPage() {
         <div className="text-center mb-12 mt-8">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-              Ekyam 2026 Events
+              Ikyam 2026 Events
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">

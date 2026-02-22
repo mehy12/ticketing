@@ -36,7 +36,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = "/brochure.pdf"; // Ensure the file is placed in the public folder
-    link.download = "Ekyam_2026_Brochure.pdf";
+    link.download = "Ikyam_2026_Brochure.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -399,7 +399,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                 </div>
 
                 <div className="space-y-3">
-                  <Link href={"https://linktr.ee/Ekyam.vemanothsav"}>
+                  <Link href={"https://linktr.ee/Ikyam.vemanothsav"}>
                     <Button
                       className={`w-full bg-gradient-to-r ${event.gradient} hover:opacity-90 transition-opacity`}
                     >

@@ -296,7 +296,7 @@ export default function RegisterPage() {
                 >
                     <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-                            Register for Ekyam 2026
+                            Register for Ikyam 2026
                         </span>
                     </h1>
                     <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
@@ -519,7 +519,7 @@ export default function RegisterPage() {
                                                                 <Badge
                                                                     className={`absolute top-3 right-3 z-20 bg-gradient-to-r ${event.gradient} text-white border-none`}
                                                                 >
-                                                                    Ekyam 2026
+                                                                    Ikyam 2026
                                                                 </Badge>
 
                                                                 {/* Bottom gradient + name */}

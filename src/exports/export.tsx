@@ -9,7 +9,7 @@ export const evento: Event[] = [
     description:
       "An electrifying solo dance battle where participants showcase their style, creativity, expressions, and stage presence across any dance genre.",
     date: "March 27, 2026",
-    time: "4:00 PM",
+    time: "2:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Dance",
     image: "/events/solo-dance.jpg",
@@ -31,7 +31,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -84,8 +84,8 @@ export const evento: Event[] = [
     tagline: "Bring the Energy. Own the Stage.",
     description:
       "A high-voltage group dance competition featuring western styles like hip-hop, freestyle, jazz, contemporary, street, and fusion. Teams will battle it out with synchronization, creativity, and stage presence.",
-    date: "March 27, 2026",
-    time: "6:30 PM",
+    date: "March 28, 2026",
+    time: "1:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Dance",
     image: "/events/western-group-dance.jpg",
@@ -106,7 +106,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -159,8 +159,8 @@ export const evento: Event[] = [
     tagline: "Celebrate Tradition Through Rhythm & Expression.",
     description:
       "A vibrant group dance competition showcasing classical, folk, Bollywood, and Indian fusion styles. Teams will express culture, coordination, and creativity through powerful choreography and storytelling.",
-    date: "March 27, 2026",
-    time: "12:00 PM",
+    date: "March 28, 2026",
+    time: "1:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Dance",
     image: "/events/indian-group-dance.jpg",
@@ -181,7 +181,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -235,7 +235,7 @@ export const evento: Event[] = [
     description:
       "A spontaneous solo dance challenge where participants must perform instantly to a randomly played song. This event tests adaptability, rhythm, creativity, and stage confidence.",
     date: "March 27, 2026",
-    time: "4:00 PM",
+    time: "3:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Dance",
     image: "/events/on-spot-choreography.jpg",
@@ -256,7 +256,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -310,8 +310,8 @@ export const evento: Event[] = [
     tagline: "Two Dancers. One Stage. Perfect Harmony.",
     description:
       "A dynamic dance competition where pairs showcase synchronization, chemistry, and creative choreography across any dance style. This event celebrates coordination and stage connection between two performers.",
-    date: "March 27, 2026",
-    time: "10:00 AM",
+    date: "March 28, 2026",
+    time: "12:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Dance",
     image: "/events/duo-dance.jpg",
@@ -333,7 +333,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -349,15 +349,15 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "Likith",
-        contact: "6361165164",
+        name: "Nayana",
+        contact: "9380301331",
         email: "",
         role: "Student Coordinator",
         image: "",
       },
       {
-        name: "Jithesh",
-        contact: "8722067551",
+        name: "Ashika Gowda",
+        contact: "8073132073",
         email: "",
         role: "Student Coordinator",
         image: "",
@@ -387,7 +387,7 @@ export const evento: Event[] = [
     description:
       "A melodious platform for solo performers to showcase their vocal talent across genres including classical, semi-classical, light music, folk, and film songs. Express emotion, rhythm, and stage presence through your voice.",
     date: "March 27, 2026",
-    time: "3:00 PM",
+    time: "12:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Music",
     image: "/events/solo-singing.jpg",
@@ -408,7 +408,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -462,7 +462,7 @@ export const evento: Event[] = [
     description:
       "A live musical showcase where teams perform in harmony, blending voices, rhythm, and coordination across various genres including classical, semi-classical, folk, devotional, patriotic, and film songs.",
     date: "March 27, 2026",
-    time: "6:30 PM",
+    time: "10:00 AM",
     venue: "Vemana Institute of Technology",
     category: "Music",
     image: "/events/group-singing.jpg",
@@ -483,7 +483,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -536,8 +536,8 @@ export const evento: Event[] = [
     tagline: "Unleash the Flow. Own the Mic.",
     description:
       "A high-energy solo performance event where participants showcase their lyrical flow, rhythm, and vocal power through rap and beatboxing. This stage is all about creativity, confidence, and commanding presence.",
-    date: "March 27, 2026",
-    time: "12:00 PM",
+    date: "March 28, 2026",
+    time: "4:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Music",
     image: "/events/rap-and-boxing.jpg",
@@ -558,7 +558,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -611,8 +611,8 @@ export const evento: Event[] = [
     tagline: "Make Them Laugh. Own the Stage.",
     description:
       "A solo performance event where participants bring humor, wit, and confidence to the stage through original stand-up comedy. This competition celebrates creativity, timing, and audience engagement.",
-    date: "March 27, 2026",
-    time: "3:00 PM",
+    date: "March 28, 2026",
+    time: "4:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Entertainment",
     image: "/events/stand-up-comedy.jpg",
@@ -632,7 +632,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -687,7 +687,7 @@ export const evento: Event[] = [
     description:
       "An exciting on-the-spot creative challenge where participants must shoot, edit, and submit a 60-second reel based on a randomly assigned theme. This event tests creativity, editing skills, and quick thinking.",
     date: "March 27, 2026",
-    time: "6:30 PM",
+    time: "12:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Media & Creative",
     image: "/events/reel-making-competition.jpg",
@@ -709,7 +709,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -763,7 +763,7 @@ export const evento: Event[] = [
     description:
       "Final Cut – Vemanotsava Film Festival 2026 is a cinematic platform where participants present original short films. This event celebrates storytelling, direction, editing, and visual creativity.",
     date: "March 27, 2026",
-    time: "11:00 AM (Screening: 12:00 PM – 1:00 PM)",
+    time: "12:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Media & Creative",
     image: "/events/final-cut-short-film.jpg",
@@ -784,7 +784,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -859,7 +859,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -882,7 +882,7 @@ export const evento: Event[] = [
         image: "",
       },
       {
-        name: "Pramod",
+        name: "Pramodh",
         contact: "7676456587",
         email: "",
         role: "Student Coordinator",
@@ -891,6 +891,13 @@ export const evento: Event[] = [
       {
         name: "Sumanth",
         contact: "9110640067",
+        email: "",
+        role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Thejaswi",
+        contact: "9620435191",
         email: "",
         role: "Student Coordinator",
         image: "",
@@ -919,8 +926,8 @@ export const evento: Event[] = [
     tagline: "Crack the Clues. Race the Clock. Claim the Treasure.",
     description:
       "An adventurous team-based challenge where participants solve riddles, decode clues, and complete tasks across multiple checkpoints to reach the final treasure. Strategy, speed, and teamwork are the keys to victory.",
-    date: "March 27, 2026",
-    time: "11:00 AM",
+    date: "March 28, 2026",
+    time: "10:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Adventure",
     image: "/events/the-great-hunt.jpg",
@@ -941,7 +948,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -957,14 +964,14 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "C. Shashank",
+        name: "C Shashank",
         contact: "9110465773",
         email: "",
         role: "Student Coordinator",
         image: "",
       },
       {
-        name: "Sanjana H.N",
+        name: "Sanjana H N",
         contact: "9008419329",
         email: "",
         role: "Student Coordinator",
@@ -995,7 +1002,7 @@ export const evento: Event[] = [
     description:
       "A multi-round quiz competition designed to test participants' knowledge, logical thinking, and quick decision-making skills across various domains including general knowledge, current affairs, entertainment, and more.",
     date: "March 27, 2026",
-    time: "3:00 PM – 4:00 PM",
+    time: "3:00 PM",
     venue: "ISE Seminar Hall (3rd Floor), Vemana Institute of Technology",
     category: "Quiz",
     image: "/events/can-you-guess.jpg",
@@ -1015,7 +1022,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1031,8 +1038,8 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "Shamitha",
-        contact: "8147751063",
+        name: "Charishma S",
+        contact: "9606060639",
         email: "",
         role: "Student Coordinator",
         image: "",
@@ -1068,8 +1075,8 @@ export const evento: Event[] = [
     tagline: "Confidence. Charisma. Crown the Aura.",
     description:
       "A personality-based competition that celebrates confidence, talent, intelligence, and stage presence. Participants go through multiple rounds including introduction, talent showcase, and Q&A to compete for the prestigious Mr. & Ms. Aura title.",
-    date: "March 27, 2026",
-    time: "12:00 PM",
+    date: "March 28, 2026",
+    time: "3:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Personality",
     image: "/events/mr-ms-aura.jpg",
@@ -1089,7 +1096,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1112,7 +1119,7 @@ export const evento: Event[] = [
         image: "",
       },
       {
-        name: "B. Yashaswini",
+        name: "B Yashaswini",
         contact: "9080971372",
         email: "",
         role: "Student Coordinator",
@@ -1143,7 +1150,7 @@ export const evento: Event[] = [
     description:
       "A creative art competition where participants express their imagination and artistic skills on canvas based on a given theme. This event celebrates originality, technique, and visual storytelling.",
     date: "March 27, 2026",
-    time: "4:00 PM",
+    time: "11:00 AM",
     venue: "Vemana Institute of Technology",
     category: "Art",
     image: "/events/canvas-painting.jpg",
@@ -1164,7 +1171,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1218,7 +1225,7 @@ export const evento: Event[] = [
     tagline: "Pitch Bold. Think Big. Win Smart.",
     description:
       "A business idea pitching competition where participants present innovative startup concepts to a panel of judges. This event tests creativity, feasibility, presentation skills, and entrepreneurial mindset.",
-    date: "March 27, 2026",
+    date: "March 28, 2026",
     time: "9:30 AM",
     venue: "Vemana Institute of Technology",
     category: "Business",
@@ -1239,7 +1246,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1314,7 +1321,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1387,7 +1394,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1403,7 +1410,7 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "Vishnu S",
+        name: "Vishnu",
         contact: "7204672943",
         email: "",
         role: "Student Coordinator",
@@ -1440,7 +1447,7 @@ export const evento: Event[] = [
     tagline: "Decode. Discover. Escape.",
     description:
       "A thrilling team-based escape challenge where participants must solve intricate puzzles, uncover hidden clues, and work together to escape before time runs out. Intelligence, teamwork, and quick thinking are essential.",
-    date: "March 28, 2026",
+    date: "March 27, 2026",
     time: "11:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Technical",
@@ -1461,7 +1468,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1514,7 +1521,7 @@ export const evento: Event[] = [
     description:
       "A platform for writers to showcase their imagination and storytelling skills. Participants will craft original pieces based on given prompts across genres such as poetry, short stories, and flash fiction. Creativity, expression, and originality will shine.",
     date: "March 28, 2026",
-    time: "2:00 PM – 3:30 PM",
+    time: "11:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Literary",
     image: "/events/inkspire-creative-writing.jpg",
@@ -1534,7 +1541,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1550,7 +1557,7 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "Harini Jhonson",
+        name: "Harini Johnson",
         contact: "6360787318",
         email: "",
         role: "Student Coordinator",
@@ -1608,7 +1615,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1662,7 +1669,7 @@ export const evento: Event[] = [
     description:
       "A high-energy, multi-round team competition packed with fun challenges, strategy-based tasks, and elimination rounds. Teams must survive each round through skill, teamwork, and smart decision-making to emerge victorious.",
     date: "March 27, 2026",
-    time: "6:30 PM",
+    time: "Full-Day Event",
     venue: "Vemana Institute of Technology Campus",
     category: "Entertainment",
     image: "/events/house-of-games.jpg",
@@ -1682,7 +1689,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1736,7 +1743,7 @@ export const evento: Event[] = [
     description:
       "A fast-paced web designing challenge where teams create a fully functional website within 90 minutes. Creativity, UI/UX design, responsiveness, and originality are key judging factors. AI tools are allowed, but innovation and uniqueness will set winners apart.",
     date: "March 27, 2026",
-    time: "6:30 PM",
+    time: "11:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Technical",
     image: "/events/web-designing.jpg",
@@ -1758,7 +1765,7 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ekyam.vemanotsava",
+      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1774,14 +1781,14 @@ export const evento: Event[] = [
     ],
     coordinators: [
       {
-        name: "Akshayanshu",
+        name: "Akshyanshu Sekhar",
         contact: "9886667080",
         email: "",
         role: "Student Coordinator",
         image: "",
       },
       {
-        name: "Meesam",
+        name: "Meesam Hyder",
         contact: "6362029195",
         email: "",
         role: "Student Coordinator",

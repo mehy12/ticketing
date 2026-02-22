@@ -66,7 +66,7 @@ export function EventCard({
           <Badge
             className={`absolute top-3 right-3 z-20 bg-gradient-to-r ${gradient}`}
           >
-            Ekyam 2026
+            Ikyam 2026
           </Badge>
         </div>
 
