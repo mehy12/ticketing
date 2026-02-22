@@ -25,6 +25,7 @@ import {
     QrCode,
     CheckCircle2,
     MapPin,
+    Hash,
 } from "lucide-react";
 
 type FormData = {
@@ -60,6 +61,7 @@ export default function RegisterPage() {
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
+    const [utr, setUtr] = useState("");
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const categories = useMemo(() => {
@@ -211,7 +213,7 @@ export default function RegisterPage() {
     };
 
     const handleFinalSubmit = async () => {
-        if (screenshot) {
+        if (screenshot && utr.trim()) {
             setSubmitting(true);
             setSubmitError(null);
             try {
@@ -227,6 +229,7 @@ export default function RegisterPage() {
                     events: eventNames,
                     totalAmount: totalPrice,
                     screenshotBase64: compressedBase64,
+                    utr: utr.trim(),
                 });
 
                 if (result.success) {
@@ -980,6 +983,26 @@ export default function RegisterPage() {
                                             )}
                                         </div>
 
+                                        {/* UTR Input */}
+                                        <div className="mt-6">
+                                            <label className="block text-sm font-medium text-gray-300 mb-3">
+                                                UTR Number
+                                            </label>
+                                            <div className="relative">
+                                                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                                                    <Hash className="h-5 w-5" />
+                                                </div>
+                                                <input
+                                                    type="text"
+                                                    value={utr}
+                                                    onChange={(e) => setUtr(e.target.value)}
+                                                    placeholder="Enter your UTR / Transaction ID"
+                                                    className="w-full pl-11 pr-4 py-3 bg-gray-900/70 border border-gray-700 rounded-xl text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500/50 transition-all duration-200"
+                                                />
+                                            </div>
+                                            <p className="text-gray-500 text-xs mt-1.5 pl-1">You can find this in your UPI app payment history</p>
+                                        </div>
+
                                         {/* Submit Button */}
                                         {submitError && (
                                             <motion.p
@@ -991,11 +1014,11 @@ export default function RegisterPage() {
                                             </motion.p>
                                         )}
                                         <motion.button
-                                            whileHover={screenshot && !submitting ? { scale: 1.02 } : {}}
-                                            whileTap={screenshot && !submitting ? { scale: 0.98 } : {}}
+                                            whileHover={screenshot && utr.trim() && !submitting ? { scale: 1.02 } : {}}
+                                            whileTap={screenshot && utr.trim() && !submitting ? { scale: 0.98 } : {}}
                                             onClick={handleFinalSubmit}
-                                            disabled={!screenshot || submitting}
-                                            className={`w-full mt-6 py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all duration-300 ${screenshot && !submitting
+                                            disabled={!screenshot || !utr.trim() || submitting}
+                                            className={`w-full mt-6 py-3.5 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all duration-300 ${screenshot && utr.trim() && !submitting
                                                 ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:shadow-lg hover:shadow-yellow-500/25"
                                                 : "bg-gray-800 text-gray-500 cursor-not-allowed"
                                                 }`}

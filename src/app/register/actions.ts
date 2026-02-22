@@ -11,6 +11,7 @@ export async function submitRegistration(data: {
     events: string;
     totalAmount: number;
     screenshotBase64: string | null;
+    utr: string;
 }) {
     try {
         const response = await fetch(GOOGLE_SHEET_URL, {
