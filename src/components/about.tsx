@@ -85,37 +85,54 @@ const AboutSection = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="mt-12"
           >
-            <h3 className="text-4xl font-bold text-[#E5C100] mb-4 drop-shadow-md ">
-              What to Expect? 🚀
+            <h3 className="text-4xl font-bold text-[#E5C100] mb-6 drop-shadow-md">
+              What to Expect at Vemanotsav 2026? 🚀
             </h3>
-            <ul className="text-lg text-[#FDF6E3] space-y-3 font-light">
+
+            <ul className="text-lg text-[#FDF6E3] space-y-4 font-light">
               <li>
                 🎤{" "}
                 <span className="text-[#FFD700] font-semibold">
-                  Live Music & Dance
+                  Electrifying Performances
                 </span>{" "}
-                - Experience stunning performances from talented artists.
+                - Solo & group dance (Indian & Western), singing, rap, beatboxing,
+                stand-up comedy, poetry, fashion show, and more.
               </li>
+
               <li>
                 🏆{" "}
                 <span className="text-[#E5C100] font-semibold">
                   Exciting Competitions
                 </span>{" "}
-                - Participate in thrilling contests and showcase your talent.
+                - Quiz, Shark Tank, creative writing, air crash, short film,
+                reel making, and interactive challenge events.
               </li>
+
               <li>
-                🎭{" "}
+                🎮{" "}
                 <span className="text-[#FAE9B4] font-semibold">
-                  Drama & Theatre
+                  Esports & Gaming Arena
                 </span>{" "}
-                - Witness captivating plays and theatrical performances.
+                - BGMI, Call of Duty Mobile, Free Fire, and Minecraft team battles
+                conducted in custom rooms with fair-play rules.
               </li>
+
+              <li>
+                🎨{" "}
+                <span className="text-[#F5DEB3] font-semibold">
+                  Arts & Creativity
+                </span>{" "}
+                - Canvas painting, photography, drama-style performances,
+                and cultural showcases.
+              </li>
+
               <li>
                 🎉{" "}
-                <span className="text-[#F5DEB3] font-semibold">
-                  Fun Activities
+                <span className="text-[#FFE4A3] font-semibold">
+                  Festive Campus Vibes
                 </span>{" "}
-                - Engage in interactive games, food stalls, and much more!
+                - Inter-college participation, networking, unity in diversity,
+                music, food, and unforgettable memories.
               </li>
             </ul>
 

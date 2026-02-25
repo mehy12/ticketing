@@ -84,11 +84,6 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link href="/passes">
-              <ShinyButton variant="purple">
-                🎟️ Get Your Passes
-              </ShinyButton>
-            </Link>
 
             <Link href="/events">
               <ShinyButton>
