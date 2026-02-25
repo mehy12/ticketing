@@ -8,7 +8,7 @@ export async function submitRegistration(data: {
     email: string;
     phone: string;
     college: string;
-    events: string; 0
+    events: string;
     totalAmount: number;
     screenshotBase64: string | null;
     utr: string;
