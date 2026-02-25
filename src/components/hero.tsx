@@ -22,7 +22,7 @@ export default function Hero() {
             variants={item}
             initial="hidden"
             animate="show"
-            className="flex justify-center mb-1 md:mb-3"
+            className="flex justify-center mb-0 md:mb-0"
           >
             <Image
               src="/bannerr.png"
@@ -30,7 +30,7 @@ export default function Hero() {
               width={1600}
               height={400}
               priority
-              className="w-[340px] sm:w-[450px] md:w-[600px] lg:w-[750px] xl:w-[900px] h-auto"
+              className="w-[340px] sm:w-[450px] md:w-[600px] lg:w-[750px] xl:w-[950px] h-auto"
             />
           </motion.div>
 
@@ -39,13 +39,13 @@ export default function Hero() {
             variants={item}
             initial="hidden"
             animate="show"
-            className="mb-2 md:mb-4 flex justify-center"
+            className="mb-1 md:mb-1 flex justify-center"
           >
             <Image
               src="/logo.png"
               alt="Ikyam Logo"
-              width={500}
-              height={500}
+              width={5000}
+              height={5000}
               className="w-[260px] sm:w-[360px] md:w-[430px] lg:w-[500px] h-auto"
             />
           </motion.h1>
@@ -55,7 +55,7 @@ export default function Hero() {
             variants={item}
             initial="hidden"
             animate="show"
-            className="mb-8 max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl text-white/80"
+            className="mb-4 max-w-3xl mx-auto text-lg sm:text-xl lg:text-2xl text-white/80"
           >
             Where Talent Unites. Where Legends Rise
           </motion.p>
