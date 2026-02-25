@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar";
 import { RevealBento } from "@/components/reveal-bento";
 import MasonryGrid from "@/components/masonary-grid";
 import AboutSection from "@/components/about";
+import RollingTrophy from "@/components/rolling-trophy";
 import { TapeSection } from "@/components/tape";
 import { CallToAction } from "@/components/call-to-action";
 
@@ -35,6 +36,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         <AboutSection />
+        <RollingTrophy />
         <MasonryGrid />
         <TapeSection />
         <FestStats />
