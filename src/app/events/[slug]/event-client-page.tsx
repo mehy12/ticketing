@@ -17,7 +17,7 @@ import {
   Download,
   CheckCircle,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import FancyButton from "@/components/ui/fancy-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Navbar } from "@/components/navbar";
 import type { Event } from "@/lib/types";
@@ -399,21 +399,20 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                 </div>
 
                 <div className="space-y-3">
-                  <Link href={"https://linktr.ee/Ikyam.vemanothsav"}>
-                    <Button
-                      className={`w-full bg-gradient-to-r ${event.gradient} hover:opacity-90 transition-opacity`}
-                    >
+                  <Link href="/register" className="block">
+                    <FancyButton variant="primary" color="violet" className="w-full">
                       Register Now
-                    </Button>
+                    </FancyButton>
                   </Link>
-                  <Button
-                    variant="outline"
+                  <FancyButton
+                    variant="secondary"
+                    color="cyan"
                     className="w-full"
                     onClick={handleDownload}
                   >
-                    <Download className="h-4 w-4 mr-2" />
+                    <Download className="h-4 w-4 mr-2 inline" />
                     Download Rules PDF
-                  </Button>
+                  </FancyButton>
                 </div>
               </div>
 
@@ -475,26 +474,20 @@ export default function EventPageClient({ event }: EventPageClientProps) {
               {/* Actions Card */}
               <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
                 <div className="flex justify-between">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2"
+                  <FancyButton
+                    variant="ghost"
                     onClick={() => setIsLiked(!isLiked)}
                   >
                     <Heart
-                      className={`h-4 w-4 ${isLiked ? "fill-red-500 text-red-500" : "text-gray-400"
+                      className={`h-4 w-4 mr-2 inline ${isLiked ? "fill-red-500 text-red-500" : "text-gray-400"
                         }`}
                     />
                     {isLiked ? "Saved" : "Save"}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center gap-2"
-                  >
-                    <Share2 className="h-4 w-4" />
+                  </FancyButton>
+                  <FancyButton variant="ghost">
+                    <Share2 className="h-4 w-4 mr-2 inline" />
                     Share
-                  </Button>
+                  </FancyButton>
                 </div>
               </div>
             </motion.div>

@@ -5,7 +5,7 @@ import { Trophy } from "lucide-react";
 
 const RollingTrophy = () => {
     return (
-        <section className="relative text-white py-20 px-6 overflow-hidden">
+        <section className="relative text-white py-20 px-6 overflow-hidden bg-gradient-to-b from-transparent/30 to-transparent/30">
             {/* Decorative background glow */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D4AF37]/5 rounded-full blur-[120px]" />

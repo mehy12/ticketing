@@ -3,7 +3,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import Link from "next/link";
-import { Button } from "./ui/button";
+import FancyButton from "./ui/fancy-button";
 
 const AboutSection = () => {
   const handleLearnMore = () => {
@@ -68,13 +68,13 @@ const AboutSection = () => {
             className="mt-8"
           >
             <Link href="/about">
-              <Button
-                variant="default"
-                className="bg-[#FFD700] text-black hover:bg-[#E5C100]"
+              <FancyButton
+                variant="secondary"
+                color="orange"
                 onClick={handleLearnMore}
               >
                 Learn More
-              </Button>
+              </FancyButton>
             </Link>
           </motion.div>
 
@@ -138,13 +138,10 @@ const AboutSection = () => {
 
             {/* Call-to-Action Button */}
             <div className="mt-8">
-              <Link href="https://linktr.ee/Ikyam.vemanothsav">
-                <Button
-                  variant="secondary"
-                  className="bg-[#E5C100] text-black hover:bg-[#C4A000]"
-                >
+              <Link href="/register">
+                <FancyButton variant="expand" color="gold">
                   Register Now
-                </Button>
+                </FancyButton>
               </Link>
             </div>
           </motion.div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ShinyButton from "./ui/shiny-button";
+import FancyButton from "./ui/fancy-button";
 
 export const CallToAction = () => {
   return (
@@ -32,16 +32,11 @@ export const CallToAction = () => {
         </div>
         <div className=" flex flex-col md:flex-row justify-center items-center mt-8 gap-2">
           <Link href={"/events"}>
-            <ShinyButton variant="purple">
+            <FancyButton variant="primary" color="orange">
               <span className="font-semibold">Explore Events</span>
-            </ShinyButton>
+            </FancyButton>
           </Link>
-          <Link href={"/passes"}>
-            <ShinyButton variant="green">
-              <span>🎟️</span>
-              <span className=" font-semibold ">Get Your Pass</span>
-            </ShinyButton>
-          </Link>
+          
         </div>
       </div>
     </div>

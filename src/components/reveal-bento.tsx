@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import RichTooltip from "@/components/ui/smoothui/rich-popover";
 
 export const RevealBento = () => {
   return (
@@ -90,36 +91,71 @@ const HeaderBlock = () => (
 const SocialsBlock = () => (
   <>
     <Block className="col-span-6 bg-red-500 md:col-span-3">
-      <Link
+      <RichTooltip
+        trigger={
+          <button className="grid h-full w-full place-content-center text-3xl text-white cursor-pointer">
+            <Youtube />
+          </button>
+        }
+        title="Vemana Institute of Technology"
+        description="Watch our official events, cultural highlights, and campus moments on YouTube."
+        icon={<Youtube className="h-4 w-4 text-red-500" />}
         href="https://www.youtube.com/@vemanainstituteoftechnolog9250"
-        className="grid h-full place-content-center text-3xl text-white"
-      >
-        <Youtube />
-      </Link>
+        actionLabel="Watch Now"
+        actionHref="https://www.youtube.com/@vemanainstituteoftechnolog9250"
+        meta="Event recaps"
+        side="top"
+      />
     </Block>
     <Block className="col-span-6 bg-fuchsia-700 md:col-span-3">
-      <Link
+      <RichTooltip
+        trigger={
+          <button className="grid h-full w-full place-content-center text-3xl text-white cursor-pointer">
+            <MailIcon />
+          </button>
+        }
+        title="Ikyam.vemanothsav@gmail.com"
+        description="Have questions or partnership inquiries? Reach out to us directly via email."
+        icon={<MailIcon className="h-4 w-4 text-fuchsia-300" />}
         href="mailto:Ikyam.vemanothsav@gmail.com"
-        className="grid h-full place-content-center text-3xl text-white"
-      >
-        <MailIcon />
-      </Link>
+        actionLabel="Send Email"
+        actionHref="mailto:Ikyam.vemanothsav@gmail.com"
+        side="top"
+      />
     </Block>
     <Block className="col-span-6 bg-blue-500 md:col-span-3">
-      <Link
-        href="https://www.linkedin.com/school/vemana-institute-of-technology-koramangala-bengaluru/?originalSubdomain=in"
-        className="grid h-full place-content-center text-3xl text-black"
-      >
-        <LinkedinIcon />
-      </Link>
+      <RichTooltip
+        trigger={
+          <button className="grid h-full w-full place-content-center text-3xl text-black cursor-pointer">
+            <LinkedinIcon />
+          </button>
+        }
+        title="Vemana Institute of Technology"
+        description="Connect with us on LinkedIn for professional updates, placements, and campus news."
+        icon={<LinkedinIcon className="h-4 w-4 text-blue-400" />}
+        href="https://www.linkedin.com/school/vemana-institute-of-technology-koramangala-bengaluru/"
+        actionLabel="Connect"
+        actionHref="https://www.linkedin.com/school/vemana-institute-of-technology-koramangala-bengaluru/"
+        meta="500+ followers"
+        side="top"
+      />
     </Block>
     <Block className="col-span-6 bg-gradient-to-br from-purple-500 via-pink-500 to-yellow-400 md:col-span-3">
-      <Link
+      <RichTooltip
+        trigger={
+          <button className="grid h-full w-full place-content-center text-3xl text-white cursor-pointer">
+            <InstagramIcon />
+          </button>
+        }
+        title="@vemanotsav2k25"
+        description="Follow us for the latest updates, behind-the-scenes moments, and event highlights from Ikyam 2026!"
+        icon={<InstagramIcon className="h-4 w-4 text-pink-400" />}
         href="https://www.instagram.com/vemanotsav2k25/"
-        className="grid h-full place-content-center text-3xl text-white"
-      >
-        <InstagramIcon />
-      </Link>
+        actionLabel="Follow Us"
+        actionHref="https://www.instagram.com/vemanotsav2k25/"
+        meta="Updates daily"
+        side="top"
+      />
     </Block>
   </>
 );
@@ -139,18 +175,24 @@ const AboutBlock = () => (
 );
 
 const LocationBlock = () => (
-  <Block className="col-span-12 flex flex-col items-center  gap-4 md:col-span-3">
-    <Link
-      href={
-        "https://www.google.com/maps/dir//3rd+Block,+No.+1,+Mahakavi+Vemana+Rd,+Koramangala+3+Block,+Koramangala,+Bengaluru,+Karnataka+560034/@12.9296361,77.5400661,21767m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3bae145bd0354b43:0x1b1420a6cc18d678!2m2!1d77.622468!2d12.929649?entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D"
+  <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3">
+    <RichTooltip
+      trigger={
+        <button className="inset-0 flex flex-col items-center gap-2 cursor-pointer">
+          <LocateIcon className="text-3xl" />
+          <p className="text-center text-lg text-zinc-400">
+            Vemana Institute of Technology, Bangalore
+          </p>
+        </button>
       }
-      className="inset-0 flex flex-col items-center"
-    >
-      <LocateIcon className="text-3xl" />
-      <p className="text-center text-lg text-zinc-400">
-        Vemana Institute of Technology, Bangalore
-      </p>
-    </Link>
+      title="VIT Koramangala, Bangalore"
+      description="3rd Block, No. 1, Mahakavi Vemana Rd, Koramangala, Bengaluru, Karnataka 560034"
+      icon={<LocateIcon className="h-4 w-4 text-emerald-400" />}
+      href="https://www.google.com/maps/dir//3rd+Block,+No.+1,+Mahakavi+Vemana+Rd,+Koramangala+3+Block,+Koramangala,+Bengaluru,+Karnataka+560034/@12.9296361,77.5400661,21767m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3bae145bd0354b43:0x1b1420a6cc18d678!2m2!1d77.622468!2d12.929649"
+      actionLabel="Get Directions"
+      actionHref="https://www.google.com/maps/dir//3rd+Block,+No.+1,+Mahakavi+Vemana+Rd,+Koramangala+3+Block,+Koramangala,+Bengaluru,+Karnataka+560034/@12.9296361,77.5400661,21767m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x3bae145bd0354b43:0x1b1420a6cc18d678!2m2!1d77.622468!2d12.929649"
+      side="top"
+    />
   </Block>
 );
 

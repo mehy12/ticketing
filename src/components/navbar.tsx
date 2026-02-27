@@ -12,7 +12,7 @@ import {
 } from "./ui/sheet";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import ShinyButton from "./ui/shiny-button";
+import FancyButton from "./ui/fancy-button";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,25 +24,24 @@ export const Navbar = () => {
           <div className="absolute inset-0 backdrop-blur -z-10"></div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-8 items-center  text-white/70 text-sm">
-            <Link href="/" className="hover:text-white transition">
-              Home
+          <nav className="hidden md:flex gap-6 items-center text-sm">
+            <Link href="/">
+              <FancyButton variant="underline">Home</FancyButton>
             </Link>
-            <Link href="/sponsors" className="hover:text-white transition">
-              Sponsors
+            <Link href="/sponsors">
+              <FancyButton variant="underline">Sponsors</FancyButton>
             </Link>
-            <Link href="/events" className="hover:text-white transition">
-              Events
+            <Link href="/events">
+              <FancyButton variant="underline">Events</FancyButton>
             </Link>
-            <Link href="/team" className="hover:text-white transition">
-              Team
+            <Link href="/team">
+              <FancyButton variant="underline">Team</FancyButton>
             </Link>
-
-            <Link href="/register" className="hover:text-white transition">
-              <ShinyButton variant="purple">Register</ShinyButton>
+            <Link href="/esports">
+              <FancyButton variant="ghost">Esports</FancyButton>
             </Link>
-            <Link href="/esports" className="hover:text-white transition">
-              <ShinyButton variant="purple">Esports</ShinyButton>
+            <Link href="/register">
+              <FancyButton variant="primary" color="violet">Register</FancyButton>
             </Link>
           </nav>
 
@@ -91,20 +90,19 @@ export const Navbar = () => {
                   >
                     Team
                   </Link>
-
+                  <Link
+                    href="/esports"
+                    className="hover:text-white transition"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <FancyButton variant="ghost">Esports</FancyButton>
+                  </Link>
                   <Link
                     href="/register"
                     className="hover:text-white transition"
                     onClick={() => setIsOpen(false)}
                   >
-                    <ShinyButton variant="purple">Register</ShinyButton>
-                  </Link>
-                  <Link
-                    href="/esports"
-                    className="hover:text-white transition "
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <ShinyButton variant="purple">Esports</ShinyButton>
+                    <FancyButton variant="primary" color="violet">Register</FancyButton>
                   </Link>
                 </nav>
               </SheetContent>

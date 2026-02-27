@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { PageTransition } from "@/components/page-transition";
 
 const outfit = Outfit({
   variable: "--font-outfit-sans",
@@ -38,7 +39,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#FFD700" />
         <link rel="canonical" href="https://vemanothsav.in" />
       </head>
-      <body className={`${outfit.className}  antialiased`}>{children}</body>
+      <body className={`${outfit.className}  antialiased`}>
+        <PageTransition>{children}</PageTransition>
+      </body>
     </html>
   );
 }

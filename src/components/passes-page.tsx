@@ -384,7 +384,7 @@ export default function PassesPage() {
             Register now to secure your pass and be part of the most exciting
             cultural fest of the year!
           </p>
-          <Link href={"https://linktr.ee/Ikyam.vemanothsav"}>
+          <Link href="/register">
             <Button
               size="lg"
               className="px-8 py-6 bg-gradient-to-r from-yellow-500 to-amber-600 text-black font-bold rounded-lg hover:from-yellow-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg"

@@ -2,26 +2,33 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useWindowSize } from "@/hooks/window";
-import { FileQuestion, DollarSign, Bell, MapIcon } from "lucide-react";
+import {
+  FileQuestion,
+  DollarSign,
+  Bell,
+  MapIcon,
+  ChevronRight,
+} from "lucide-react";
 
-// Define type for each item in the accordion
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
 interface AccordionItem {
   id: number;
   title: string;
   Icon: React.ElementType;
-  imgSrc: string;
-  description: string;
+  faqs: FAQ[];
 }
 
-// Define type for Panel props
 interface PanelProps {
   open: number;
   setOpen: (id: number) => void;
   id: number;
   Icon: React.ElementType;
   title: string;
-  imgSrc: string;
-  description: string;
+  faqs: FAQ[];
 }
 
 const VerticalAccordion = () => {
@@ -38,8 +45,7 @@ const VerticalAccordion = () => {
             id={item.id}
             Icon={item.Icon}
             title={item.title}
-            imgSrc={item.imgSrc}
-            description={item.description}
+            faqs={item.faqs}
           />
         ))}
       </div>
@@ -53,11 +59,11 @@ const Panel: React.FC<PanelProps> = ({
   id,
   Icon,
   title,
-  imgSrc,
-  description,
+  faqs,
 }) => {
   const { width } = useWindowSize();
   const isOpen = open === id;
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
 
   return (
     <>
@@ -67,7 +73,7 @@ const Panel: React.FC<PanelProps> = ({
       >
         <span
           style={{ writingMode: "vertical-lr" }}
-          className="hidden  lg:block text-xl font-light rotate-180"
+          className="hidden lg:block text-xl font-light rotate-180"
         >
           {title}
         </span>
@@ -86,21 +92,62 @@ const Panel: React.FC<PanelProps> = ({
             initial="closed"
             animate="open"
             exit="closed"
-            style={{
-              backgroundImage: `url(${imgSrc})`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-            }}
-            className="w-full h-full overflow-hidden relative bg-black flex items-end"
+            className="w-full h-full overflow-hidden relative bg-[#111] flex flex-col"
           >
             <motion.div
-              variants={descriptionVariants}
+              variants={contentVariants}
               initial="closed"
               animate="open"
               exit="closed"
-              className="px-4 py-2 bg-black/40 backdrop-blur-sm text-white"
+              className="px-6 py-5 text-white overflow-y-auto h-full"
             >
-              <p>{description}</p>
+              <h3 className="text-xl font-semibold mb-4 text-orange-400">
+                {title}
+              </h3>
+              <div className="space-y-2">
+                {faqs.map((faq, index) => {
+                  const isExpanded = expandedFaq === index;
+                  return (
+                    <div
+                      key={index}
+                      className="border border-white/10 rounded-xl overflow-hidden bg-white/5"
+                    >
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedFaq(isExpanded ? null : index);
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-white/5 transition-colors cursor-pointer"
+                      >
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 90 : 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ChevronRight className="h-4 w-4 text-orange-400 flex-shrink-0" />
+                        </motion.div>
+                        <span className="text-sm font-medium text-white/90">
+                          {faq.question}
+                        </span>
+                      </button>
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="px-4 pb-3 pl-11 text-sm text-white/60 leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -117,47 +164,122 @@ const panelVariants = {
 };
 
 const panelVariantsSm = {
-  open: { width: "100%", height: "200px" },
+  open: { width: "100%", height: "auto" },
   closed: { width: "100%", height: "0px" },
 };
 
-const descriptionVariants = {
+const contentVariants = {
   open: { opacity: 1, y: "0%", transition: { delay: 0.125 } },
   closed: { opacity: 0, y: "100%" },
 };
 
-// Define items array with proper types
 const items: AccordionItem[] = [
   {
     id: 1,
     title: "General Information",
     Icon: DollarSign,
-    imgSrc: "/accordian/accordian1.png",
-    description:
-      "Find answers about entry, registration, and eligibility criteria.",
+    faqs: [
+      {
+        question: "What is Vemanothsav / Ikyam 2026?",
+        answer:
+          "Vemanothsav (Ikyam 2026) is the annual cultural fest of Vemana Institute of Technology, Bangalore — celebrating 25 years of culture, talent, and entertainment with competitions, performances, and special guests.",
+      },
+      {
+        question: "Who can participate?",
+        answer:
+          "Students from any college or university can participate. Some events may have specific eligibility criteria mentioned in their individual rules.",
+      },
+      {
+        question: "Is there a registration fee?",
+        answer:
+          "Yes, event registration fees vary by event. You can see the exact price for each event during registration. Combo/pass options may also be available.",
+      },
+      {
+        question: "When and where is the event?",
+        answer:
+          "The fest takes place at Vemana Institute of Technology, Koramangala, Bangalore. Check the homepage or event pages for exact dates.",
+      },
+    ],
   },
   {
     id: 2,
     title: "Event Guidelines",
     Icon: FileQuestion,
-    imgSrc: "/accordian/accordian2.png",
-    description:
-      "Learn about event rules, participation guidelines, and conduct policies.",
+    faqs: [
+      {
+        question: "How do I register for events?",
+        answer:
+          "Head to the Register page, fill in your details, select your events, complete the payment via UPI, and upload the payment screenshot to confirm your registration.",
+      },
+      {
+        question: "Can I register for multiple events?",
+        answer:
+          "Absolutely! You can select as many events as you like. Just ensure there are no schedule conflicts between your chosen events.",
+      },
+      {
+        question: "What is the team size for group events?",
+        answer:
+          "Team sizes vary by event. Each event listing specifies the minimum and maximum team size. Solo events are marked as individual participation.",
+      },
+      {
+        question: "What should I bring on event day?",
+        answer:
+          "Bring a valid college ID, your registration confirmation (email or screenshot), and any event-specific materials mentioned in the rules.",
+      },
+    ],
   },
   {
     id: 3,
     title: "Competition Rules",
     Icon: Bell,
-    imgSrc: "/accordian/accordian3.png",
-    description:
-      "Detailed rules and judging criteria for various competitions.",
+    faqs: [
+      {
+        question: "How are winners decided?",
+        answer:
+          "Each competition has its own judging criteria defined by expert judges. Criteria typically include creativity, technical skill, presentation, and audience engagement.",
+      },
+      {
+        question: "Are there prizes for winners?",
+        answer:
+          "Yes! Cash prizes, certificates, and trophies are awarded to winners and runners-up of each competition. Prize details are listed on individual event pages.",
+      },
+      {
+        question: "What happens if I violate the rules?",
+        answer:
+          "Violation of event rules may result in immediate disqualification. The organizing committee's decision is final and binding in all matters.",
+      },
+      {
+        question: "Can I use pre-recorded content in performances?",
+        answer:
+          "This depends on the specific event. Some events require live performances only, while others allow backing tracks. Check each event's rules page for details.",
+      },
+    ],
   },
   {
     id: 4,
     title: "Venue & Facilities",
     Icon: MapIcon,
-    imgSrc: "/accordian/accordian4.png",
-    description:
-      "Information on venue layout, facilities, and accessibility options.",
+    faqs: [
+      {
+        question: "Where is the venue located?",
+        answer:
+          "Vemana Institute of Technology, 3rd Block, No. 1, Mahakavi Vemana Rd, Koramangala, Bengaluru, Karnataka 560034. It's easily accessible by metro and bus.",
+      },
+      {
+        question: "Is parking available?",
+        answer:
+          "Limited parking is available on campus. We recommend using public transport or ride-sharing services. The nearest metro station is within walking distance.",
+      },
+      {
+        question: "Are food and refreshments available?",
+        answer:
+          "Yes, food stalls and refreshment counters will be set up across the campus during the fest. A variety of cuisines and snacks will be available.",
+      },
+      {
+        question: "Is the venue accessible for differently-abled attendees?",
+        answer:
+          "Yes, the venue is equipped with ramps and accessible facilities. If you need any specific assistance, please contact us in advance at Ikyam.vemanothsav@gmail.com.",
+      },
+    ],
   },
 ];

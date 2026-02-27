@@ -7,6 +7,7 @@ import { evento } from "@/exports/export";
 import { submitRegistration } from "./actions";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import PriceFlow from "@/components/ui/smoothui/price-flow";
 import {
     Calendar,
     Clock,
@@ -704,14 +705,10 @@ export default function RegisterPage() {
                                                                     : "events"}
                                                                 )
                                                             </span>
-                                                            <motion.span
-                                                                key={totalPrice}
-                                                                initial={{ scale: 1.2, color: "#facc15" }}
-                                                                animate={{ scale: 1, color: "#ffffff" }}
+                                                            <PriceFlow
+                                                                value={totalPrice}
                                                                 className="text-2xl font-bold text-white"
-                                                            >
-                                                                ₹{totalPrice}
-                                                            </motion.span>
+                                                            />
                                                         </div>
 
                                                         <motion.button
@@ -810,9 +807,10 @@ export default function RegisterPage() {
                                                 </span>
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-white font-bold text-lg">
-                                                    ₹{totalPrice}
-                                                </p>
+                                                <PriceFlow
+                                                    value={totalPrice}
+                                                    className="text-white font-bold text-lg"
+                                                />
                                                 <p className="text-gray-400 text-[11px] -mt-0.5">
                                                     {selectedEvents.length}{" "}
                                                     {selectedEvents.length === 1 ? "event" : "events"}{" "}
@@ -894,7 +892,7 @@ export default function RegisterPage() {
                                             </div>
                                             <div className="border-t border-gray-700 pt-2 flex items-center justify-between">
                                                 <span className="text-white font-bold">Total Amount</span>
-                                                <span className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">₹{totalPrice}</span>
+                                                <PriceFlow value={totalPrice} className="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent" />
                                             </div>
                                         </div>
 
@@ -903,7 +901,7 @@ export default function RegisterPage() {
                                             <div className="bg-white rounded-2xl p-4 mb-4 shadow-lg shadow-yellow-500/10">
                                                 <div className="relative w-56 h-56 sm:w-64 sm:h-64">
                                                     <Image
-                                                        src="/upi.png"
+                                                        src="/upi.jpeg"
                                                         alt="Payment QR Code"
                                                         fill
                                                         className="object-contain"

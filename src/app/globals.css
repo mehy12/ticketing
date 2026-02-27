@@ -160,3 +160,33 @@
   display: flex;
   animation: marquee 10s linear infinite;
 }
+
+/* Price Flow animations */
+@keyframes priceSlideOutUp {
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translateY(-100%); opacity: 0; }
+}
+@keyframes priceSlideInUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0%); opacity: 1; }
+}
+@keyframes priceSlideOutDown {
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
+@keyframes priceSlideInDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0%); opacity: 1; }
+}
+.price-slide-out-up {
+  animation: priceSlideOutUp 0.35s ease-in-out forwards;
+}
+.price-slide-in-up {
+  animation: priceSlideInUp 0.35s ease-in-out forwards;
+}
+.price-slide-out-down {
+  animation: priceSlideOutDown 0.35s ease-in-out forwards;
+}
+.price-slide-in-down {
+  animation: priceSlideInDown 0.35s ease-in-out forwards;
+}

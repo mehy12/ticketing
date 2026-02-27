@@ -1,7 +1,7 @@
 "use client";
 import ShiftingCountdown from "./countdown";
 import { motion } from "framer-motion";
-import ShinyButton from "./ui/shiny-button";
+import FancyButton from "./ui/fancy-button";
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -14,7 +14,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen bg-gradient-to-b from-transparent to-transparent/50">
-      <div className="container mx-auto px-6 pt-4 md:pt-16 flex min-h-screen items-center justify-center text-white">
+      <div className="container mx-auto px-6 pt-4 md:pt-12 flex min-h-screen items-center justify-center text-white">
         <div className="w-full text-center">
 
           {/* Banner */}
@@ -27,10 +27,10 @@ export default function Hero() {
             <Image
               src="/bannerr.png"
               alt="Vemana Institute Banner"
-              width={1600}
+              width={800}
               height={400}
               priority
-              className="w-[340px] sm:w-[450px] md:w-[600px] lg:w-[750px] xl:w-[950px] h-auto"
+              className="w-[340px] sm:w-[450px] md:w-[400px] lg:w-[500px] xl:w-[700px] h-auto"
             />
           </motion.div>
 
@@ -44,9 +44,9 @@ export default function Hero() {
             <Image
               src="/logo.png"
               alt="Ikyam Logo"
-              width={5000}
-              height={5000}
-              className="w-[260px] sm:w-[360px] md:w-[430px] lg:w-[500px] h-auto"
+              width={4000}
+              height={4000}
+              className="w-[260px] sm:w-[360px] md:w-[330px] lg:w-[400px] h-auto"
             />
           </motion.h1>
 
@@ -86,16 +86,15 @@ export default function Hero() {
           <div className="mt-6 flex flex-wrap justify-center gap-4">
 
             <Link href="/events">
-              <ShinyButton>
+              <FancyButton variant="secondary" color="cyan">
                 📜 Explore Events
-              </ShinyButton>
+              </FancyButton>
             </Link>
 
-            {/* 🔥 Custom Gold Register Button */}
-            <Link href="/events">
-              <ShinyButton className="bg-gradient-to-r from-yellow-400 to-amber-500 text-black shadow-[0_0_25px_rgba(255,200,0,0.5)] hover:scale-105 transition">
-                🔗 Register Now
-              </ShinyButton>
+            <Link href="/register">
+              <FancyButton variant="expand" color="gold">
+                Register Now
+              </FancyButton>
             </Link>
           </div>
 
