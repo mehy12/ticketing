@@ -1,13 +1,7 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
 import { titleToSlug } from "@/lib/utils";
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,92 +19,78 @@ export function EventCard({
   event: Event;
   index: number;
 }) {
-  const gradients = [
-    "from-purple-500 to-indigo-600",
-    "from-blue-500 to-teal-400",
-    "from-green-500 to-emerald-600",
-    "from-yellow-500 to-orange-500",
+  const accentColors = [
+    "from-purple-500 to-indigo-500",
+    "from-blue-500 to-cyan-400",
+    "from-emerald-500 to-teal-400",
+    "from-amber-500 to-orange-500",
     "from-pink-500 to-rose-500",
-    "from-indigo-500 to-purple-600",
-    "from-teal-500 to-cyan-400",
+    "from-indigo-400 to-violet-500",
+    "from-teal-400 to-emerald-500",
     "from-orange-500 to-red-500",
-    "from-rose-500 to-pink-600",
-    "from-emerald-500 to-green-600",
-    "from-cyan-500 to-blue-600",
-    "from-red-500 to-orange-600",
+    "from-rose-400 to-pink-500",
+    "from-cyan-400 to-blue-500",
+    "from-violet-500 to-purple-500",
+    "from-red-500 to-orange-400",
   ];
 
-  const gradient = gradients[index % gradients.length];
+  const accent = accentColors[index % accentColors.length];
 
   return (
     <Link
       href={`/events/${titleToSlug(event.title)}`}
-      className="block h-full"
+      className="block h-full group"
     >
-      <Card className="overflow-hidden aspect-[1/1.414] flex flex-col transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/20 bg-black/40 backdrop-blur-sm border-gray-800 group">
-
-        {/* Image Section */}
-        <div className="relative h-[55%] w-full overflow-hidden">
-
-          <div
-            className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${gradient} z-20`}
-          />
-
+      {/* Outer border container */}
+      <div className="rounded-[32px] bg-neutral-900 border border-neutral-800 p-3 cursor-pointer transition-all duration-500 hover:border-neutral-700 hover:shadow-xl hover:shadow-black/40 h-full flex flex-col">
+        {/* Inset image */}
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] flex-shrink-0">
           <Image
             src={event.image || "/placeholder.svg"}
             fill
             alt={event.title}
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-
-          <Badge
-            className={`absolute top-3 right-3 z-20 bg-gradient-to-r ${gradient}`}
-          >
-            Ikyam 2026
-          </Badge>
+          {/* Subtle gradient at bottom of image */}
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
         </div>
 
-        {/* Content Section */}
-        <div className="flex flex-col justify-between h-[45%] p-4">
+        {/* Content section */}
+        <div className="flex flex-col flex-1 px-2 pt-4 pb-1">
+          {/* Title */}
+          <h3 className="text-lg font-bold text-white tracking-wide leading-tight mb-1.5">
+            {event.title}
+          </h3>
 
-          <div>
-            <CardTitle className="text-xl font-bold text-white mb-2">
-              {event.title}
-            </CardTitle>
+          {/* Description */}
+          <p className="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-4">
+            {event.description}
+          </p>
 
-            <CardDescription className="flex items-center gap-1 text-gray-300 mb-2">
-              <Calendar className="h-3 w-3" />
-              <span>27 March 2026</span>
-            </CardDescription>
-
-            <div className="flex items-center gap-1 text-xs text-gray-400 mb-2">
-              <Clock className="h-3 w-3" />
-              <span>Check event page for timing</span>
-              <span className="mx-1">•</span>
-              <MapPin className="h-3 w-3" />
-              <span>Vemana Institute of Technology</span>
+          {/* Bottom bar */}
+          <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/10">
+            {/* Meta info */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                <Calendar className="h-3.5 w-3.5" />
+                <span>27 Mar</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
+                <MapPin className="h-3.5 w-3.5" />
+                <span>VIT</span>
+              </div>
             </div>
 
-            <p className="text-sm text-gray-300 line-clamp-3">
-              {event.description}
-            </p>
-          </div>
-
-          {/* Footer */}
-          <div className="pt-3 border-t border-gray-800 flex justify-between items-center">
-            <span className="text-xs text-gray-400">
-              Online Registration
-            </span>
-
-            <span
-              className={`text-xs font-semibold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}
+            {/* Pill CTA button */}
+            <div
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-black text-xs font-semibold transition-colors duration-300 group-hover:bg-gray-200"
             >
-              Learn more →
-            </span>
+              <span>Explore</span>
+              <ArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </div>
           </div>
-
         </div>
-      </Card>
+      </div>
     </Link>
   );
 }

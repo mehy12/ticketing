@@ -8,6 +8,7 @@ import { submitRegistration } from "./actions";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import PriceFlow from "@/components/ui/smoothui/price-flow";
+import NumberFlow from '@number-flow/react';
 import {
     Calendar,
     Clock,
@@ -659,6 +660,18 @@ export default function RegisterPage() {
                                                 </div>
                                             ) : (
                                                 <>
+                                                    <div className="flex items-center justify-between mb-3">
+                                                        <span className="text-sm text-gray-400">Selected</span>
+                                                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+                                                            <NumberFlow
+                                                                value={selectedEventObjects.length}
+                                                                className="text-sm font-bold text-yellow-400"
+                                                            />
+                                                            <span className="text-xs text-yellow-400/80">
+                                                                {selectedEventObjects.length === 1 ? 'event' : 'events'}
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                     <div className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
                                                         <AnimatePresence>
                                                             {selectedEventObjects.map((event) => (
@@ -699,16 +712,15 @@ export default function RegisterPage() {
                                                     <div className="border-t border-gray-700 mt-4 pt-4">
                                                         <div className="flex justify-between items-center mb-4">
                                                             <span className="text-gray-400 text-sm">
-                                                                Total ({selectedEventObjects.length}{" "}
-                                                                {selectedEventObjects.length === 1
-                                                                    ? "event"
-                                                                    : "events"}
-                                                                )
+                                                                Total
                                                             </span>
-                                                            <PriceFlow
-                                                                value={totalPrice}
-                                                                className="text-2xl font-bold text-white"
-                                                            />
+                                                            <div className="flex items-center gap-1">
+                                                                <span className="text-2xl font-bold text-white">₹</span>
+                                                                <NumberFlow
+                                                                    value={totalPrice}
+                                                                    className="text-2xl font-bold text-white"
+                                                                />
+                                                            </div>
                                                         </div>
 
                                                         <motion.button
@@ -803,16 +815,19 @@ export default function RegisterPage() {
                                             <div className="relative">
                                                 <ShoppingCart className="h-5 w-5 text-yellow-400" />
                                                 <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                                                    {selectedEvents.length}
+                                                    <NumberFlow value={selectedEvents.length} />
                                                 </span>
                                             </div>
                                             <div className="text-left">
-                                                <PriceFlow
-                                                    value={totalPrice}
-                                                    className="text-white font-bold text-lg"
-                                                />
+                                                <div className="flex items-center gap-0.5">
+                                                    <span className="text-white font-bold text-lg">₹</span>
+                                                    <NumberFlow
+                                                        value={totalPrice}
+                                                        className="text-white font-bold text-lg"
+                                                    />
+                                                </div>
                                                 <p className="text-gray-400 text-[11px] -mt-0.5">
-                                                    {selectedEvents.length}{" "}
+                                                    <NumberFlow value={selectedEvents.length} className="inline" />{" "}
                                                     {selectedEvents.length === 1 ? "event" : "events"}{" "}
                                                     selected
                                                 </p>

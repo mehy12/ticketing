@@ -7,6 +7,7 @@ import { CustomCursor } from "@/components/custom-cursor";
 import { HeroSection } from "./components/hero-section";
 import { FeaturedGames } from "./components/featured-games";
 import { ParallaxSection } from "./components/parallax-section";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -112,14 +113,14 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-sm overflow-hidden"
+                  className="overflow-hidden"
                 >
-                  <div className="p-4 md:p-6">
+                  <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-4 md:p-6">
                     <h3 className="text-lg font-medium text-white mb-2">
                       {faq.question}
                     </h3>
                     <p className="text-gray-400">{faq.answer}</p>
-                  </div>
+                  </LiquidGlassCard>
                 </motion.div>
               ))}
             </div>
@@ -137,7 +138,7 @@ export default function Home() {
               className="relative"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-[#FF4655]/20 to-[#1F85DE]/20 blur-3xl opacity-50" />
-              <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-lg">
+              <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="md" glowIntensity="sm" className="relative p-8 md:p-12">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
                   Ready to Compete?
                 </h2>
@@ -152,7 +153,7 @@ export default function Home() {
                 >
                   Register Now
                 </motion.button>
-              </div>
+              </LiquidGlassCard>
             </motion.div>
           </div>
         </ParallaxSection>

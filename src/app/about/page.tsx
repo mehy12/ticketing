@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import Link from "next/link";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 
 export default function AboutPage() {
   return (
@@ -45,7 +46,7 @@ export default function AboutPage() {
         </div>
 
         {/* Event Rules & Guidelines */}
-        <div className="bg-black/50 backdrop-blur-md rounded-2xl p-8 text-center max-w-4xl mx-auto mb-12">
+        <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-8 text-center max-w-4xl mx-auto mb-12">
           <h2 className="text-3xl font-bold text-yellow-400 mb-4">
             Rules & Guidelines
           </h2>
@@ -71,7 +72,7 @@ export default function AboutPage() {
               binding.
             </li>
           </ul>
-        </div>
+        </LiquidGlassCard>
 
         {/* How to Stay Connected */}
         <div className="text-center mb-12">

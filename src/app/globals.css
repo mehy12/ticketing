@@ -190,3 +190,90 @@
 .price-slide-in-down {
   animation: priceSlideInDown 0.35s ease-in-out forwards;
 }
+
+/* Animated gradient border */
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: '<angle>';
+}
+
+@keyframes borderRotate {
+  to { --border-angle: 360deg; }
+}
+
+.animate-border-gold {
+  --border-angle: 0deg;
+  animation: borderRotate 4s linear infinite;
+  background:
+    linear-gradient(to bottom, #0a0a0a, #111111) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      rgba(180, 140, 50, 0.3) 0%,
+      rgba(255, 215, 0, 0.1) 20%,
+      rgba(255, 223, 0, 1) 35%,
+      rgba(218, 165, 32, 1) 50%,
+      rgba(255, 223, 0, 1) 65%,
+      rgba(255, 215, 0, 0.1) 80%,
+      rgba(180, 140, 50, 0.3) 100%
+    ) border-box;
+  border: 1px solid transparent;
+}
+
+.animate-border-platinum {
+  --border-angle: 0deg;
+  animation: borderRotate 3s linear infinite;
+  background:
+    linear-gradient(to bottom, #0a0a0a, #111111) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      rgba(180, 160, 80, 0.3) 0%,
+      rgba(255, 230, 100, 0.1) 15%,
+      rgba(255, 215, 0, 1) 30%,
+      rgba(255, 240, 150, 1) 45%,
+      rgba(255, 215, 0, 1) 55%,
+      rgba(218, 180, 50, 1) 70%,
+      rgba(255, 230, 100, 0.1) 85%,
+      rgba(180, 160, 80, 0.3) 100%
+    ) border-box;
+  border: 2px solid transparent;
+}
+
+.animate-border-silver {
+  --border-angle: 0deg;
+  animation: borderRotate 5s linear infinite;
+  background:
+    linear-gradient(to bottom, #0a0a0a, #111111) padding-box,
+    conic-gradient(
+      from var(--border-angle),
+      rgba(140, 140, 160, 0.3) 0%,
+      rgba(192, 192, 210, 0.1) 20%,
+      rgba(220, 220, 235, 1) 35%,
+      rgba(192, 192, 210, 1) 50%,
+      rgba(220, 220, 235, 1) 65%,
+      rgba(192, 192, 210, 0.1) 80%,
+      rgba(140, 140, 160, 0.3) 100%
+    ) border-box;
+  border: 1px solid transparent;
+}
+
+/* Blur Vignette */
+.blur-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: blur(var(--blur, 6px));
+  mask-image:
+    radial-gradient(
+      ellipse at center,
+      transparent calc(100% - var(--inset, 20px) - var(--transition-length, 44px)),
+      black calc(100% - var(--inset, 20px))
+    );
+  -webkit-mask-image:
+    radial-gradient(
+      ellipse at center,
+      transparent calc(100% - var(--inset, 20px) - var(--transition-length, 44px)),
+      black calc(100% - var(--inset, 20px))
+    );
+  border-radius: var(--radius, 24px);
+}

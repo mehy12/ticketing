@@ -67,13 +67,13 @@ function SecondaryButton({ color = "cyan", className, children, ...props }: Omit
   return (
     <button
       className={cn(
-        "group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-lg border font-semibold text-sm",
+        "group relative inline-flex h-11 items-center justify-center overflow-hidden rounded-lg border bg-neutral-950 font-semibold text-sm",
         BORDER_COLORS[color],
         className
       )}
       {...props}
     >
-      <div className="inline-flex h-11 translate-x-0 items-center justify-center bg-neutral-950 px-6 text-white transition group-hover:-translate-x-[150%]">
+      <div className="inline-flex h-11 w-full translate-x-0 items-center justify-center bg-neutral-950 px-6 text-white transition group-hover:-translate-x-[150%]">
         {children}
       </div>
       <div className={cn(
@@ -113,7 +113,7 @@ function UnderlineButton({ className, children, ...props }: Omit<FancyButtonProp
   return (
     <button
       className={cn(
-        "relative text-sm font-medium text-white/70 hover:text-white transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100",
+        "relative text-sm font-medium text-white/70 hover:text-white transition-colors after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65,0.05,0.36,1)] hover:after:origin-bottom-left hover:after:scale-x-100",
         className
       )}
       {...props}

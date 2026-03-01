@@ -6,6 +6,9 @@ import { Navbar } from "@/components/navbar";
 import DiscreteTabs, { type TabItem } from "@/components/discrete-tabs";
 import FancyButton from "@/components/ui/fancy-button";
 import { motion, AnimatePresence } from "framer-motion";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { CanvasText } from "@/components/ui/canvas-text";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 
 // Category icon components
 const AllIcon: React.FC<React.SVGProps<SVGSVGElement> & { size?: number }> = ({
@@ -293,18 +296,38 @@ export default function EventPage() {
       <Navbar />
 
       {/* Page Content */}
-      <div className="container mx-auto px-4 py-8 bg-gradient-to-b from-transparent via-transparent/90 to-transparent/90">
+      <div className="bg-gradient-to-b from-transparent via-transparent/90 to-transparent/90">
+        <div className="container mx-auto px-4 py-8 ">
         {/* Header Section */}
         <div className="text-center mb-8 mt-8">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-orange-600">
-              Ikyam 2026 Events
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-            Explore our exciting lineup of events and competitions. Showcase
-            your talents and win amazing prizes!
-          </p>
+          <div className="relative z-10 container mx-auto px-4 py-8">
+            {/* Page Header */}
+            <div className="text-center mb-12 mt-8">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+                Ikyam 2026{" "}
+                <CanvasText
+                  text="Events"
+                  backgroundClassName="bg-gradient-to-r from-red-500 to-rose-600"
+                  colors={[
+                    "rgba(220, 38, 38, 1)",
+                    "rgba(220, 38, 38, 0.9)",
+                    "rgba(239, 68, 68, 0.8)",
+                    "rgba(244, 63, 94, 0.7)",
+                    "rgba(220, 38, 38, 0.6)",
+                    "rgba(239, 68, 68, 0.5)",
+                    "rgba(244, 63, 94, 0.4)",
+                    "rgba(220, 38, 38, 0.3)",
+                  ]}
+                  lineGap={4}
+                  animationDuration={20}
+                />
+              </h1>
+              <TextGenerateEffect
+                words="Explore all the exciting events at Ikyam 2026 — from dance and music to gaming and brain challenges"
+                className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
+              />
+            </div>
+          </div>
 
           {/* Category Filter Tabs */}
           <div className="flex justify-center mb-2">
@@ -348,7 +371,7 @@ export default function EventPage() {
         </motion.div>
 
         {/* Brochure Download Section */}
-        <div className="bg-black/50 backdrop-blur-md rounded-2xl p-8 text-center max-w-3xl mx-auto mb-12">
+        <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-8 text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
             🎉 Want More Details?
           </h2>
@@ -359,7 +382,8 @@ export default function EventPage() {
           <FancyButton variant="primary" color="gold" onClick={handleDownload}>
             📥 Download Brochure
           </FancyButton>
-        </div>
+        </LiquidGlassCard>
+      </div>
       </div>
     </div>
   );

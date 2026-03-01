@@ -20,6 +20,7 @@ import type { Tournament } from "@/lib/tournament-data";
 import { ParallaxSection } from "../components/parallax-section";
 import { CustomCursor } from "@/components/custom-cursor";
 import { Button } from "@/components/ui/button";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 
 export default function TournamentClient({
   tournament,
@@ -384,7 +385,7 @@ export default function TournamentClient({
                 </div>
 
                 <div className="space-y-6">
-                  <div className="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
+                  <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                     <h3 className="text-xl font-bold mb-4 flex items-center">
                       <Calendar
                         className="mr-2 w-5 h-5"
@@ -420,9 +421,9 @@ export default function TournamentClient({
                         </span>
                       </li>
                     </ul>
-                  </div>
+                  </LiquidGlassCard>
 
-                  <div className="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg">
+                  <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                     <h3 className="text-xl font-bold mb-4 flex items-center">
                       <DollarSign
                         className="mr-2 w-5 h-5"
@@ -461,7 +462,7 @@ export default function TournamentClient({
                         </>
                       )}
                     </ul>
-                  </div>
+                  </LiquidGlassCard>
 
                   <Link
                     href="#registration"
@@ -744,7 +745,7 @@ export default function TournamentClient({
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <div className="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg mb-8">
+                    <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6 mb-8">
                       <h3 className="text-xl font-bold mb-4 flex items-center">
                         <Trophy
                           className="mr-2 w-5 h-5"
@@ -811,7 +812,7 @@ export default function TournamentClient({
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </LiquidGlassCard>
 
                     <div
                       className="backdrop-blur-sm border p-6 rounded-lg"
@@ -834,7 +835,7 @@ export default function TournamentClient({
                       className="absolute inset-0 rounded-lg blur-xl"
                       style={{ backgroundColor: `${themeColor}05` }}
                     />
-                    <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 p-6 rounded-lg h-full">
+                    <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="relative p-6 h-full">
                       <h3 className="text-xl font-bold mb-4">
                         Prize Distribution
                       </h3>
@@ -857,7 +858,7 @@ export default function TournamentClient({
                             : "The final prize pool may increase based on the number of registrations. Any updates to the prize pool will be announced before the tournament begins."}
                         </p>
                       </div>
-                    </div>
+                    </LiquidGlassCard>
                   </div>
                 </div>
               </motion.div>
@@ -876,7 +877,7 @@ export default function TournamentClient({
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div>
-                    <div className="bg-black/30 backdrop-blur-sm border border-white/10 p-6 rounded-lg mb-8">
+                    <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6 mb-8">
                       <h3 className="text-xl font-bold mb-4 flex items-center text-white">
                         <Users
                           className="mr-2 w-5 h-5"
@@ -932,7 +933,7 @@ export default function TournamentClient({
                           </>
                         )}
                       </div>
-                    </div>
+                    </LiquidGlassCard>
 
                     <div
                       className="backdrop-blur-sm border p-6 rounded-lg"
@@ -1030,7 +1031,7 @@ export default function TournamentClient({
                 background: `linear-gradient(to right, ${themeColor}20, ${themeColor}05)`,
               }}
             />
-            <div className="relative bg-black/50 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-lg">
+            <LiquidGlassCard draggable={false} borderRadius="12px" blurIntensity="lg" shadowIntensity="md" glowIntensity="sm" className="relative p-8 md:p-12">
               <h2 className="text-3xl font-bold mb-4">Have Questions?</h2>
               <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
                 Contact our tournament organizers for any questions or
@@ -1053,7 +1054,7 @@ export default function TournamentClient({
                   Join Discord
                 </Button>
               </div>
-            </div>
+            </LiquidGlassCard>
           </motion.div>
         </div>
       </ParallaxSection>

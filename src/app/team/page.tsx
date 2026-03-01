@@ -7,11 +7,17 @@ import { Navbar } from "@/components/navbar";
 import { Crown, Star } from "lucide-react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { CanvasText } from "@/components/ui/canvas-text";
-import { RevealWaveImage } from "@/components/reveal-wave-image";
+import { BlurVignette, BlurVignetteArticle } from "@/../components/uilayouts/blur-vignette";
 import SocialSelector, {
   type Platform,
   XIcon,
 } from "@/components/ui/smoothui/social-selector";
+import dynamic from "next/dynamic";
+
+const Blob = dynamic(() => import("@/components/ui/blob").then(mod => mod.Blob), {
+  ssr: false,
+  loading: () => null,
+});
 
 /* ─── Icon Components ─── */
 const InstagramIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -62,113 +68,108 @@ const makeSocials = (handle: string): Platform[] => [
 ];
 
 // /* ─── Data ─── */
-// const TEAM_MEMBERS: TeamMember[] = [
-//   {
-//     id: "member-1",
-//     name: "Akshyanshu",
-//     role: "President",
-//     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80",
-//     color: "#6366f1",
-//     handle: "akshyanshu",
-//     socials: makeSocials("akshyanshu"),
-//   },
-//   {
-//     id: "member-2",
-//     name: "Akash",
-//     role: "Vice President",
-//     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
-//     color: "#ec4899",
-//     handle: "akash",
-//     socials: makeSocials("akash"),
-//   },
-//   {
-//     id: "member-3",
-//     name: "Bhargav",
-//     role: "Technical Lead",
-//     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=80",
-//     color: "#14b8a6",
-//     handle: "bhargav",
-//     socials: makeSocials("bhargav"),
-//   },
-//   {
-//     id: "member-4",
-//     name: "Mythri",
-//     role: "Creative Director",
-//     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80",
-//     color: "#f59e0b",
-//     handle: "mythri",
-//     socials: makeSocials("mythri"),
-//   },
-//   {
-//     id: "member-5",
-//     name: "Vasant",
-//     role: "Event Coordinator",
-//     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&auto=format&fit=crop&q=80",
-//     color: "#8b5cf6",
-//     handle: "vasant",
-//     socials: makeSocials("vasant"),
-//   },
-//   {
-//     id: "member-6",
-//     name: "Hitesh",
-//     role: "Logistics Head",
-//     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80",
-//     color: "#ef4444",
-//     handle: "hitesh",
-//     socials: makeSocials("hitesh"),
-//   },
-//   {
-//     id: "member-7",
-//     name: "Varsha",
-//     role: "Marketing Head",
-//     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&auto=format&fit=crop&q=80",
-//     color: "#10b981",
-//     handle: "varsha",
-//     socials: makeSocials("varsha"),
-//   },
-//   {
-//     id: "member-8",
-//     name: "Nayana",
-//     role: "Cultural Secretary",
-//     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
-//     color: "#f97316",
-//     handle: "nayana",
-//     socials: makeSocials("nayana"),
-//   },
-//   {
-//     id: "member-9",
-//     name: "Jitesh",
-//     role: "Sponsorship Lead",
-//     image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&auto=format&fit=crop&q=80",
-//     color: "#06b6d4",
-//     handle: "jitesh",
-//     socials: makeSocials("jitesh"),
-//   },
-// ];
-const TEAM_MEMBERS: TeamMember[] = []
+const TEAM_MEMBERS: TeamMember[] = [
+  {
+    id: "member-1",
+    name: "Akshyanshu",
+    role: "President",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80",
+    color: "#6366f1",
+    handle: "akshyanshu",
+    socials: makeSocials("akshyanshu"),
+  },
+  {
+    id: "member-2",
+    name: "Akash",
+    role: "Vice President",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
+    color: "#ec4899",
+    handle: "akash",
+    socials: makeSocials("akash"),
+  },
+  {
+    id: "member-3",
+    name: "Bhargav",
+    role: "Technical Lead",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=80",
+    color: "#14b8a6",
+    handle: "bhargav",
+    socials: makeSocials("bhargav"),
+  },
+  {
+    id: "member-4",
+    name: "Mythri",
+    role: "Creative Director",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80",
+    color: "#f59e0b",
+    handle: "mythri",
+    socials: makeSocials("mythri"),
+  },
+  {
+    id: "member-5",
+    name: "Vasant",
+    role: "Event Coordinator",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&auto=format&fit=crop&q=80",
+    color: "#8b5cf6",
+    handle: "vasant",
+    socials: makeSocials("vasant"),
+  },
+  {
+    id: "member-6",
+    name: "Hitesh",
+    role: "Logistics Head",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80",
+    color: "#ef4444",
+    handle: "hitesh",
+    socials: makeSocials("hitesh"),
+  },
+  {
+    id: "member-7",
+    name: "Varsha",
+    role: "Marketing Head",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&auto=format&fit=crop&q=80",
+    color: "#10b981",
+    handle: "varsha",
+    socials: makeSocials("varsha"),
+  },
+  {
+    id: "member-8",
+    name: "Nayana",
+    role: "Cultural Secretary",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
+    color: "#f97316",
+    handle: "nayana",
+    socials: makeSocials("nayana"),
+  },
+  {
+    id: "member-9",
+    name: "Jitesh",
+    role: "Sponsorship Lead",
+    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&auto=format&fit=crop&q=80",
+    color: "#06b6d4",
+    handle: "jitesh",
+    socials: makeSocials("jitesh"),
+  },
+];
 
 /* ─── Page Component ─── */
 export default function TeamPage() {
   const [expandedId, setExpandedId] = useState<string>("member-1");
 
   return (
-    <div className="min-h-screen w-full flex flex-col relative">
-      {/* RevealWaveImage as background */}
-      <div className="fixed inset-0 z-0">
-        <RevealWaveImage
-          src="/background.png"
-          waveSpeed={0.3}
-          waveFrequency={2.5}
-          waveAmplitude={0.15}
-          revealRadius={0.25}
-          revealSoftness={0.6}
-          pixelSize={2}
-          className="h-full w-full"
-          trackMouseGlobally
+    <div className="min-h-screen w-full flex flex-col relative overflow-hidden">
+      {/* ─── Green Blob Background with Grain ─── */}
+      <div className="fixed inset-0 z-0 bg-[#0a2e1a]">
+        <Blob
+          color="#1a6b3a"
+          followMouse
+          fov={15}
+          environmentIntensity={0.5}
+          className="absolute inset-0 w-full h-full"
         />
       </div>
-      {/* Dark overlay for readability */}
-      <div className="fixed inset-0 z-[1] bg-black/40 pointer-events-none" />
+
+      {/* Navbar */}
       <div className="relative z-10">
         <Navbar />
       </div>
@@ -180,16 +181,16 @@ export default function TeamPage() {
             Meet{" "}
             <CanvasText
               text="Our Team"
-              backgroundClassName="bg-gradient-to-r from-red-500 to-rose-600"
+              backgroundClassName="bg-gradient-to-r from-white to-emerald-100"
               colors={[
-                "rgba(220, 38, 38, 1)",
-                "rgba(220, 38, 38, 0.9)",
-                "rgba(239, 68, 68, 0.8)",
-                "rgba(244, 63, 94, 0.7)",
-                "rgba(220, 38, 38, 0.6)",
-                "rgba(239, 68, 68, 0.5)",
-                "rgba(244, 63, 94, 0.4)",
-                "rgba(220, 38, 38, 0.3)",
+                "rgba(255, 255, 255, 1)",
+                "rgba(255, 255, 255, 0.9)",
+                "rgba(236, 253, 245, 0.8)",
+                "rgba(209, 250, 229, 0.7)",
+                "rgba(255, 255, 255, 0.6)",
+                "rgba(236, 253, 245, 0.5)",
+                "rgba(209, 250, 229, 0.4)",
+                "rgba(255, 255, 255, 0.3)",
               ]}
               lineGap={4}
               animationDuration={20}
@@ -197,7 +198,7 @@ export default function TeamPage() {
           </h1>
           <TextGenerateEffect
             words="The people behind Ikyam 2026 — dedicated faculty and students working together to create an unforgettable experience"
-            className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto"
           />
         </div>
 
@@ -212,7 +213,7 @@ export default function TeamPage() {
             {/* Glowing border effect */}
             <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-600 opacity-70 blur-sm group-hover:opacity-100 transition-opacity duration-500" />
 
-            <div className="relative rounded-3xl overflow-hidden border border-yellow-500/30 bg-black">
+            <div className="relative rounded-3xl overflow-hidden border border-yellow-500/30 bg-black/70 backdrop-blur-xl">
               {/* Decorative top bar */}
               <div className="h-1.5 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-600" />
 
@@ -225,7 +226,7 @@ export default function TeamPage() {
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-8">
-                  {/* Photo */}
+                  {/* Photo with RevealWaveImage */}
                   <motion.div
                     whileHover={{ scale: 1.03 }}
                     transition={{ type: "spring", stiffness: 300 }}
@@ -234,7 +235,6 @@ export default function TeamPage() {
                     {/* Gold ring around photo */}
                     <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-yellow-400 via-amber-500 to-orange-600" />
                     <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-black">
-                      
                     </div>
                   </motion.div>
 
@@ -274,19 +274,19 @@ export default function TeamPage() {
 
         {/* ─── Section Divider ─── */}
         <div className="flex items-center gap-4 max-w-5xl mx-auto mb-10">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20" />
-          <h2 className="text-white/60 text-sm uppercase tracking-widest font-medium">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/30" />
+          <h2 className="text-white/80 text-sm uppercase tracking-widest font-medium">
             Student Committee
           </h2>
-          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20" />
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/30" />
         </div>
 
-        {/* ─── Team Grid ─── */}
-        <div className="w-full max-w-5xl mx-auto pb-16">
+        {/* ─── Team Grid with RevealWaveImage Profiles ─── */}
+        <div className="w-full max-w-5xl mx-auto pb-16 relative">
           <LayoutGroup id="team-grid">
             <motion.div
               layout
-              className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 auto-rows-[180px] sm:auto-rows-[240px]"
+              className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-7 auto-rows-[220px] sm:auto-rows-[300px]"
             >
               {TEAM_MEMBERS.map((member) => {
                 const isExpanded = expandedId === member.id;
@@ -310,108 +310,124 @@ export default function TeamPage() {
                       },
                     }}
                   >
-                    {/* Image container */}
+                    {/* Outer glassy border shell */}
                     <motion.div
-                      layoutId={`team-${member.id}-mask`}
-                      className="absolute inset-0 overflow-hidden"
-                      style={{ borderRadius: 24 }}
-                    >
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className={cn(
-                          "absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out",
-                          isExpanded
-                            ? "scale-105 object-[center_30%]"
-                            : "scale-100 object-[center_40%]"
-                        )}
-                      />
-                      <motion.div
-                        layoutId={`team-${member.id}-overlay-dark`}
-                        className={cn(
-                          "absolute inset-0 transition-colors duration-500",
-                          isExpanded ? "bg-black/10" : "bg-black/40"
-                        )}
-                      />
-                    </motion.div>
-
-                    {/* Gradient overlay */}
-                    <motion.div
-                      layoutId={`team-${member.id}-gradient`}
-                      className="absolute inset-0 pointer-events-none"
+                      layoutId={`team-${member.id}-shell`}
+                      className="absolute inset-0 rounded-[32px] p-[3px]"
                       style={{
-                        borderRadius: 24,
-                        background:
-                          "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, transparent 70%)",
+                        background: isExpanded
+                          ? `linear-gradient(135deg, ${member.color}66, ${member.color}22, rgba(255,255,255,0.15), ${member.color}22)`
+                          : "linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08))",
                       }}
-                    />
-
-                    {/* Content */}
-                    <motion.div
-                      layout="position"
-                      className="absolute inset-0 p-5 sm:p-6 flex flex-col justify-end text-white z-10 select-none"
                     >
-                      <motion.div layout="position" className="overflow-hidden">
-                        <motion.h3
-                          layout="position"
+                      {/* Inner card */}
+                      <BlurVignette
+                        classname="relative w-full h-full !aspect-auto rounded-[30px] overflow-hidden bg-neutral-950"
+                        radius="30px"
+                        inset="15px"
+                        transitionLength="40px"
+                        blur="8px"
+                      >
+                        {/* Profile photo */}
+                        <img
+                          src={member.image}
+                          alt={member.name}
                           className={cn(
-                            "font-semibold tracking-tight mb-0.5 transition-all duration-300",
+                            "absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out",
                             isExpanded
-                              ? "text-2xl sm:text-3xl"
-                              : "text-base sm:text-xl"
+                              ? "scale-105 object-[center_25%]"
+                              : "scale-100 object-[center_35%] group-hover:scale-[1.03]"
                           )}
+                        />
+
+                        {/* Liquid gradient — subtle color wash */}
+                        <div
+                          className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none transition-opacity duration-500 group-hover:opacity-30"
+                          style={{
+                            background: `radial-gradient(ellipse at 30% 80%, ${member.color}44 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, ${member.color}22 0%, transparent 50%)`,
+                          }}
+                        />
+
+                        {/* Bottom frosted glass panel */}
+                        <motion.div
+                          layoutId={`team-${member.id}-glass`}
+                          className="absolute inset-x-0 bottom-0 z-10"
                         >
-                          {member.name}
-                        </motion.h3>
-                        <motion.p
-                          layout="position"
-                          className={cn(
-                            "font-normal whitespace-nowrap transition-all duration-300",
-                            isExpanded
-                              ? "text-sm sm:text-base text-white/80"
-                              : "text-xs sm:text-sm text-white/60"
-                          )}
-                        >
-                          {member.role}
-                        </motion.p>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.3 }}
-                            className="mt-3"
-                            onClick={(e) => e.stopPropagation()}
+                          <div
+                            className={cn(
+                              "backdrop-blur-xl border-t transition-all duration-500",
+                              isExpanded
+                                ? "bg-black/50 border-white/15 px-6 py-5 sm:px-8 sm:py-6"
+                                : "bg-black/40 border-white/10 px-4 py-3 sm:px-5 sm:py-4"
+                            )}
                           >
-                            <SocialSelector
-                              platforms={member.socials}
-                              handle={member.handle}
-                              className="!my-0 !text-left"
-                            />
-                          </motion.div>
-                        )}
-                      </motion.div>
+                            <motion.h3
+                              layout="position"
+                              className={cn(
+                                "font-bold text-white tracking-tight leading-tight transition-all duration-300",
+                                isExpanded
+                                  ? "text-2xl sm:text-3xl mb-1"
+                                  : "text-sm sm:text-lg mb-0.5"
+                              )}
+                            >
+                              {member.name}
+                            </motion.h3>
+                            <motion.p
+                              layout="position"
+                              className={cn(
+                                "font-medium transition-all duration-300",
+                                isExpanded
+                                  ? "text-sm sm:text-base text-white/70"
+                                  : "text-[11px] sm:text-sm text-white/50"
+                              )}
+                            >
+                              {member.role}
+                            </motion.p>
+
+                            {/* Social links — revealed on expand */}
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.25, duration: 0.3 }}
+                                className="mt-3 pt-3 border-t border-white/10"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <SocialSelector
+                                  platforms={member.socials}
+                                  handle={member.handle}
+                                  className="!my-0 !text-left"
+                                />
+                              </motion.div>
+                            )}
+                          </div>
+                        </motion.div>
+
+                        {/* Inner shine — liquid glass highlight */}
+                        <div
+                          className={cn(
+                            "absolute inset-0 pointer-events-none rounded-[30px] transition-opacity duration-500",
+                            isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                          )}
+                          style={{
+                            background:
+                              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.03) 100%)",
+                          }}
+                        />
+                      </BlurVignette>
                     </motion.div>
 
-                    {/* Border */}
-                    <motion.div
-                      layoutId={`team-${member.id}-border`}
-                      className={cn(
-                        "absolute inset-0 border transition-colors duration-500 pointer-events-none",
-                        isExpanded
-                          ? "border-white/20"
-                          : "border-white/5 group-hover:border-white/15"
-                      )}
-                      style={{ borderRadius: 24 }}
-                    />
-
-                    {/* Colored accent line */}
+                    {/* Glow effect on expand */}
                     {isExpanded && (
                       <motion.div
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ delay: 0.2, duration: 0.4 }}
-                        className="absolute bottom-0 left-6 right-6 h-[3px] rounded-full origin-left"
-                        style={{ backgroundColor: member.color }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute -inset-2 rounded-[36px] pointer-events-none -z-10 blur-xl"
+                        style={{
+                          background: `radial-gradient(ellipse at center, ${member.color}30 0%, transparent 70%)`,
+                        }}
                       />
                     )}
                   </motion.div>

@@ -2,6 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 
 const RollingTrophy = () => {
     return (
@@ -41,8 +42,8 @@ const RollingTrophy = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.7, delay: 0.2 }}
-                    className="relative rounded-2xl border border-[#D4AF37]/20 bg-gradient-to-br from-black/40 to-black/20 backdrop-blur-sm p-8 md:p-10 shadow-[0_0_60px_rgba(212,175,55,0.08)]"
                 >
+                <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="relative p-8 md:p-10">
                     {/* Corner accents */}
                     <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#D4AF37]/40 rounded-tl-2xl" />
                     <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#D4AF37]/40 rounded-br-2xl" />
@@ -120,6 +121,7 @@ const RollingTrophy = () => {
                             </motion.div>
                         </div>
                     </motion.div>
+                </LiquidGlassCard>
                 </motion.div>
 
                 {/* Bottom decorative line */}

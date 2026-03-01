@@ -18,7 +18,7 @@ interface FAQ {
 interface AccordionItem {
   id: number;
   title: string;
-  Icon: React.ElementType;
+  Icon: React.ComponentType;
   faqs: FAQ[];
 }
 
@@ -26,7 +26,7 @@ interface PanelProps {
   open: number;
   setOpen: (id: number) => void;
   id: number;
-  Icon: React.ElementType;
+  Icon: React.ComponentType;
   title: string;
   faqs: FAQ[];
 }

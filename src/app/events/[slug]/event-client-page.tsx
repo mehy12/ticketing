@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { LiquidGlassCard } from "@/components/liquid-glass";
 import {
   Calendar,
   Clock,
@@ -120,7 +121,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
           {/* Main Content */}
           <div className="lg:col-span-2">
             <Tabs defaultValue="about" className="w-full">
-              <TabsList className="bg-black/30 backdrop-blur-sm mb-6">
+              <TabsList className="bg-transparent mb-6">
                 <TabsTrigger value="about">About</TabsTrigger>
                 <TabsTrigger value="rules">Rules</TabsTrigger>
                 <TabsTrigger value="prizes">Prizes</TabsTrigger>
@@ -128,11 +129,11 @@ export default function EventPageClient({ event }: EventPageClientProps) {
               </TabsList>
 
               <TabsContent value="about">
+                <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6 mb-6">
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
                   animate="visible"
-                  className="bg-black/30 backdrop-blur-sm rounded-xl p-6 mb-6"
                 >
                   <motion.h2
                     variants={fadeIn}
@@ -211,14 +212,15 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     </motion.div>
                   )}
                 </motion.div>
+                </LiquidGlassCard>
               </TabsContent>
 
               <TabsContent value="rules">
+                <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
                   animate="visible"
-                  className="bg-black/30 backdrop-blur-sm rounded-xl p-6"
                 >
                   <motion.h2
                     variants={fadeIn}
@@ -250,14 +252,15 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     ))}
                   </motion.ul>
                 </motion.div>
+                </LiquidGlassCard>
               </TabsContent>
 
               <TabsContent value="prizes">
+                <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
                   animate="visible"
-                  className="bg-black/30 backdrop-blur-sm rounded-xl p-6"
                 >
                   <motion.h2
                     variants={fadeIn}
@@ -311,14 +314,15 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     ))}
                   </motion.div>
                 </motion.div>
+                </LiquidGlassCard>
               </TabsContent>
 
               <TabsContent value="faq">
+                <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                 <motion.div
                   variants={staggerContainer}
                   initial="hidden"
                   animate="visible"
-                  className="bg-black/30 backdrop-blur-sm rounded-xl p-6"
                 >
                   <motion.h2
                     variants={fadeIn}
@@ -358,6 +362,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     </p>
                   )}
                 </motion.div>
+                </LiquidGlassCard>
               </TabsContent>
             </Tabs>
           </div>
@@ -371,7 +376,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
               className="sticky top-24"
             >
               {/* Registration Card */}
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/10">
+              <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6 mb-6">
                 <h3 className="text-xl font-bold text-white mb-4">
                   Registration
                 </h3>
@@ -414,10 +419,10 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     Download Rules PDF
                   </FancyButton>
                 </div>
-              </div>
+              </LiquidGlassCard>
 
               {/* Coordinators Card */}
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 mb-6 border border-white/10">
+              <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6 mb-6">
                 <h3 className="text-xl font-bold text-white mb-4">
                   Event Coordinators
                 </h3>
@@ -469,10 +474,10 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     </div>
                   ))}
                 </div>
-              </div>
+              </LiquidGlassCard>
 
               {/* Actions Card */}
-              <div className="bg-black/30 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <LiquidGlassCard draggable={false} borderRadius="16px" blurIntensity="lg" shadowIntensity="sm" glowIntensity="xs" className="p-6">
                 <div className="flex justify-between">
                   <FancyButton
                     variant="ghost"
@@ -489,7 +494,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                     Share
                   </FancyButton>
                 </div>
-              </div>
+              </LiquidGlassCard>
             </motion.div>
           </div>
         </div>
