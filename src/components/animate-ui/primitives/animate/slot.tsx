@@ -81,9 +81,13 @@ function Slot<T extends HTMLElement = HTMLElement>({
   const { ref: childRef, ...childProps } = children.props as AnyProps;
 
   const mergedProps = mergeProps(childProps, props);
+  const mergedRef = mergeRefs(childRef as React.Ref<T>, ref as React.Ref<T>);
+
+  // Cast Base to a loose component type to avoid `ref: never` from dynamic motion.create
+  const BaseWithRef = Base as React.ComponentType<AnyProps & { ref?: React.Ref<T> }>;
 
   return (
-    <Base {...mergedProps} ref={mergeRefs(childRef as React.Ref<T>, ref)} />
+    <BaseWithRef {...mergedProps} ref={mergedRef} />
   );
 }
 

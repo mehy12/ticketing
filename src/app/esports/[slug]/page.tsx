@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getTournamentData } from "@/lib/tournament-data";
 import TournamentClient from "./tournament-client";
+import { getTournamentData } from "@/lib/tournament-data";
 
 export default async function TournamentPage({
   params,
@@ -10,6 +10,7 @@ export default async function TournamentPage({
   const { slug } = await params;
   // Correctly use params.slug directly without awaiting params
   const tournament = getTournamentData(slug);
+  
 
   // Handle 404 if tournament not found
   if (!tournament) return notFound();

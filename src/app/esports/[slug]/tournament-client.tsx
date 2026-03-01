@@ -16,11 +16,11 @@ import {
   CheckCircle2,
   DownloadIcon,
 } from "lucide-react";
-import type { Tournament } from "@/lib/tournament-data";
 import { ParallaxSection } from "../components/parallax-section";
 import { CustomCursor } from "@/components/custom-cursor";
 import { Button } from "@/components/ui/button";
 import { LiquidGlassCard } from "@/components/liquid-glass";
+import { Tournament } from "@/lib/tournament-data";
 
 export default function TournamentClient({
   tournament,

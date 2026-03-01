@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { Crown, Star } from "lucide-react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
@@ -13,6 +12,7 @@ import SocialSelector, {
   XIcon,
 } from "@/components/ui/smoothui/social-selector";
 import dynamic from "next/dynamic";
+import { cn } from "../../../lib/utils";
 
 const Blob = dynamic(() => import("@/components/ui/blob").then(mod => mod.Blob), {
   ssr: false,
@@ -43,6 +43,8 @@ interface TeamMember {
   color: string;
   handle: string;
   socials: Platform[];
+  phone?: string;
+  email?: string;
 }
 
 /* ─── Helpers ─── */
@@ -80,48 +82,84 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "member-2",
-    name: "Akash",
+    name: "Akash Rajanna",
     role: "Vice President",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_8.48.20_PM_ywp8uk.jpg",
     color: "#ec4899",
-    handle: "akash",
-    socials: makeSocials("akash"),
+    handle: "akash.rajanna02",
+    phone: "8073892740",
+    email: "Akash.rajanna02@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/akash.rajanna02",
+      },
+    ],
   },
   {
     id: "member-3",
-    name: "Bhargav",
+    name: "Bhargav L Reddy",
     role: "Technical Lead",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&auto=format&fit=crop&q=80",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_9.10.54_PM_remnmh.jpg",
     color: "#14b8a6",
-    handle: "bhargav",
-    socials: makeSocials("bhargav"),
+    handle: "BHARGAV_REDDYY",
+    phone: "9686957026",
+    email: "bhargavl6336@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/BHARGAV_REDDYY",
+      },
+    ],
   },
   {
     id: "member-4",
-    name: "Mythri",
-    role: "Creative Director",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80",
+    name: "Mythri M",
+    role: "Fashion Team",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393897/file_pxlc5m.jpg",
     color: "#f59e0b",
     handle: "mythri",
     socials: makeSocials("mythri"),
   },
   {
     id: "member-5",
-    name: "Vasant",
+    name: "Vasanth Kumar S",
     role: "Event Coordinator",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&auto=format&fit=crop&q=80",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393264/WhatsApp_Image_2026-02-27_at_8.37.50_PM_tikh16.jpg",
     color: "#8b5cf6",
-    handle: "vasant",
-    socials: makeSocials("vasant"),
+    handle: "since_2004",
+    phone: "9620300081",
+    email: "vasanthkuma2004@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/since_2004",
+      },
+    ],
   },
   {
     id: "member-6",
-    name: "Hitesh",
+    name: "Hitesh R Sulegai",
     role: "Logistics Head",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=80",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/DSC_8867.jpg_pgeuvr.jpg",
     color: "#ef4444",
-    handle: "hitesh",
-    socials: makeSocials("hitesh"),
+    handle: "hitesh_sulegaai",
+    phone: "7406573131",
+    email: "hiteshrsulegai@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/hitesh_sulegaai",
+      },
+    ],
   },
   {
     id: "member-7",
@@ -143,12 +181,21 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "member-9",
-    name: "Jitesh",
+    name: "Jitesh U",
     role: "Sponsorship Lead",
-    image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&auto=format&fit=crop&q=80",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_9.02.11_PM_ex2r6l.jpg",
     color: "#06b6d4",
     handle: "jitesh",
-    socials: makeSocials("jitesh"),
+    phone: "8722067551",
+    email: "jeethurocks2004@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/jitesh",
+      },
+    ],
   },
 ];
 
@@ -384,13 +431,13 @@ export default function TeamPage() {
                               {member.role}
                             </motion.p>
 
-                            {/* Social links — revealed on expand */}
+                            {/* Social links + contact — revealed on expand */}
                             {isExpanded && (
                               <motion.div
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.25, duration: 0.3 }}
-                                className="mt-3 pt-3 border-t border-white/10"
+                                className="mt-3 pt-3 border-t border-white/10 space-y-2"
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <SocialSelector
@@ -398,6 +445,26 @@ export default function TeamPage() {
                                   handle={member.handle}
                                   className="!my-0 !text-left"
                                 />
+                                {(member.phone || member.email) && (
+                                  <div className="flex flex-col gap-1 mt-2 text-xs text-white/50">
+                                    {member.phone && (
+                                      <a
+                                        href={`tel:${member.phone}`}
+                                        className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
+                                      >
+                                        <span>📞</span>{member.phone}
+                                      </a>
+                                    )}
+                                    {member.email && (
+                                      <a
+                                        href={`mailto:${member.email}`}
+                                        className="flex items-center gap-1.5 hover:text-white/80 transition-colors truncate"
+                                      >
+                                        <span>✉️</span>{member.email}
+                                      </a>
+                                    )}
+                                  </div>
+                                )}
                               </motion.div>
                             )}
                           </div>
