@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
 import { Navbar } from "@/components/navbar";
-import { Crown, Star } from "lucide-react";
+import { Crown, Star, Code2, Palette, ExternalLink, Heart } from "lucide-react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { CanvasText } from "@/components/ui/canvas-text";
 import { BlurVignette, BlurVignetteArticle } from "@/../components/uilayouts/blur-vignette";
@@ -18,6 +18,8 @@ const Blob = dynamic(() => import("@/components/ui/blob").then(mod => mod.Blob),
   ssr: false,
   loading: () => null,
 });
+
+
 
 /* ─── Icon Components ─── */
 const InstagramIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -73,17 +75,27 @@ const makeSocials = (handle: string): Platform[] => [
 const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "member-1",
-    name: "Akshyanshu",
-    role: "President",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80",
+    name: "Akshyanshu Sekhar Nayak",
+    role: "Developer and Designer",
+    image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772474183/WhatsApp_Image_2026-03-02_at_11.25.58_PM_fqsr3m.jpg",
     color: "#6366f1",
-    handle: "akshyanshu",
-    socials: makeSocials("akshyanshu"),
+    handle: "akshsekhr1102",
+    phone: "9886667080",
+    email: "akshsekhr1102@gmail.com",
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://instagram.com/akshsekhr1102",
+      },
+    ],
   },
+  
   {
     id: "member-2",
     name: "Akash Rajanna",
-    role: "Vice President",
+    role: "Event Contact Person",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_8.48.20_PM_ywp8uk.jpg",
     color: "#ec4899",
     handle: "akash.rajanna02",
@@ -119,7 +131,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "member-4",
     name: "Mythri M",
-    role: "Fashion Team",
+    role: "",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393897/file_pxlc5m.jpg",
     color: "#f59e0b",
     handle: "mythri",
@@ -128,7 +140,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "member-5",
     name: "Vasanth Kumar S",
-    role: "Event Coordinator",
+    role: "",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393264/WhatsApp_Image_2026-02-27_at_8.37.50_PM_tikh16.jpg",
     color: "#8b5cf6",
     handle: "since_2004",
@@ -146,7 +158,7 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "member-6",
     name: "Hitesh R Sulegai",
-    role: "Logistics Head",
+    role: "",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/DSC_8867.jpg_pgeuvr.jpg",
     color: "#ef4444",
     handle: "hitesh_sulegaai",
@@ -162,27 +174,9 @@ const TEAM_MEMBERS: TeamMember[] = [
     ],
   },
   {
-    id: "member-7",
-    name: "Varsha",
-    role: "Marketing Head",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&auto=format&fit=crop&q=80",
-    color: "#10b981",
-    handle: "varsha",
-    socials: makeSocials("varsha"),
-  },
-  {
-    id: "member-8",
-    name: "Nayana",
-    role: "Cultural Secretary",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
-    color: "#f97316",
-    handle: "nayana",
-    socials: makeSocials("nayana"),
-  },
-  {
     id: "member-9",
     name: "Jitesh U",
-    role: "Sponsorship Lead",
+    role: "Campaigning Lead",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_9.02.11_PM_ex2r6l.jpg",
     color: "#06b6d4",
     handle: "jitesh",
@@ -296,7 +290,9 @@ export default function TeamPage() {
                     <p className="text-amber-200/60 text-sm leading-relaxed max-w-md">
                       Guiding the vision and spirit of Ikyam 2026, ensuring every event reflects the legacy and excellence of Vemana Institute of Technology.
                     </p>
-
+                    <p className="text-amber-200/60 text-sm leading-relaxed max-w-md">
+                      CONTACT NO: +91 98865 11820
+                    </p>
                     {/* Decorative divider */}
                     <div className="flex items-center gap-3 mt-4 justify-center md:justify-start">
                       <div className="h-px w-8 bg-gradient-to-r from-transparent to-yellow-500/50" />
@@ -419,17 +415,7 @@ export default function TeamPage() {
                             >
                               {member.name}
                             </motion.h3>
-                            <motion.p
-                              layout="position"
-                              className={cn(
-                                "font-medium transition-all duration-300",
-                                isExpanded
-                                  ? "text-sm sm:text-base text-white/70"
-                                  : "text-[11px] sm:text-sm text-white/50"
-                              )}
-                            >
-                              {member.role}
-                            </motion.p>
+
 
                             {/* Social links + contact — revealed on expand */}
                             {isExpanded && (
@@ -502,6 +488,289 @@ export default function TeamPage() {
               })}
             </motion.div>
           </LayoutGroup>
+        </div>
+
+        {/* ─── Website Credits Section ─── */}
+        <div className="flex items-center gap-4 max-w-5xl mx-auto mb-10 mt-4">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/30" />
+          <h2 className="text-white/80 text-sm uppercase tracking-widest font-medium flex items-center gap-2">
+            <Heart className="h-3.5 w-3.5 text-red-400 fill-red-400" />
+            Website Credits
+            <Heart className="h-3.5 w-3.5 text-red-400 fill-red-400" />
+          </h2>
+          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/30" />
+        </div>
+
+        <div className="w-full max-w-5xl mx-auto pb-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* ─── Meesam Hyder — Designer & Marketing ─── */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <div className="relative group h-full">
+              {/* Animated glow border */}
+              <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-purple-500 via-fuchsia-500 to-pink-500 opacity-60 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-700" />
+              <motion.div
+                className="absolute -inset-4 rounded-[36px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(168,85,247,0.15) 0%, transparent 70%)",
+                }}
+              />
+
+              <div className="relative rounded-3xl overflow-hidden border border-purple-500/30 bg-black/80 backdrop-blur-xl h-full">
+                {/* Decorative top shimmer */}
+                <div className="h-1 bg-gradient-to-r from-purple-500 via-fuchsia-400 to-pink-500" />
+
+                {/* Floating role badge */}
+                <div className="absolute top-4 right-4 z-10">
+                  <motion.div
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="p-2.5 rounded-2xl bg-purple-500/20 backdrop-blur-md border border-purple-400/30"
+                  >
+                    <Palette className="h-5 w-5 text-purple-300" />
+                  </motion.div>
+                </div>
+
+                <div className="p-8">
+                  <div className="flex flex-col items-center text-center">
+                    {/* Avatar with animated ring */}
+                    <div className="relative mb-5">
+                      <motion.div
+                        className="absolute -inset-1.5 rounded-full"
+                        style={{
+                          background: "conic-gradient(from 0deg, #a855f7, #ec4899, #8b5cf6, #a855f7)",
+                        }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      />
+                      <div className="relative w-28 h-28 rounded-full overflow-hidden border-3 border-black">
+                        <img
+                          src="https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772429534/604348299_17930929314152217_2394512037423207271_n_acilr9.jpg"
+                          alt="Meesam Hyder"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {/* Online-status style dot */}
+                      <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-purple-400 border-2 border-black" />
+                    </div>
+
+                    {/* Name & Role */}
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-purple-400/90 font-bold mb-1.5">
+                      Designer & Marketing
+                    </p>
+                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+                      Meesam Hyder
+                    </h3>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 justify-center mb-5">
+                      <span className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/25 text-purple-300 text-[11px] font-medium">
+                        UI/UX Design
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/25 text-fuchsia-300 text-[11px] font-medium">
+                        Marketing
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-pink-500/10 border border-pink-500/25 text-pink-300 text-[11px] font-medium">
+                        Branding
+                      </span>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="w-full flex items-center gap-3 mb-4">
+                      <div className="h-px flex-1 bg-gradient-to-r from-transparent to-purple-500/30" />
+                      <Palette className="h-3 w-3 text-purple-500/40" />
+                      <div className="h-px flex-1 bg-gradient-to-l from-transparent to-purple-500/30" />
+                    </div>
+
+                    {/* Contact & Social */}
+                    <div className="flex flex-col gap-2 w-full">
+                      <a
+                        href="mailto:tattva.vemanothsav@gmail.com"
+                        className="flex items-center justify-center gap-2 text-xs text-white/50 hover:text-purple-300 transition-colors duration-300"
+                      >
+                        <span>✉️</span>
+                        <span>tattva.vemanothsav@gmail.com</span>
+                      </a>
+                      <div className="flex items-center justify-center gap-2">
+                        <a
+                          href="https://www.instagram.com/nothaydara/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-500/15 to-fuchsia-500/15 border border-purple-500/20 text-purple-200 text-sm font-medium hover:from-purple-500/25 hover:to-fuchsia-500/25 hover:border-purple-400/40 transition-all duration-300 group/link"
+                        >
+                          <InstagramIcon className="h-4 w-4 fill-purple-300" />
+                          <span>@nothaydara</span>
+                          <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                        </a>
+                        <a
+                          href="https://www.linkedin.com/in/mesmhydr/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-500/15 to-fuchsia-500/15 border border-purple-500/20 text-purple-200 text-sm font-medium hover:from-purple-500/25 hover:to-fuchsia-500/25 hover:border-purple-400/40 transition-all duration-300 group/li"
+                        >
+                          <svg className="h-4 w-4 fill-purple-300" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.83-48.3 93.97 0 111.28 61.9 111.28 142.3V448z" />
+                          </svg>
+                          <ExternalLink className="h-3 w-3 opacity-0 group-hover/li:opacity-100 transition-opacity" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subtle inner shine */}
+                <div
+                  className="absolute inset-0 pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(168,85,247,0.06) 0%, transparent 40%, transparent 60%, rgba(236,72,153,0.04) 100%)",
+                  }}
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ─── Akshyanshu Sekhar Nayak — Developer & Designer ─── */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+          >
+            <div className="relative group h-full">
+              {/* Animated glow border */}
+              <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-br from-indigo-500 via-blue-500 to-cyan-500 opacity-60 blur-sm group-hover:opacity-100 group-hover:blur-md transition-all duration-700" />
+              <motion.div
+                className="absolute -inset-4 rounded-[36px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at center, rgba(99,102,241,0.15) 0%, transparent 70%)",
+                }}
+              />
+
+              <div className="relative rounded-3xl overflow-hidden border border-indigo-500/30 bg-black/80 backdrop-blur-xl h-full">
+                {/* Decorative top shimmer */}
+                <div className="h-1 bg-gradient-to-r from-indigo-500 via-blue-400 to-cyan-500" />
+
+                {/* Floating role badge */}
+                <div className="absolute top-4 right-4 z-10">
+                  <motion.div
+                    animate={{ rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    className="p-2.5 rounded-2xl bg-indigo-500/20 backdrop-blur-md border border-indigo-400/30"
+                  >
+                    <Code2 className="h-5 w-5 text-indigo-300" />
+                  </motion.div>
+                </div>
+
+                <div className="p-8">
+                  <div className="flex flex-col items-center text-center">
+                    {/* Avatar with animated ring */}
+                    <div className="relative mb-5">
+                      <motion.div
+                        className="absolute -inset-1.5 rounded-full"
+                        style={{
+                          background: "conic-gradient(from 180deg, #6366f1, #3b82f6, #06b6d4, #6366f1)",
+                        }}
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      />
+                      <div className="relative w-28 h-28 rounded-full overflow-hidden border-3 border-black">
+                        <img
+                          src="https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772473848/download_hqomwr.jpg"
+                          alt="Akshyanshu Sekhar Nayak"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {/* Online-status style dot */}
+                      <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-indigo-400 border-2 border-black" />
+                    </div>
+
+                    {/* Name & Role */}
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-indigo-400/90 font-bold mb-1.5">
+                      Developer & Designer
+                    </p>
+                    <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">
+                      Akshyanshu Sekhar Nayak
+                    </h3>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 justify-center mb-5">
+                      <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-[11px] font-medium">
+                        Full-Stack Dev
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-300 text-[11px] font-medium">
+                        UI Design
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 text-[11px] font-medium">
+                        Architecture
+                      </span>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="w-full flex items-center gap-3 mb-4">
+                      <div className="h-px flex-1 bg-gradient-to-r from-transparent to-indigo-500/30" />
+                      <Code2 className="h-3 w-3 text-indigo-500/40" />
+                      <div className="h-px flex-1 bg-gradient-to-l from-transparent to-indigo-500/30" />
+                    </div>
+
+                    {/* Contact & Social */}
+                    <div className="flex flex-col gap-2 w-full">
+                      <div className="flex items-center justify-center gap-3 text-xs text-white/50">
+                        <a
+                          href="tel:9886667080"
+                          className="flex items-center gap-1.5 hover:text-indigo-300 transition-colors duration-300"
+                        >
+                          <span>📞</span>
+                          <span>9886667080</span>
+                        </a>
+                        <span className="text-white/20">•</span>
+                        <a
+                          href="mailto:tattva.vemanothsav@gmail.com"
+                          className="flex items-center gap-1.5 hover:text-indigo-300 transition-colors duration-300"
+                        >
+                          <span>✉️</span>
+                          <span>tattva.vemanothsav@gmail.com</span>
+                        </a>
+                      </div>
+                      <div className="flex items-center justify-center gap-2">
+                        <a
+                          href="https://www.instagram.com/dammit_aksh/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500/15 to-blue-500/15 border border-indigo-500/20 text-indigo-200 text-sm font-medium hover:from-indigo-500/25 hover:to-blue-500/25 hover:border-indigo-400/40 transition-all duration-300 group/link"
+                        >
+                          <InstagramIcon className="h-4 w-4 fill-indigo-300" />
+                          <span>@dammit_aksh</span>
+                          <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                        </a>
+                        <a
+                          href="https://www.linkedin.com/in/dammitaksh/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500/15 to-blue-500/15 border border-indigo-500/20 text-indigo-200 text-sm font-medium hover:from-indigo-500/25 hover:to-blue-500/25 hover:border-indigo-400/40 transition-all duration-300 group/li"
+                        >
+                          <svg className="h-4 w-4 fill-indigo-300" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.83-48.3 93.97 0 111.28 61.9 111.28 142.3V448z" />
+                          </svg>
+                          <ExternalLink className="h-3 w-3 opacity-0 group-hover/li:opacity-100 transition-opacity" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subtle inner shine */}
+                <div
+                  className="absolute inset-0 pointer-events-none rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(99,102,241,0.06) 0%, transparent 40%, transparent 60%, rgba(6,182,212,0.04) 100%)",
+                  }}
+                />
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

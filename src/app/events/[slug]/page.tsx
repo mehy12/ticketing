@@ -15,7 +15,7 @@ export default async function EventPage({
   const { slug } = await params;
 
   // Find the event data
-  const event = events.find((e) => e.name === slug);
+  const event = events.find((e) => e.slug === slug);
 
   // Handle 404 if event not found
   if (!event) return notFound();

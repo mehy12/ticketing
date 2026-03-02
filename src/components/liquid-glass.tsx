@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, type Variants } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { useLiquidGlass, type UseLiquidGlassOptions } from '@/hooks/use-liquid-glass';
 
 interface LiquidGlassCardProps {
   children: React.ReactNode;
@@ -16,6 +17,12 @@ interface LiquidGlassCardProps {
   shadowIntensity?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   borderRadius?: string;
   glowIntensity?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  // New physics-based refraction props
+  refractiveIndex?: number;
+  bezelWidth?: number;
+  surfaceType?: UseLiquidGlassOptions['surfaceType'];
+  thickness?: number;
+  highlightIntensity?: number;
 }
 
 export const LiquidGlassCard = ({
@@ -31,13 +38,50 @@ export const LiquidGlassCard = ({
   borderRadius = '32px',
   glowIntensity = 'sm',
   shadowIntensity = 'md',
+  refractiveIndex = 1.5,
+  bezelWidth = 20,
+  surfaceType = 'squircle',
+  thickness = 1.0,
+  highlightIntensity = 0.8,
   ...props
 }: LiquidGlassCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // Measure element dimensions with ResizeObserver
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width: w, height: h } = entry.contentRect;
+        setDimensions((prev) => {
+          // Avoid unnecessary re-renders for sub-pixel changes
+          if (Math.abs(prev.width - w) < 2 && Math.abs(prev.height - h) < 2) return prev;
+          return { width: Math.round(w), height: Math.round(h) };
+        });
+      }
+    });
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Generate physics-based displacement map
+  const { displacementMapUrl, highlightMapUrl, maxDisplacement, filterId } = useLiquidGlass({
+    width: dimensions.width,
+    height: dimensions.height,
+    bezelWidth,
+    refractiveIndex,
+    surfaceType,
+    thickness,
+    highlightIntensity,
+  });
 
   const handleToggleExpansion = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!expandable) return;
-    // Don't toggle if clicking on interactive elements
     if ((e.target as Element).closest('a, button, input, select, textarea')) return;
     setIsExpanded(!isExpanded);
   };
@@ -56,8 +100,6 @@ export const LiquidGlassCard = ({
     md: 'inset 3px 3px 3px 0 rgba(255, 255, 255, 0.45), inset -3px -3px 3px 0 rgba(255, 255, 255, 0.45)',
     lg: 'inset 4px 4px 4px 0 rgba(255, 255, 255, 0.5), inset -4px -4px 4px 0 rgba(255, 255, 255, 0.5)',
     xl: 'inset 6px 6px 6px 0 rgba(255, 255, 255, 0.55), inset -6px -6px 6px 0 rgba(255, 255, 255, 0.55)',
-    '2xl':
-      'inset 8px 8px 8px 0 rgba(255, 255, 255, 0.6), inset -8px -8px 8px 0 rgba(255, 255, 255, 0.6)',
   };
 
   const glowStyles = {
@@ -67,8 +109,6 @@ export const LiquidGlassCard = ({
     md: '0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 32px rgba(255, 255, 255, 0.15)',
     lg: '0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 255, 255, 0.2)',
     xl: '0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 48px rgba(255, 255, 255, 0.25)',
-    '2xl':
-      '0 4px 4px rgba(0, 0, 0, 0.15), 0 0 12px rgba(0, 0, 0, 0.08), 0 0 60px rgba(255, 255, 255, 0.3)',
   };
 
   const containerVariants: Variants | undefined = expandable
@@ -122,36 +162,83 @@ export const LiquidGlassCard = ({
         }
       : {};
 
+  const hasDisplacementMap = displacementMapUrl && dimensions.width > 0;
+
   return (
     <>
-      {/* Hidden SVG Filter */}
-      <svg className='hidden'>
+      {/* Physics-based SVG Filter */}
+      <svg className='hidden' style={{ position: 'absolute', width: 0, height: 0 }}>
         <defs>
           <filter
-            id='glass-blur'
+            id={filterId}
             x='0'
             y='0'
             width='100%'
             height='100%'
             filterUnits='objectBoundingBox'
+            colorInterpolationFilters='sRGB'
           >
-            <feTurbulence
-              type='fractalNoise'
-              baseFrequency='0.003 0.007'
-              numOctaves='1'
-              result='turbulence'
-            />
-            <feDisplacementMap
-              in='SourceGraphic'
-              in2='turbulence'
-              scale='200'
-              xChannelSelector='R'
-              yChannelSelector='G'
-            />
+            {hasDisplacementMap ? (
+              <>
+                {/* Displacement map for refraction */}
+                <feImage
+                  href={displacementMapUrl}
+                  x='0'
+                  y='0'
+                  width='100%'
+                  height='100%'
+                  result='displacement_map'
+                  preserveAspectRatio='none'
+                />
+                <feDisplacementMap
+                  in='SourceGraphic'
+                  in2='displacement_map'
+                  scale={maxDisplacement}
+                  xChannelSelector='R'
+                  yChannelSelector='G'
+                  result='refracted'
+                />
+                {/* Specular highlight overlay */}
+                <feImage
+                  href={highlightMapUrl}
+                  x='0'
+                  y='0'
+                  width='100%'
+                  height='100%'
+                  result='highlight'
+                  preserveAspectRatio='none'
+                />
+                <feBlend
+                  in='refracted'
+                  in2='highlight'
+                  mode='screen'
+                  result='final'
+                />
+              </>
+            ) : (
+              <>
+                {/* Fallback: turbulence-based displacement while map generates */}
+                <feTurbulence
+                  type='fractalNoise'
+                  baseFrequency='0.003 0.007'
+                  numOctaves='1'
+                  result='turbulence'
+                />
+                <feDisplacementMap
+                  in='SourceGraphic'
+                  in2='turbulence'
+                  scale='200'
+                  xChannelSelector='R'
+                  yChannelSelector='G'
+                />
+              </>
+            )}
           </filter>
         </defs>
       </svg>
+
       <MotionComponent
+        ref={containerRef as React.Ref<HTMLDivElement>}
         className={cn(
           `relative ${draggable ? 'cursor-grab active:cursor-grabbing' : ''} ${expandable ? 'cursor-pointer' : ''}`,
           className
@@ -164,12 +251,13 @@ export const LiquidGlassCard = ({
         {...motionProps}
         {...props}
       >
-        {/* Bend Layer (Backdrop blur with distortion) */}
+        {/* Bend Layer — physics-based refraction via SVG displacement */}
         <div
           className={`absolute inset-0 ${blurClasses[blurIntensity]} z-0`}
           style={{
             borderRadius,
-            filter: 'url(#glass-blur)',
+            backdropFilter: `url(#${filterId})`,
+            WebkitBackdropFilter: `url(#${filterId})`,
           }}
         />
 
