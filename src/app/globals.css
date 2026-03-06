@@ -277,3 +277,26 @@
     );
   border-radius: var(--radius, 24px);
 }
+
+/* Esports Glitch Effect */
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+}
+.animate-glitch-1 {
+  animation: glitch-1 3s infinite steps(2, end);
+}
+.animate-glitch-2 {
+  animation: glitch-2 3s infinite steps(2, end);
+  animation-delay: 0.5s;
+}

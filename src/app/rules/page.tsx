@@ -1,5 +1,18 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import { AlertTriangle, CheckCircle, XCircle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Rules",
+  description:
+    "Official rules and guidelines for all Vemanothsav 2026 participants. Read the event rules, code of conduct, and important policies before attending.",
+  openGraph: {
+    title: "Rules | Vemanothsav 2026",
+    description:
+      "Official rules, guidelines, and code of conduct for Vemanothsav 2026 participants.",
+    url: "https://vemanothsav.in/rules",
+  },
+};
 
 export default function SponsorsPage() {
   return (

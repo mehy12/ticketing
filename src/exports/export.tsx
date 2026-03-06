@@ -531,24 +531,27 @@ export const evento: Event[] = [
   },
   //rap and boxing
   {
-    slug: "rap-and-boxing",
+    slug: "rap-boxing",
     name: "Rap & Boxing",
     tagline: "Unleash the Flow. Own the Mic.",
     description:
-      "A high-energy solo performance event where participants showcase their lyrical flow, rhythm, and vocal power through rap and beatboxing. This stage is all about creativity, confidence, and commanding presence.",
+      "A platform to showcase vocal talent and musical expression. Participants can perform songs from any genre, including classical, semi-classical, light music, folk, or film songs. Karaoke tracks are allowed and live instruments are permitted.",
     date: "March 28, 2026",
     time: "4:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Music",
     image: "/events/rap-and-boxing.jpg",
     rules: [
-      "Solo participation only.",
-      "Time limit: 3–4 minutes.",
-      "Participants may perform rap, beatboxing, or a combination of both.",
-      "Karaoke/background tracks are allowed.",
-      "Pre-recorded vocals are strictly prohibited.",
-      "Content must not include vulgar, offensive, or inappropriate language.",
-      "Participants must report 1 hour before the event with valid college ID.",
+      "Solo participant only (one performer per entry).",
+      "Each participant will be given 3–4 minutes to perform.",
+      "Exceeding the time limit may lead to point deduction.",
+      "Participants may perform songs from any genre, including classical, semi-classical, light music, folk, or film songs.",
+      "Karaoke tracks are allowed and must be brought by the participant via pen drive or mobile phone.",
+      "Live instruments are permitted, but pre-recorded vocals are strictly prohibited.",
+      "Participants must report one hour early and carry their college ID card for verification.",
+      "Judged on: Vocal quality and pitch accuracy, Rhythm and tempo, Song selection and difficulty level, Expression, clarity, and stage presence.",
+      "The judges' decision is final.",
+      "The organizing committee reserves the right to modify rules or timings if necessary.",
     ],
     eligibility: [
       "Open to bonafide college students.",
@@ -587,6 +590,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Dr. Kiran Kumar N",
+        contact: "99020 29650",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -596,6 +606,10 @@ export const evento: Event[] = [
       {
         question: "Are explicit lyrics allowed?",
         answer: "No. Any vulgar or offensive content will lead to disqualification.",
+      },
+      {
+        question: "What are the judging criteria?",
+        answer: "Vocal quality and pitch accuracy, rhythm and tempo, song selection and difficulty level, expression, clarity, and stage presence.",
       },
     ],
     minTeamSize: 1,

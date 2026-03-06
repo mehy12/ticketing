@@ -221,13 +221,13 @@ export default function EventPage() {
       isPublished: true,
       category: "art",
     },
-    {
-      title: "Echoes of Poetry",
-      image: "/events/web-designing.jpg",
-      description: "Unleash your inner poet and let your words paint vivid pictures on canvas.",
-      isPublished: true,
-      category: "art",
-    },
+    // {
+    //   title: "Echoes of Poetry",
+    //   image: "/events/web-designing.jpg",
+    //   description: "Unleash your inner poet and let your words paint vivid pictures on canvas.",
+    //   isPublished: true,
+    //   category: "art",
+    // },
     // Brain & Strategy
     {
       title: "The Great Hunt – Treasure Hunt",

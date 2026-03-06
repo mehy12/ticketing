@@ -7,9 +7,15 @@ import { Suspense } from "react";
 const inter = Rajdhani({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "LAST ROUND 2026 | College Esports Championship",
+  title: "LAST ROUND 2026 | Tournament Details",
   description:
-    "Join the ultimate college esports championship powered by Samsung",
+    "Tournament details for LastRound 2026 — the ultimate college esports championship at Vemanothsav 2026.",
+  openGraph: {
+    title: "LAST ROUND 2026 | Tournament Details",
+    description:
+      "Compete in the ultimate college esports championship at Vemanothsav 2026.",
+    url: "https://vemanothsav.in/esports",
+  },
 };
 
 export default function RootLayout({

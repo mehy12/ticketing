@@ -1,6 +1,19 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 import Link from "next/link";
 import { LiquidGlassCard } from "@/components/liquid-glass";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn about Vemanothsav 2026, the annual cultural extravaganza of Vemana Institute of Technology, Bangalore. Discover Ikyam, our flagship event celebrating 25 years of music, dance, theater, and fashion.",
+  openGraph: {
+    title: "About | Vemanothsav 2026",
+    description:
+      "Learn about Vemanothsav 2026 and Ikyam — 25 years of cultural excellence at Vemana Institute of Technology.",
+    url: "https://vemanothsav.in/about",
+  },
+};
 
 export default function AboutPage() {
   return (

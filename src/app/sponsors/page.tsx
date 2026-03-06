@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
 import { ShaderAnimation } from "@/components/ui/shader-animation";
-import { ShaderLines } from "@/components/ui/shader-lines";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { CanvasText } from "@/components/ui/canvas-text";
 import FancyButton from "@/components/ui/fancy-button";
@@ -14,11 +13,12 @@ import {
   Star,
   Gem,
   Globe,
-  Cpu,
-  Rocket,
-  Zap,
-  Shield,
-  Layers,
+  Film,
+  ShoppingBag,
+  UtensilsCrossed,
+  Landmark,
+  Medal,
+  Handshake,
 } from "lucide-react";
 
 /* ─── Types ─── */
@@ -26,77 +26,56 @@ interface Sponsor {
   name: string;
   tagline: string;
   icon: React.ReactNode;
-  tier: "platinum" | "gold" | "silver";
+  tier: "title" | "entertainment" | "silver" | "bronze";
   website?: string;
 }
 
-/* ─── Dummy Data ─── */
+/* ─── Sponsor Data ─── */
 const SPONSORS: Sponsor[] = [
-  // Platinum
+  // Title Sponsor — TBD
   {
-    name: "NovaTech Industries",
-    tagline: "Pioneering the future of innovation",
-    icon: <Rocket className="w-10 h-10" />,
-    tier: "platinum",
-    website: "#",
+    name: "Title Sponsor",
+    tagline: "To be announced — stay tuned!",
+    icon: <Crown className="w-10 h-10" />,
+    tier: "title",
   },
-  // Gold
+  // Entertainment Partners
   {
-    name: "Quantum Labs",
-    tagline: "Where science meets imagination",
-    icon: <Cpu className="w-8 h-8" />,
-    tier: "gold",
-    website: "#",
-  },
-  {
-    name: "Apex Digital",
-    tagline: "Crafting digital excellence",
-    icon: <Globe className="w-8 h-8" />,
-    tier: "gold",
-    website: "#",
+    name: "Nexus Mall",
+    tagline: "Entertainment Partner",
+    icon: <ShoppingBag className="w-8 h-8" />,
+    tier: "entertainment",
+    website: "https://www.nexusmalls.com",
   },
   {
-    name: "VoltEdge Energy",
-    tagline: "Powering tomorrow, today",
-    icon: <Zap className="w-8 h-8" />,
-    tier: "gold",
-    website: "#",
+    name: "PVR INOX",
+    tagline: "Entertainment Partner",
+    icon: <Film className="w-8 h-8" />,
+    tier: "entertainment",
+    website: "https://www.pvrcinemas.com",
   },
-  // Silver
+  // Silver Sponsors
   {
-    name: "SentinelX Security",
-    tagline: "Safeguarding digital frontiers",
-    icon: <Shield className="w-7 h-7" />,
+    name: "Canara Bank",
+    tagline: "Silver Sponsor",
+    icon: <Landmark className="w-7 h-7" />,
     tier: "silver",
-    website: "#",
+    website: "https://www.canarabank.com",
   },
+  // Bronze Sponsors
   {
-    name: "StackFlow Systems",
-    tagline: "Building scalable solutions",
-    icon: <Layers className="w-7 h-7" />,
-    tier: "silver",
-    website: "#",
-  },
-  {
-    name: "CrystalByte Media",
-    tagline: "Stories that resonate",
-    icon: <Gem className="w-7 h-7" />,
-    tier: "silver",
-    website: "#",
-  },
-  {
-    name: "StarForge Studios",
-    tagline: "Designing unforgettable experiences",
-    icon: <Star className="w-7 h-7" />,
-    tier: "silver",
-    website: "#",
+    name: "Nandhana Palace",
+    tagline: "Bronze Sponsor",
+    icon: <UtensilsCrossed className="w-7 h-7" />,
+    tier: "bronze",
+    website: "https://www.nandhanapalace.com",
   },
 ];
 
 /* ─── Tier Config ─── */
 const TIER_CONFIG = {
-  platinum: {
-    label: "Platinum Sponsor",
+  title: {
+    label: "Title Sponsor",
     gradient: "from-amber-300 via-yellow-200 to-amber-400",
     border: "border-amber-400/40",
     animatedBorder: "animate-border-platinum",
@@ -105,19 +84,17 @@ const TIER_CONFIG = {
     badgeBg: "bg-amber-500/20",
     badgeBorder: "border-amber-400/30",
     iconColor: "text-amber-300",
-    shaderOpacity: "opacity-30 group-hover:opacity-50",
   },
-  gold: {
-    label: "Gold Sponsor",
-    gradient: "from-yellow-400 via-amber-300 to-yellow-500",
-    border: "border-yellow-400/30",
+  entertainment: {
+    label: "Entertainment Partner",
+    gradient: "from-violet-400 via-purple-300 to-fuchsia-400",
+    border: "border-violet-400/30",
     animatedBorder: "animate-border-gold",
-    glow: "from-yellow-400 via-amber-300 to-yellow-500",
-    text: "text-yellow-200",
-    badgeBg: "bg-yellow-500/15",
-    badgeBorder: "border-yellow-400/25",
-    iconColor: "text-yellow-300",
-    shaderOpacity: "opacity-20 group-hover:opacity-40",
+    glow: "from-violet-400 via-purple-300 to-fuchsia-400",
+    text: "text-violet-200",
+    badgeBg: "bg-violet-500/15",
+    badgeBorder: "border-violet-400/25",
+    iconColor: "text-violet-300",
   },
   silver: {
     label: "Silver Sponsor",
@@ -129,19 +106,29 @@ const TIER_CONFIG = {
     badgeBg: "bg-slate-500/15",
     badgeBorder: "border-slate-400/20",
     iconColor: "text-slate-300",
-    shaderOpacity: "opacity-15 group-hover:opacity-30",
+  },
+  bronze: {
+    label: "Bronze Sponsor",
+    gradient: "from-orange-400 via-amber-300 to-orange-500",
+    border: "border-orange-400/20",
+    animatedBorder: "animate-border-silver",
+    glow: "from-orange-400 via-amber-300 to-orange-500",
+    text: "text-orange-300",
+    badgeBg: "bg-orange-500/15",
+    badgeBorder: "border-orange-400/20",
+    iconColor: "text-orange-300",
   },
 };
 
-/* ─── Sponsor Card ─── */
+/* ─── Sponsor Card (no shader effects) ─── */
 function SponsorCard({
   sponsor,
   index,
-  isPlatinum,
+  isTitle,
 }: {
   sponsor: Sponsor;
   index: number;
-  isPlatinum?: boolean;
+  isTitle?: boolean;
 }) {
   const config = TIER_CONFIG[sponsor.tier];
 
@@ -151,10 +138,10 @@ function SponsorCard({
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      className={isPlatinum ? "col-span-full flex justify-center" : ""}
+      className={isTitle ? "col-span-full flex justify-center" : ""}
     >
       <SpotLightItem
-        className={`${isPlatinum ? "w-full max-w-2xl" : "w-full"} !rounded-2xl !bg-transparent`}
+        className={`${isTitle ? "w-full max-w-2xl" : "w-full"} !rounded-2xl !bg-transparent`}
       >
         <motion.div
           whileHover={{ y: -8, scale: 1.03 }}
@@ -167,24 +154,14 @@ function SponsorCard({
           />
 
           <div
-            className={`relative rounded-2xl overflow-hidden ${config.animatedBorder}`}
+            className={`relative rounded-2xl overflow-hidden ${config.animatedBorder} bg-black/60`}
           >
-            {/* Shader Lines background inside card */}
-            <div
-              className={`absolute inset-0 ${config.shaderOpacity} transition-opacity duration-700 pointer-events-none`}
-            >
-              <ShaderLines />
-            </div>
-
-            {/* Backdrop blur overlay */}
-            <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none" />
-
             {/* Top accent bar */}
             <div
               className={`relative h-[2px] bg-gradient-to-r ${config.gradient}`}
             />
 
-            <div className={`relative ${isPlatinum ? "p-8 md:p-10" : "p-6"}`}>
+            <div className={`relative ${isTitle ? "p-8 md:p-10" : "p-6"}`}>
               {/* Tier badge */}
               <div className="flex items-center justify-between mb-5">
                 <span
@@ -192,7 +169,7 @@ function SponsorCard({
                 >
                   {config.label}
                 </span>
-                {sponsor.tier === "platinum" && (
+                {sponsor.tier === "title" && (
                   <motion.div
                     animate={{ rotate: [0, 10, -10, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -204,52 +181,54 @@ function SponsorCard({
 
               {/* Icon & Content */}
               <div
-                className={`flex ${isPlatinum ? "flex-col md:flex-row items-center md:items-start gap-6" : "flex-col items-center text-center gap-4"}`}
+                className={`flex ${isTitle ? "flex-col md:flex-row items-center md:items-start gap-6" : "flex-col items-center text-center gap-4"}`}
               >
                 {/* Animated icon circle */}
                 <motion.div
                   whileHover={{ rotate: 8, scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  className={`flex-shrink-0 w-16 h-16 ${isPlatinum ? "md:w-20 md:h-20" : ""} rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center ${config.iconColor} group-hover:bg-white/[0.1] group-hover:border-white/20 transition-all duration-300`}
+                  className={`flex-shrink-0 w-16 h-16 ${isTitle ? "md:w-20 md:h-20" : ""} rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center ${config.iconColor} group-hover:bg-white/[0.1] group-hover:border-white/20 transition-all duration-300`}
                 >
                   {sponsor.icon}
                 </motion.div>
 
-                <div className={isPlatinum ? "md:text-left text-center" : ""}>
+                <div className={isTitle ? "md:text-left text-center" : ""}>
                   <h3
-                    className={`font-bold text-white mb-1 ${isPlatinum ? "text-2xl md:text-3xl" : "text-lg"}`}
+                    className={`font-bold text-white mb-1 ${isTitle ? "text-2xl md:text-3xl" : "text-lg"}`}
                   >
                     {sponsor.name}
                   </h3>
                   <p
-                    className={`text-white/50 ${isPlatinum ? "text-base" : "text-sm"} leading-relaxed`}
+                    className={`text-white/50 ${isTitle ? "text-base" : "text-sm"} leading-relaxed`}
                   >
                     {sponsor.tagline}
                   </p>
 
                   {/* Visit link */}
-                  <motion.a
-                    href={sponsor.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 mt-3 text-xs font-medium ${config.text} hover:text-white transition-colors duration-200`}
-                    whileHover={{ x: 4 }}
-                  >
-                    Visit Website
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                  {sponsor.website && (
+                    <motion.a
+                      href={sponsor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1.5 mt-3 text-xs font-medium ${config.text} hover:text-white transition-colors duration-200`}
+                      whileHover={{ x: 4 }}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                      />
-                    </svg>
-                  </motion.a>
+                      Visit Website
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </div>
@@ -266,13 +245,13 @@ function TierSection({
   icon,
   sponsors,
   gridCols,
-  isPlatinum,
+  isTitle,
 }: {
   title: string;
   icon: React.ReactNode;
   sponsors: Sponsor[];
   gridCols: string;
-  isPlatinum?: boolean;
+  isTitle?: boolean;
 }) {
   return (
     <div className="mb-16">
@@ -301,7 +280,7 @@ function TierSection({
             key={sponsor.name}
             sponsor={sponsor}
             index={i}
-            isPlatinum={isPlatinum}
+            isTitle={isTitle}
           />
         ))}
       </Spotlight>
@@ -311,9 +290,10 @@ function TierSection({
 
 /* ─── Page ─── */
 export default function SponsorsPage() {
-  const platinum = SPONSORS.filter((s) => s.tier === "platinum");
-  const gold = SPONSORS.filter((s) => s.tier === "gold");
+  const titleSponsors = SPONSORS.filter((s) => s.tier === "title");
+  const entertainment = SPONSORS.filter((s) => s.tier === "entertainment");
   const silver = SPONSORS.filter((s) => s.tier === "silver");
+  const bronze = SPONSORS.filter((s) => s.tier === "bronze");
 
   return (
     <div className="min-h-screen w-full flex flex-col relative overflow-hidden">
@@ -360,33 +340,41 @@ export default function SponsorsPage() {
             </h1>
           </motion.div>
           <TextGenerateEffect
-            words="The incredible partners making Ikyam 2026 possible — powering creativity, culture, and community"
+            words="The incredible partners making Vemanotsav 2026 possible — powering creativity, culture, and community"
             className="text-lg text-white md:text-xl text-gray-300 max-w-3xl mx-auto"
           />
         </div>
 
-        {/* Platinum Tier */}
+        {/* Title Sponsor */}
         <TierSection
-          title="Platinum Partner"
+          title="Title Sponsor"
           icon={<Crown className="w-4 h-4 text-amber-400 fill-amber-400" />}
-          sponsors={platinum}
+          sponsors={titleSponsors}
           gridCols="grid-cols-1"
-          isPlatinum
+          isTitle
         />
 
-        {/* Gold Tier */}
+        {/* Entertainment Partners */}
         <TierSection
-          title="Gold Partners"
-          icon={<Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />}
-          sponsors={gold}
-          gridCols="grid-cols-1 md:grid-cols-3"
+          title="Entertainment Partners"
+          icon={<Film className="w-4 h-4 text-violet-400" />}
+          sponsors={entertainment}
+          gridCols="grid-cols-1 md:grid-cols-2"
         />
 
-        {/* Silver Tier */}
+        {/* Silver Sponsors */}
         <TierSection
-          title="Silver Partners"
+          title="Silver Sponsors"
           icon={<Gem className="w-4 h-4 text-slate-400" />}
           sponsors={silver}
+          gridCols="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+        />
+
+        {/* Bronze Sponsors */}
+        <TierSection
+          title="Bronze Sponsors"
+          icon={<Medal className="w-4 h-4 text-orange-400" />}
+          sponsors={bronze}
           gridCols="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
         />
 
@@ -401,17 +389,13 @@ export default function SponsorsPage() {
           <div className="relative group">
             <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-violet-500/30 via-purple-500/20 to-fuchsia-500/30 opacity-60 blur-sm group-hover:opacity-100 transition-opacity duration-500" />
             <div className="relative rounded-2xl overflow-hidden border border-violet-500/20 bg-black/60">
-              {/* Shader lines in CTA too */}
-              <div className="absolute inset-0 opacity-10 group-hover:opacity-25 transition-opacity duration-700 pointer-events-none">
-                <ShaderLines />
-              </div>
               <div className="relative p-8 md:p-12 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold mb-3 text-white">
                   ✨ Become a Sponsor
                 </h2>
                 <p className="text-gray-400 text-lg mb-6 max-w-xl mx-auto">
-                  Partner with Ikyam 2026 and connect your brand with thousands
-                  of students, innovators, and creators.
+                  Partner with Vemanotsav 2026 and connect your brand with 6,000+
+                  students, innovators, and creators.
                 </p>
                 <FancyButton variant="primary" color="violet">
                   📩 Get in Touch
