@@ -60,6 +60,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "N. Chandraprabha",
+        contact: "7676461226",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -133,6 +140,13 @@ export const evento: Event[] = [
         contact: "9019519055",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Amulya",
+        contact: "9108877271",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -210,6 +224,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Roopalakshmi S",
+        contact: "9844512278",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -283,6 +304,13 @@ export const evento: Event[] = [
         contact: "8722067551",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Dr. Namaratha",
+        contact: "9448622624",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -362,6 +390,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Roopa R",
+        contact: "9611325948",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -437,6 +472,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Anjali R K",
+        contact: "9980692263",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -510,6 +552,13 @@ export const evento: Event[] = [
         contact: "9449118250",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Jyothi M",
+        contact: "9845619176",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -592,7 +641,7 @@ export const evento: Event[] = [
       },
       {
         name: "Dr. Kiran Kumar N",
-        contact: "99020 29650",
+        contact: "9902029650",
         email: "",
         role: "Faculty Coordinator",
         image: "",
@@ -626,17 +675,23 @@ export const evento: Event[] = [
     description:
       "A solo performance event where participants bring humor, wit, and confidence to the stage through original stand-up comedy. This competition celebrates creativity, timing, and audience engagement.",
     date: "March 28, 2026",
-    time: "4:30 PM",
+    time: "3:00 PM to 4:00 PM",
     venue: "Vemana Institute of Technology",
     category: "Entertainment",
     image: "/events/stand-up-comedy.jpg",
     rules: [
-      "Solo participation only.",
-      "Time limit: 3–4 minutes.",
-      "Performance must be original content.",
-      "No vulgar, offensive, political, or religiously sensitive jokes allowed.",
-      "Participants must report 1 hour before the event.",
-      "Valid college ID card is mandatory.",
+      "Solo performance only.",
+      "Time limit: 3–5 minutes (strict).",
+      "Original content only (no copying).",
+      "Content must be clean, respectful, and college-appropriate.",
+      "No political, religious, vulgar, or discriminatory jokes.",
+      "No personal attacks on individuals, faculty, or institution.",
+      "Limited profanity only if necessary.",
+      "Use of props is allowed but must be simple and self-managed.",
+      "Maintain proper stage discipline & decorum.",
+      "Report an hour early.",
+      "Organizers/Judges' decision is final and binding.",
+      "The organizing committee reserves the rights to modify the rules or timing if necessary.",
     ],
     eligibility: [
       "Open to bonafide college students.",
@@ -673,6 +728,13 @@ export const evento: Event[] = [
         contact: "8618968484",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Deepika D Pai",
+        contact: "7483051168",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -752,6 +814,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Sowjanya S",
+        contact: "9036719357",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -825,6 +894,13 @@ export const evento: Event[] = [
         contact: "8088134399",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Rakesh B S",
+        contact: "8892655785",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -916,6 +992,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Vinay B V",
+        contact: "8867155514",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -989,6 +1072,13 @@ export const evento: Event[] = [
         contact: "9008419329",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Anjana V A",
+        contact: "9731355916",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -1065,6 +1155,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Lakshmi Shravani",
+        contact: "8884156010",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -1137,6 +1234,13 @@ export const evento: Event[] = [
         contact: "9080971372",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Dr. A. Stella",
+        contact: "9886681016",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -1214,6 +1318,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Chaitra",
+        contact: "9148374331",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -1287,6 +1398,13 @@ export const evento: Event[] = [
         contact: "8722067551",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Dr. Manasa Charitha",
+        contact: "7022012885",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -1364,6 +1482,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Dr. Rashmi R",
+        contact: "9538294470",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
     faqs: [
       {
@@ -1435,6 +1560,13 @@ export const evento: Event[] = [
         contact: "9742184114",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "P. Gopala Krishna",
+        contact: "9538721994",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -1511,6 +1643,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Sahana A",
+        contact: "9148935633",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
 
     faqs: [
@@ -1582,6 +1721,13 @@ export const evento: Event[] = [
         contact: "7349432959",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Sneha Zolgikar",
+        contact: "8296684014",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],
@@ -1658,6 +1804,13 @@ export const evento: Event[] = [
         role: "Student Coordinator",
         image: "",
       },
+      {
+        name: "Dr. Ravi Chandra S",
+        contact: "9916141933",
+        email: "",
+        role: "Faculty Coordinator",
+        image: "",
+      },
     ],
 
     faqs: [
@@ -1730,6 +1883,13 @@ export const evento: Event[] = [
         contact: "7406573131",
         email: "",
         role: "Student Coordinator",
+        image: "",
+      },
+      {
+        name: "Naveen H S",
+        contact: "9964559313",
+        email: "",
+        role: "Faculty Coordinator",
         image: "",
       },
     ],

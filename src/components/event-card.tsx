@@ -5,11 +5,20 @@ import { Calendar, Clock, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+function formatEventDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return dateStr;
+  const day = date.getDate();
+  const month = date.toLocaleString("en-US", { month: "short" });
+  return `${day} ${month}`;
+}
+
 export interface Event {
   title: string;
   image: string;
   description: string;
   isPublished: boolean;
+  date?: string;
 }
 
 export function EventCard({
@@ -73,7 +82,7 @@ export function EventCard({
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <Calendar className="h-3.5 w-3.5" />
-                <span>27 Mar</span>
+                <span>{event.date ? formatEventDate(event.date) : "TBA"}</span>
               </div>
               <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <MapPin className="h-3.5 w-3.5" />

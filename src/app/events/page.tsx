@@ -96,8 +96,8 @@ export default function EventPage() {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/brochure.pdf";
-    link.download = "Ikyam_2026_Brochure.pdf";
+    link.href = "/IKYAM.pdf";
+    link.download = "IKYAM.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -111,6 +111,7 @@ export default function EventPage() {
       description: "Show your moves in Hip-Hop, Breakdance, Freestyle or any dance style.",
       isPublished: true,
       category: "dance",
+      date: "March 27, 2026",
     },
     {
       title: "Western Group Dance",
@@ -118,6 +119,7 @@ export default function EventPage() {
       description: "High-energy group choreography in Western dance styles.",
       isPublished: true,
       category: "dance",
+      date: "March 28, 2026",
     },
     {
       title: "Indian Group Dance",
@@ -125,6 +127,7 @@ export default function EventPage() {
       description: "Celebrate classical, folk, Bollywood, and Indian fusion dance forms.",
       isPublished: true,
       category: "dance",
+      date: "March 28, 2026",
     },
     {
       title: "On Spot Choreography",
@@ -132,6 +135,7 @@ export default function EventPage() {
       description: "Perform instantly to a surprise track — no preparation time.",
       isPublished: true,
       category: "dance",
+      date: "March 27, 2026",
     },
     {
       title: "Duo Dance",
@@ -139,6 +143,7 @@ export default function EventPage() {
       description: "Two dancers. One stage. Perfect synchronization.",
       isPublished: true,
       category: "dance",
+      date: "March 28, 2026",
     },
     // Music
     {
@@ -147,6 +152,7 @@ export default function EventPage() {
       description: "Showcase your vocal talent across any genre.",
       isPublished: true,
       category: "music",
+      date: "March 27, 2026",
     },
     {
       title: "Group Singing",
@@ -154,6 +160,7 @@ export default function EventPage() {
       description: "Perform live with harmony, rhythm, and coordination.",
       isPublished: true,
       category: "music",
+      date: "March 27, 2026",
     },
     {
       title: "Rap & Boxing",
@@ -161,6 +168,7 @@ export default function EventPage() {
       description: "Bring rhythm, flow, and lyrical energy to the stage.",
       isPublished: true,
       category: "music",
+      date: "March 28, 2026",
     },
     // Film & Media
     {
@@ -169,6 +177,7 @@ export default function EventPage() {
       description: "Create and edit a 60-second reel on the spot.",
       isPublished: true,
       category: "film",
+      date: "March 27, 2026",
     },
     {
       title: "Final Cut – Short Film",
@@ -176,6 +185,7 @@ export default function EventPage() {
       description: "Present an original short film at the Vemanotsava Film Festival.",
       isPublished: true,
       category: "film",
+      date: "March 27, 2026",
     },
     {
       title: "Beyond The Lens – Photography",
@@ -183,6 +193,7 @@ export default function EventPage() {
       description: "Mobile photography competition. Capture creativity and present your best shot in 5 minutes.",
       isPublished: true,
       category: "film",
+      date: "March 28, 2026",
     },
     // Gaming
     {
@@ -191,6 +202,7 @@ export default function EventPage() {
       description: "Compete in BGMI, Call of Duty Mobile, and Free Fire.",
       isPublished: true,
       category: "gaming",
+      date: "March 27, 2026",
     },
     // Art & Performance
     {
@@ -199,6 +211,7 @@ export default function EventPage() {
       description: "Make the audience laugh with your original comedic performance.",
       isPublished: true,
       category: "art",
+      date: "March 28, 2026",
     },
     {
       title: "Mr. & Ms. Aura",
@@ -206,6 +219,7 @@ export default function EventPage() {
       description: "Showcase personality, confidence, and stage presence.",
       isPublished: true,
       category: "art",
+      date: "March 28, 2026",
     },
     {
       title: "Canvas Painting",
@@ -213,6 +227,7 @@ export default function EventPage() {
       description: "Express creativity through art on canvas.",
       isPublished: true,
       category: "art",
+      date: "March 27, 2026",
     },
     {
       title: "Fashion Show",
@@ -220,6 +235,7 @@ export default function EventPage() {
       description: "Present a creative theme with coordinated ramp performance.",
       isPublished: true,
       category: "art",
+      date: "March 27, 2026",
     },
     // {
     //   title: "Echoes of Poetry",
@@ -235,6 +251,7 @@ export default function EventPage() {
       description: "Solve clues across campus and race to the final destination.",
       isPublished: true,
       category: "brain",
+      date: "March 28, 2026",
     },
     {
       title: "Can You Guess? – Quiz Competition",
@@ -242,6 +259,7 @@ export default function EventPage() {
       description: "Test your knowledge in a multi-round quiz challenge.",
       isPublished: true,
       category: "brain",
+      date: "March 27, 2026",
     },
     {
       title: "Shark Tank – Capital Quest",
@@ -249,6 +267,7 @@ export default function EventPage() {
       description: "Pitch your innovative business idea to a panel of judges.",
       isPublished: true,
       category: "brain",
+      date: "March 28, 2026",
     },
     {
       title: "Chamber of Secrets – Escape Room",
@@ -256,6 +275,7 @@ export default function EventPage() {
       description: "Team-based escape challenge. Solve puzzles and race against time to break free.",
       isPublished: true,
       category: "brain",
+      date: "March 27, 2026",
     },
     {
       title: "Inkspire – Creative Writing",
@@ -263,6 +283,7 @@ export default function EventPage() {
       description: "Team storytelling challenge with a unique Universe Switch concept.",
       isPublished: true,
       category: "brain",
+      date: "March 28, 2026",
     },
     {
       title: "Air Crash",
@@ -270,6 +291,7 @@ export default function EventPage() {
       description: "Role-play debate event. Convince the panel why you deserve to survive.",
       isPublished: true,
       category: "brain",
+      date: "March 28, 2026",
     },
     {
       title: "House of Games",
@@ -277,6 +299,7 @@ export default function EventPage() {
       description: "High-energy survival-based team competition with multiple rounds.",
       isPublished: true,
       category: "brain",
+      date: "March 27, 2026",
     },
   ];
 

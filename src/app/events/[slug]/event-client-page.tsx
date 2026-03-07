@@ -409,15 +409,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
                       Register Now
                     </FancyButton>
                   </Link>
-                  <FancyButton
-                    variant="secondary"
-                    color="cyan"
-                    className="w-full"
-                    onClick={handleDownload}
-                  >
-                    <Download className="h-4 w-4 mr-2 inline" />
-                    Download Rules PDF
-                  </FancyButton>
+                  
                 </div>
               </LiquidGlassCard>
 
