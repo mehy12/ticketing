@@ -841,7 +841,7 @@ export const evento: Event[] = [
     category: "Media & Creative",
     image: "/events/final-cut-short-film.jpg",
     rules: [
-      "Short film duration: 5–10 minutes.",
+      "Short film duration: 8–15 minutes.",
       "Content must be original and created by participants.",
       "Films can be in any language (subtitles recommended if not in English).",
       "No plagiarism — copied content will lead to disqualification.",
