@@ -1,4 +1,4 @@
-import { Event } from "@/lib/types";
+﻿import { Event } from "@/lib/types";
 
 export const evento: Event[] = [
   //solo dance
@@ -31,7 +31,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -82,7 +81,7 @@ export const evento: Event[] = [
     minTeamSize: 1,
     featured: true,
     gradient: "from-pink-500 to-rose-600",
-    price: 99,
+    price: 199,
   },
   //western group dance
   {
@@ -113,7 +112,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -164,7 +162,7 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-yellow-500 to-orange-500",
-    price: 1000,
+    price: 799,
   },
   // indian group dance
   {
@@ -195,7 +193,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -246,7 +243,7 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-orange-500 to-amber-600",
-    price: 1000,
+    price: 799,
   },
   // on spot choreography
   {
@@ -277,7 +274,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -328,7 +324,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-purple-500 to-pink-600",
-    price: 99,
+    price: 149,
   },
 
   //duo dance
@@ -361,7 +357,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -412,7 +407,7 @@ export const evento: Event[] = [
     maxTeamSize: 2,
     featured: true,
     gradient: "from-indigo-500 to-purple-600",
-    price: 179,
+    price: 299,
   },
   //solo singing
   {
@@ -443,7 +438,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -494,7 +488,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: true,
     gradient: "from-blue-500 to-indigo-600",
-    price: 99,
+    price: 149,
   },
   //group singing
   {
@@ -525,7 +519,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -576,7 +569,7 @@ export const evento: Event[] = [
     maxTeamSize: 6,
     featured: true,
     gradient: "from-emerald-500 to-teal-600",
-    price: 269,
+    price: 349,
   },
   //rap and boxing
   {
@@ -610,7 +603,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -665,7 +657,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-red-500 to-orange-600",
-    price: 99,
+    price: 149,
   },
   //stand up comedy
   {
@@ -701,7 +693,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -752,7 +743,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-yellow-500 to-orange-500",
-    price: 99,
+    price: 149,
   },
 
   //reel making
@@ -785,7 +776,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -836,7 +826,7 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: false,
     gradient: "from-blue-500 to-cyan-500",
-    price: 99,
+    price: 149,
   },
   // final cut short film
   {
@@ -867,7 +857,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -918,7 +907,7 @@ export const evento: Event[] = [
     maxTeamSize: 10,
     featured: true,
     gradient: "from-indigo-500 to-blue-600",
-    price: 99,
+    price: 299,
   },
   //esports
   {
@@ -949,7 +938,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1014,7 +1002,7 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: true,
     gradient: "from-red-500 to-orange-600",
-    price: 269,
+    price: 399,
   },
   // treasure hunt
   {
@@ -1045,7 +1033,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1096,7 +1083,7 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: false,
     gradient: "from-green-500 to-yellow-400",
-    price: 269,
+    price: 499,
   },
   //can you guess
   {
@@ -1126,7 +1113,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1177,7 +1163,7 @@ export const evento: Event[] = [
     maxTeamSize: 2,
     featured: false,
     gradient: "from-cyan-500 to-blue-600",
-    price: 269,
+    price: 199,
   },
   //mr ms aura
   {
@@ -1207,7 +1193,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1258,7 +1243,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: true,
     gradient: "from-pink-500 to-purple-600",
-    price: 99,
+    price: 299,
   },
   // canvas painting
   {
@@ -1289,7 +1274,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1340,7 +1324,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-amber-500 to-orange-600",
-    price: 99,
+    price: 149,
   },
 
   // shark tank
@@ -1371,7 +1355,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1422,7 +1405,7 @@ export const evento: Event[] = [
     maxTeamSize: 4,
     featured: true,
     gradient: "from-emerald-500 to-teal-600",
-    price: 269,
+    price: 499,
   },
   //fashion show
   {
@@ -1453,7 +1436,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1504,7 +1486,7 @@ export const evento: Event[] = [
     maxTeamSize: 12,
     featured: true,
     gradient: "from-rose-500 to-pink-600",
-    price: 2000,
+    price: 2499,
   },
   {
     slug: "beyond-the-lens-photography",
@@ -1533,7 +1515,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1585,7 +1566,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-purple-500 to-pink-500",
-    price: 199,
+    price: 149,
   },
   {
     slug: "chamber-of-secrets-escape-room",
@@ -1614,7 +1595,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1666,7 +1646,7 @@ export const evento: Event[] = [
     maxTeamSize: 3,
     featured: false,
     gradient: "from-indigo-600 to-purple-600",
-    price: 269,
+    price: 199,
   }, {
     slug: "inkspire-creative-writing",
     name: "Inkspire – Creative Writing",
@@ -1694,7 +1674,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1746,7 +1725,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-pink-500 to-rose-600",
-    price: 199,
+    price: 149,
   },
   {
     slug: "air-crash",
@@ -1775,7 +1754,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 28, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1827,7 +1805,7 @@ export const evento: Event[] = [
     maxTeamSize: 1,
     featured: false,
     gradient: "from-red-500 to-orange-500",
-    price: 199,
+    price: 99,
   },
   {
     slug: "house-of-games",
@@ -1856,7 +1834,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {
@@ -1908,7 +1885,7 @@ export const evento: Event[] = [
     maxTeamSize: 5,
     featured: false,
     gradient: "from-yellow-500 to-red-500",
-    price: 349,
+    price: 499,
   },
   {
     slug: "web-designing-competition",
@@ -1939,7 +1916,6 @@ export const evento: Event[] = [
       method: "Online Registration Only",
       deadline: "Before March 27, 2026",
       fee: "As per registration portal",
-      link: "https://linktr.ee/Ikyam.vemanotsava",
     },
     prizes: [
       {

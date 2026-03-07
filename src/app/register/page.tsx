@@ -650,6 +650,18 @@ export default function RegisterPage() {
 
                                                     <p className="text-white/25 text-xs">WhatsApp confirmation → {formData.phone}</p>
 
+                                                    {/* Join WhatsApp Query Group */}
+                                                    <a
+                                                        href="https://chat.whatsapp.com/HQZ5bjRYkJlEinHlmp1lG8"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="block w-full py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-sm text-center shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all"
+                                                    >
+                                                        <span className="flex items-center justify-center gap-2">
+                                                            <Phone className="h-4 w-4" /> Join WhatsApp Group for Queries
+                                                        </span>
+                                                    </a>
+
                                                     <div className="border-t border-white/10 pt-4">
                                                         <p className="text-white/60 text-sm font-medium mb-1">Want to register for more?</p>
                                                         <p className="text-white/30 text-xs mb-4">Submit a separate registration with another payment.</p>
@@ -680,7 +692,7 @@ export default function RegisterPage() {
                                                                 <Mail className="h-3.5 w-3.5" /> Email us
                                                             </a>
                                                             <span className="text-white/20">·</span>
-                                                            <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 flex items-center gap-1 transition-colors">
+                                                            <a href="https://chat.whatsapp.com/HQZ5bjRYkJlEinHlmp1lG8" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 flex items-center gap-1 transition-colors">
                                                                 <Phone className="h-3.5 w-3.5" /> WhatsApp
                                                             </a>
                                                         </div>
