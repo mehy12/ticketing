@@ -1179,7 +1179,7 @@ export const evento: Event[] = [
     image: "/events/mr-ms-aura.jpg",
     rules: [
       "Solo participation only.",
-      "Participants must be bonafide college students.",
+      "Participants must be college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Event consists of multiple rounds (Introduction, Talent, Q&A).",
       "Time limits must be strictly followed for each round.",
       "Content must be respectful and appropriate.",
@@ -1657,7 +1657,7 @@ export const evento: Event[] = [
     time: "11:00 AM",
     venue: "Vemana Institute of Technology Campus",
     category: "Literary",
-    image: "/events/inkspire-creative-writing.jpg",
+    image: "/events/inkspire.jpg",
     rules: [
       "Individual participation only.",
       "Topic/prompts will be given on the spot.",

@@ -96,7 +96,7 @@ export default function EventPage() {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "/IKYAM.pdf";
+    link.href = "/IKYAM_Official.pdf";
     link.download = "IKYAM.pdf";
     document.body.appendChild(link);
     link.click();
