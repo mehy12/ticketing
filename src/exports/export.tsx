@@ -24,7 +24,7 @@ export const evento: Event[] = [
       "Participants must report 1 hour before the event.",
     ],
     eligibility: [
-      "Open to all bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -105,8 +105,8 @@ export const evento: Event[] = [
       "Props must not damage the stage or equipment.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
-      "All team members must belong to the same college.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
+      "Teams are not restricted to a single college – participants may form teams from different colleges, dance institutes, or private groups.",
     ],
     registration: {
       method: "Online Registration Only",
@@ -186,8 +186,8 @@ export const evento: Event[] = [
       "Teams must report at least 1 hour before the event.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
-      "All participants must belong to the same college.",
+      "Open to all college students with a valid college ID card.",
+      "Teams are not restricted to a single college – participants may form teams from different colleges, dance institutes, or private groups.",
     ],
     registration: {
       method: "Online Registration Only",
@@ -267,7 +267,7 @@ export const evento: Event[] = [
       "Use of offensive gestures, lyrics, or movements is strictly prohibited.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card must be carried.",
     ],
     registration: {
@@ -350,7 +350,7 @@ export const evento: Event[] = [
       "Green rooms will be provided for changing.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card required.",
     ],
     registration: {
@@ -431,7 +431,7 @@ export const evento: Event[] = [
       "Valid college ID card is mandatory.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -504,7 +504,7 @@ export const evento: Event[] = [
     image: "/events/group-singing.jpg",
     rules: [
       "Each team must consist of 4–6 members.",
-      "All members must belong to the same college.",
+      "Teams are not restricted to a single college – participants may form teams from different colleges, dance institutes, or private groups.",
       "Time limit: 5–7 minutes including entry and exit.",
       "All participants must sing live on stage.",
       "Karaoke/background tracks are allowed.",
@@ -512,7 +512,7 @@ export const evento: Event[] = [
       "Live instruments may be used; teams must manage their own instruments.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "All members must carry valid college ID cards.",
     ],
     registration: {
@@ -596,7 +596,7 @@ export const evento: Event[] = [
       "The organizing committee reserves the right to modify rules or timings if necessary.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card is mandatory.",
     ],
     registration: {
@@ -686,7 +686,7 @@ export const evento: Event[] = [
       "The organizing committee reserves the rights to modify the rules or timing if necessary.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -769,7 +769,7 @@ export const evento: Event[] = [
       "Final submission must be in MP4 format within the allotted time.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -850,7 +850,7 @@ export const evento: Event[] = [
       "Participants must be present during screening.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -931,7 +931,7 @@ export const evento: Event[] = [
       "Decision of the judges and technical team will be final.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card is mandatory.",
     ],
     registration: {
@@ -1026,7 +1026,7 @@ export const evento: Event[] = [
       "Judging criteria: Speed, Accuracy, Teamwork, and Strategy.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "All participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1106,7 +1106,7 @@ export const evento: Event[] = [
       "Teams must report 30 minutes before the event.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1186,7 +1186,7 @@ export const evento: Event[] = [
       "Judges’ decision will be final and binding.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card is mandatory.",
     ],
     registration: {
@@ -1267,7 +1267,7 @@ export const evento: Event[] = [
       "No pre-drawn sketches allowed.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Valid college ID card is mandatory.",
     ],
     registration: {
@@ -1348,7 +1348,7 @@ export const evento: Event[] = [
       "Judges’ decision will be final.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID card.",
     ],
     registration: {
@@ -1429,7 +1429,7 @@ export const evento: Event[] = [
       "Judging criteria: Theme (30%), Coordination (25%), Creativity (25%), Confidence & Presentation (20%).",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "All participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1508,7 +1508,7 @@ export const evento: Event[] = [
       "Judging criteria: Creativity, Composition, Storytelling, and Originality.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1588,7 +1588,7 @@ export const evento: Event[] = [
       "Judging criteria: Time Taken, Accuracy, and Team Coordination.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1667,7 +1667,7 @@ export const evento: Event[] = [
       "Judging criteria: Creativity, Language, Structure, and Originality.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1747,7 +1747,7 @@ export const evento: Event[] = [
       "Judging criteria: Creativity, Confidence, Persuasion, and Stage Presence.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1827,7 +1827,7 @@ export const evento: Event[] = [
       "Judging criteria: Teamwork, Strategy, Performance, and Completion of tasks.",
     ],
     eligibility: [
-      "Open to bonafide college students.",
+      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
       "All participants must carry valid college ID cards.",
     ],
     registration: {
@@ -1887,79 +1887,4 @@ export const evento: Event[] = [
     gradient: "from-yellow-500 to-red-500",
     price: 499,
   },
-  {
-    slug: "web-designing-competition",
-    name: "Web Designing Competition",
-    tagline: "Design the Future. Build the Experience.",
-    description:
-      "A fast-paced web designing challenge where teams create a fully functional website within 90 minutes. Creativity, UI/UX design, responsiveness, and originality are key judging factors. AI tools are allowed, but innovation and uniqueness will set winners apart.",
-    date: "March 27, 2026",
-    time: "11:00 AM",
-    venue: "Vemana Institute of Technology Campus",
-    category: "Technical",
-    image: "/events/web-designing.jpg",
-    rules: [
-      "Team size: 2–4 members.",
-      "Total duration: 90 minutes.",
-      "Website must be developed within the given time.",
-      "Teams must upload their project to GitHub by the 75th minute.",
-      "Internet access is allowed.",
-      "AI tools are allowed, but originality is mandatory.",
-      "Generic templates or copied designs may lose marks.",
-      "Judging criteria: UI/UX, Creativity, Responsiveness, Functionality, and Originality.",
-    ],
-    eligibility: [
-      "Open to bonafide college students.",
-      "Participants must carry valid college ID cards.",
-    ],
-    registration: {
-      method: "Online Registration Only",
-      deadline: "Before March 27, 2026",
-      fee: "As per registration portal",
-    },
-    prizes: [
-      {
-        position: "Winner",
-        amount: "To Be Announced",
-        description: "Cash Prize + Trophy + Certificate",
-      },
-      {
-        position: "Runner-Up",
-        amount: "To Be Announced",
-        description: "Certificate",
-      },
-    ],
-    coordinators: [
-      {
-        name: "Akshyanshu Sekhar",
-        contact: "9886667080",
-        email: "",
-        role: "Student Coordinator",
-        image: "",
-      },
-      {
-        name: "Meesam Hyder",
-        contact: "6362029195",
-        email: "",
-        role: "Student Coordinator",
-        image: "",
-      },
-    ],
-
-    faqs: [
-      {
-        question: "Can we use frameworks like React or Tailwind?",
-        answer: "Yes, any framework or technology stack is allowed.",
-      },
-      {
-        question: "Is AI usage allowed?",
-        answer: "Yes, but originality and creativity will carry significant weight in judging.",
-      },
-    ],
-    minTeamSize: 2,
-    maxTeamSize: 4,
-    featured: true,
-    gradient: "from-blue-500 to-purple-600",
-    price: 299,
-  }
-];
+]
