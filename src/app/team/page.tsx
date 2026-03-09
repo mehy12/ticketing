@@ -175,11 +175,11 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "member-9",
-    name: "Jitesh U",
+    name: "Jithesh U",
     role: "Campaigning Lead",
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393265/WhatsApp_Image_2026-02-27_at_9.02.11_PM_ex2r6l.jpg",
     color: "#06b6d4",
-    handle: "jitesh",
+    handle: "jithesh",
     phone: "8722067551",
     email: "jeethurocks2004@gmail.com",
     socials: [
@@ -187,7 +187,7 @@ const TEAM_MEMBERS: TeamMember[] = [
         name: "Instagram",
         domain: "instagram.com",
         icon: <InstagramIcon className="h-5 w-5" />,
-        url: "https://instagram.com/jitesh",
+        url: "https://www.instagram.com/jeethu_karkera/",
       },
     ],
   },

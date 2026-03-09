@@ -1377,7 +1377,7 @@ export const evento: Event[] = [
         image: "",
       },
       {
-        name: "Jithesh",
+        name: "Jithesh U",
         contact: "8722067551",
         email: "",
         role: "Student Coordinator",
