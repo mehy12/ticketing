@@ -93,6 +93,7 @@ const CATEGORY_TABS: TabItem[] = [
 
 export default function EventPage() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -304,9 +305,18 @@ export default function EventPage() {
   ];
 
   const filteredEvents = useMemo(() => {
-    if (activeCategory === "all") return events;
-    return events.filter((e) => e.category === activeCategory);
-  }, [activeCategory]);
+    let result = activeCategory === "all" ? events : events.filter((e) => e.category === activeCategory);
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(
+        (e) =>
+          e.title.toLowerCase().includes(q) ||
+          e.description.toLowerCase().includes(q) ||
+          e.category.toLowerCase().includes(q)
+      );
+    }
+    return result;
+  }, [activeCategory, searchQuery]);
 
   const categoryLabel = CATEGORY_TABS.find((t) => t.id === activeCategory)?.title ?? "All";
 
@@ -352,6 +362,50 @@ export default function EventPage() {
             </div>
           </div>
 
+          {/* Prize Pool Banner */}
+          <div className="flex justify-center mb-8">
+            <div className="relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-yellow-400/40 bg-gradient-to-r from-yellow-500/10 via-yellow-400/15 to-amber-500/10 backdrop-blur-md shadow-[0_0_30px_rgba(234,179,8,0.25)] group">
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-400/5 to-amber-400/5 animate-pulse" />
+              <span className="text-3xl">🏆</span>
+              <div className="text-center">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-yellow-400/80 mb-0.5">Overall Prize Pool</p>
+                <p className="text-3xl md:text-4xl font-black tracking-tight">
+                  <span className="bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(234,179,8,0.6)]">₹1,00,000</span>
+                </p>
+                <p className="text-xs text-yellow-300/60 mt-0.5 font-medium">Worth of prizes across all events</p>
+              </div>
+              <span className="text-3xl">🏆</span>
+            </div>
+          </div>
+
+          {/* Search Bar */}
+          <div className="flex justify-center mb-6">
+            <div className="relative w-full max-w-md">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+                <svg className="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                placeholder="Search events..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-11 pr-10 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-400/60 focus:ring-2 focus:ring-yellow-400/20 backdrop-blur-md transition-all duration-200 text-sm"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-white transition-colors"
+                >
+                  <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          </div>
+
           {/* Category Filter Tabs */}
           <div className="flex justify-center mb-2">
             <DiscreteTabs
@@ -365,6 +419,9 @@ export default function EventPage() {
             {filteredEvents.length === 1 ? "event" : "events"}
             {activeCategory !== "all" && (
               <> in <span className="text-orange-400 font-semibold">{categoryLabel}</span></>
+            )}
+            {searchQuery.trim() && (
+              <> for <span className="text-yellow-400 font-semibold">&ldquo;{searchQuery}&rdquo;</span></>
             )}
           </p>
         </div>

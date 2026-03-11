@@ -135,7 +135,14 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: "https://res.cloudinary.com/dsnaaw5iy/image/upload/v1772393897/file_pxlc5m.jpg",
     color: "#f59e0b",
     handle: "mythri",
-    socials: makeSocials("mythri"),
+    socials: [
+      {
+        name: "Instagram",
+        domain: "instagram.com",
+        icon: <InstagramIcon className="h-5 w-5" />,
+        url: "https://www.instagram.com/mythri_mahesh_/",
+      },
+    ],
   },
   {
     id: "member-5",

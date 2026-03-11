@@ -9,7 +9,7 @@ import AboutSection from "@/components/about";
 import RollingTrophy from "@/components/rolling-trophy";
 import { TapeSection } from "@/components/tape";
 import { CallToAction } from "@/components/call-to-action";
-
+import PrizePoolBanner from "@/components/prize-pool-banner";
 import FestStats from "@/components/count-up";
 
 export default function Home() {
@@ -35,6 +35,7 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <Hero />
+        <PrizePoolBanner />
         <AboutSection />
         <RollingTrophy />
         <MasonryGrid />

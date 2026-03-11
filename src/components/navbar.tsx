@@ -37,9 +37,9 @@ export const Navbar = () => {
             <Link href="/team">
               <FancyButton variant="underline">Team</FancyButton>
             </Link>
-            <Link href="/esports">
-              <FancyButton variant="ghost">Esports</FancyButton>
-            </Link>
+            {/* <Link href="/gallery">
+              <FancyButton variant="ghost">Gallery</FancyButton>
+            </Link> */}
             <Link href="/register">
               <FancyButton variant="primary" color="violet">Register</FancyButton>
             </Link>
