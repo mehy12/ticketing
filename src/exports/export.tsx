@@ -1098,7 +1098,7 @@ export const evento: Event[] = [
     category: "Quiz",
     image: "/events/can-you-guess.jpg",
     rules: [
-      "Team size: 2 members per team.",
+      "Team size: 3 members per team.",
       "Multiple rounds will be conducted.",
       "No use of mobile phones or electronic devices.",
       "Quiz master’s decision will be final.",
@@ -1659,7 +1659,7 @@ export const evento: Event[] = [
     category: "Literary",
     image: "/events/inkspire.jpg",
     rules: [
-      "Individual participation only.",
+      "2 Members only",
       "Topic/prompts will be given on the spot.",
       "Time limit must be strictly followed.",
       "Plagiarism will lead to immediate disqualification.",
@@ -1667,7 +1667,7 @@ export const evento: Event[] = [
       "Judging criteria: Creativity, Language, Structure, and Originality.",
     ],
     eligibility: [
-      "Open to all college students (11th, 12th/PU, Degree, or any college students) with a valid college ID card.",
+      "Open to all college students with a valid college ID card.",
       "Participants must carry valid college ID cards.",
     ],
     registration: {

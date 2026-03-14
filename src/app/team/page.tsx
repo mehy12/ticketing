@@ -1,18 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, LayoutGroup } from "framer-motion";
+import { motion } from "framer-motion";
 import { Navbar } from "@/components/navbar";
-import { Crown, Star, Code2, Palette, ExternalLink, Heart } from "lucide-react";
+import { Crown, Star, Heart, ExternalLink, Palette, Code2 } from "lucide-react";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { CanvasText } from "@/components/ui/canvas-text";
-import { BlurVignette, BlurVignetteArticle } from "@/../components/uilayouts/blur-vignette";
-import SocialSelector, {
-  type Platform,
-  XIcon,
-} from "@/components/ui/smoothui/social-selector";
+import { type Platform, XIcon } from "@/components/ui/smoothui/social-selector";
 import dynamic from "next/dynamic";
-import { cn } from "../../../lib/utils";
 
 const Blob = dynamic(() => import("@/components/ui/blob").then(mod => mod.Blob), {
   ssr: false,
@@ -200,9 +195,107 @@ const TEAM_MEMBERS: TeamMember[] = [
   },
 ];
 
+/* ─── FlipCard Component ─── */
+function FlipCard({ member }: { member: TeamMember }) {
+  const [flipped, setFlipped] = useState(false);
+
+  return (
+    <div
+      className="relative w-full h-full cursor-pointer"
+      style={{ transformStyle: "preserve-3d", transition: "transform 0.65s cubic-bezier(0.23,1,0.32,1)", transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onClick={() => setFlipped((f) => !f)}
+    >
+      {/* ─── FRONT ─── */}
+      <div
+        className="absolute inset-0 rounded-[22px] overflow-hidden shadow-2xl"
+        style={{ backfaceVisibility: "hidden" }}
+      >
+        {/* Gradient background */}
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(145deg, ${member.color}ee 0%, ${member.color}88 55%, #111827 100%)` }}
+        />
+        {/* Large faded role text watermark */}
+        <div className="absolute bottom-20 left-0 right-0 px-4 overflow-hidden pointer-events-none select-none" style={{ zIndex: 1 }}>
+          <span className="text-[46px] font-black uppercase leading-none tracking-tighter opacity-[0.18] text-white break-words">
+            {(member.role || "IKYAM 2026").split(" ").join("\n")}
+          </span>
+        </div>
+        {/* Photo */}
+        <img
+          src={member.image}
+          alt={member.name}
+          className="absolute bottom-0 right-0 w-[80%] h-[82%] object-cover object-top"
+          style={{ zIndex: 2, maskImage: "linear-gradient(to top, black 55%, transparent 100%)", WebkitMaskImage: "linear-gradient(to top, black 55%, transparent 100%)" }}
+        />
+        {/* Top-left name tag */}
+        <div className="absolute top-5 left-5 z-10">
+          <p className="text-white/50 text-[11px] font-medium mb-0.5">Hello, I&apos;m</p>
+          <h3 className="text-white text-xl font-bold leading-tight max-w-[130px]">{member.name.split(" ")[0]}</h3>
+          {member.role && <p className="text-white/40 text-[10px] mt-0.5 max-w-[130px] leading-snug">{member.role}</p>}
+        </div>
+        {/* Flip hint */}
+        <div className="absolute bottom-4 left-5 z-10">
+          <span className="text-white/35 text-[10px] font-medium uppercase tracking-wider">Hover to flip →</span>
+        </div>
+      </div>
+
+      {/* ─── BACK ─── */}
+      <div
+        className="absolute inset-0 rounded-[22px] overflow-hidden shadow-2xl bg-white"
+        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+      >
+        {/* Colored top strip */}
+        <div className="h-1.5 w-full" style={{ background: `linear-gradient(to right, ${member.color}, ${member.color}55)` }} />
+        <div className="flex flex-col h-[calc(100%-6px)] p-6">
+          {/* Name + role */}
+          <div className="mb-4 pb-4 border-b border-gray-200">
+            <h3 className="text-gray-900 text-lg font-bold leading-tight">{member.name}</h3>
+            {member.role && <p className="text-gray-500 text-sm mt-0.5">{member.role}</p>}
+          </div>
+          {/* Contact rows */}
+          <div className="flex flex-col gap-3 flex-1 overflow-hidden">
+            {member.email && (
+              <a href={`mailto:${member.email}`} className="flex items-center gap-2.5 hover:opacity-80 transition-opacity" onClick={(e) => e.stopPropagation()}>
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-base">✉️</span>
+                <span className="text-xs text-gray-600 truncate">{member.email}</span>
+              </a>
+            )}
+            {member.phone && (
+              <a href={`tel:${member.phone}`} className="flex items-center gap-2.5 hover:opacity-80 transition-opacity" onClick={(e) => e.stopPropagation()}>
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-base">📞</span>
+                <span className="text-xs text-gray-600">+91 {member.phone}</span>
+              </a>
+            )}
+            {member.socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: `${member.color}20`, color: member.color }}>
+                  {social.icon}
+                </span>
+                <span className="text-xs text-gray-600 flex items-center gap-1 truncate">
+                  {social.name}
+                  <ExternalLink className="h-2.5 w-2.5 flex-shrink-0 opacity-50" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Page Component ─── */
 export default function TeamPage() {
-  const [expandedId, setExpandedId] = useState<string>("member-1");
 
   return (
     <div className="min-h-screen w-full flex flex-col relative overflow-hidden">
@@ -331,171 +424,25 @@ export default function TeamPage() {
           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/30" />
         </div>
 
-        {/* ─── Team Grid with RevealWaveImage Profiles ─── */}
-        <div className="w-full max-w-5xl mx-auto pb-16 relative">
-          <LayoutGroup id="team-grid">
-            <motion.div
-              layout
-              className="grid grid-cols-2 md:grid-cols-3 gap-5 sm:gap-7 auto-rows-[220px] sm:auto-rows-[300px]"
-            >
-              {TEAM_MEMBERS.map((member) => {
-                const isExpanded = expandedId === member.id;
-
-                return (
-                  <motion.div
-                    key={member.id}
-                    layoutId={`team-${member.id}`}
-                    onClick={() => setExpandedId(member.id)}
-                    className={cn(
-                      "relative cursor-pointer group w-full h-full",
-                      isExpanded
-                        ? "z-30 col-span-2 row-span-2"
-                        : "z-10 col-span-1 row-span-1"
-                    )}
-                    transition={{
-                      layout: {
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 24,
-                      },
-                    }}
-                  >
-                    {/* Outer glassy border shell */}
-                    <motion.div
-                      layoutId={`team-${member.id}-shell`}
-                      className="absolute inset-0 rounded-[32px] p-[3px]"
-                      style={{
-                        background: isExpanded
-                          ? `linear-gradient(135deg, ${member.color}66, ${member.color}22, rgba(255,255,255,0.15), ${member.color}22)`
-                          : "linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.08))",
-                      }}
-                    >
-                      {/* Inner card */}
-                      <BlurVignette
-                        classname="relative w-full h-full !aspect-auto rounded-[30px] overflow-hidden bg-neutral-950"
-                        radius="30px"
-                        inset="15px"
-                        transitionLength="40px"
-                        blur="8px"
-                      >
-                        {/* Profile photo */}
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className={cn(
-                            "absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out",
-                            isExpanded
-                              ? "scale-105 object-[center_25%]"
-                              : "scale-100 object-[center_35%] group-hover:scale-[1.03]"
-                          )}
-                        />
-
-                        {/* Liquid gradient — subtle color wash */}
-                        <div
-                          className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none transition-opacity duration-500 group-hover:opacity-30"
-                          style={{
-                            background: `radial-gradient(ellipse at 30% 80%, ${member.color}44 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, ${member.color}22 0%, transparent 50%)`,
-                          }}
-                        />
-
-                        {/* Bottom frosted glass panel */}
-                        <motion.div
-                          layoutId={`team-${member.id}-glass`}
-                          className="absolute inset-x-0 bottom-0 z-10"
-                        >
-                          <div
-                            className={cn(
-                              "backdrop-blur-xl border-t transition-all duration-500",
-                              isExpanded
-                                ? "bg-black/50 border-white/15 px-6 py-5 sm:px-8 sm:py-6"
-                                : "bg-black/40 border-white/10 px-4 py-3 sm:px-5 sm:py-4"
-                            )}
-                          >
-                            <motion.h3
-                              layout="position"
-                              className={cn(
-                                "font-bold text-white tracking-tight leading-tight transition-all duration-300",
-                                isExpanded
-                                  ? "text-2xl sm:text-3xl mb-1"
-                                  : "text-sm sm:text-lg mb-0.5"
-                              )}
-                            >
-                              {member.name}
-                            </motion.h3>
-
-
-                            {/* Social links + contact — revealed on expand */}
-                            {isExpanded && (
-                              <motion.div
-                                initial={{ opacity: 0, y: 8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.25, duration: 0.3 }}
-                                className="mt-3 pt-3 border-t border-white/10 space-y-2"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <SocialSelector
-                                  platforms={member.socials}
-                                  handle={member.handle}
-                                  className="!my-0 !text-left"
-                                />
-                                {(member.phone || member.email) && (
-                                  <div className="flex flex-col gap-1 mt-2 text-xs text-white/50">
-                                    {member.phone && (
-                                      <a
-                                        href={`tel:${member.phone}`}
-                                        className="flex items-center gap-1.5 hover:text-white/80 transition-colors"
-                                      >
-                                        <span>📞</span>{member.phone}
-                                      </a>
-                                    )}
-                                    {member.email && (
-                                      <a
-                                        href={`mailto:${member.email}`}
-                                        className="flex items-center gap-1.5 hover:text-white/80 transition-colors truncate"
-                                      >
-                                        <span>✉️</span>{member.email}
-                                      </a>
-                                    )}
-                                  </div>
-                                )}
-                              </motion.div>
-                            )}
-                          </div>
-                        </motion.div>
-
-                        {/* Inner shine — liquid glass highlight */}
-                        <div
-                          className={cn(
-                            "absolute inset-0 pointer-events-none rounded-[30px] transition-opacity duration-500",
-                            isExpanded ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                          )}
-                          style={{
-                            background:
-                              "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.03) 100%)",
-                          }}
-                        />
-                      </BlurVignette>
-                    </motion.div>
-
-                    {/* Glow effect on expand */}
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                        className="absolute -inset-2 rounded-[36px] pointer-events-none -z-10 blur-xl"
-                        style={{
-                          background: `radial-gradient(ellipse at center, ${member.color}30 0%, transparent 70%)`,
-                        }}
-                      />
-                    )}
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </LayoutGroup>
+        {/* ─── Team Cards Grid ─── */}
+        <div className="w-full max-w-5xl mx-auto pb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {TEAM_MEMBERS.map((member, i) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                className="w-[260px] h-[360px]"
+                style={{ perspective: "1000px" }}
+              >
+                <FlipCard member={member} />
+              </motion.div>
+            ))}
+          </div>
         </div>
+
 
         {/* ─── Website Credits Section ─── */}
         <div className="flex items-center gap-4 max-w-5xl mx-auto mb-10 mt-4">

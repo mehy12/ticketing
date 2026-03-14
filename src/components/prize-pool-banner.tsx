@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function PrizePoolBanner() {
   return (
-    <div className="relative flex justify-center items-center py-10 px-4 overflow-hidden">
+    <div className="relative flex justify-center items-center py-10 px-4 overflow-hidden bg-transparent/50">
       {/* Ambient glow bg */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] rounded-full bg-yellow-400/10 blur-3xl" />
