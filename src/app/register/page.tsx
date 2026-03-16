@@ -9,8 +9,10 @@ import Image from "next/image";
 import NumberFlow from "@number-flow/react";
 import { signIn, useSession } from "@/app/lib/auth-client";
 import { useRegistrationStore } from "@/store/registration-store";
-import AnimatedInput from "@/components/smoothui/animated-input";
 import dynamic from "next/dynamic";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
     Check,
     ChevronRight,
@@ -27,6 +29,8 @@ import {
     Loader2,
     Mail,
     Phone,
+    Building2,
+    AlertCircle,
 } from "lucide-react";
 
 // ── Lazy-load the heavy 3-D blob (SSR off) ───────────────────────────────────
@@ -35,17 +39,34 @@ const Blob = dynamic(
     { ssr: false }
 );
 
-// ── Local types ───────────────────────────────────────────────────────────────
-type FormErrors = {
-    fullName?: string;
-    email?: string;
-    phone?: string;
-    college?: string;
-};
+// ── Zod schema ────────────────────────────────────────────────────────────────
+const personalInfoSchema = z.object({
+    fullName: z
+        .string()
+        .min(1, "Full name is required")
+        .min(2, "Name must be at least 2 characters")
+        .max(100, "Name must be under 100 characters"),
+    email: z
+        .string()
+        .min(1, "Email is required")
+        .email("Please enter a valid email address"),
+    phone: z
+        .string()
+        .min(1, "Phone number is required")
+        .regex(/^\d+$/, "Phone number must contain only digits")
+        .min(10, "Phone number must be exactly 10 digits")
+        .max(10, "Phone number must be exactly 10 digits (you entered too many)"),
+    college: z
+        .string()
+        .min(1, "College name is required")
+        .min(2, "College name must be at least 2 characters"),
+});
+
+type PersonalInfoData = z.infer<typeof personalInfoSchema>;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-const glassCard =
-    "bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/60";
+const cardStyle =
+    "rounded-[28px] bg-neutral-900 border border-neutral-800 shadow-2xl shadow-black/60";
 
 // ─────────────────────────────────────────────────────────────────────────────
 export default function RegisterPage() {
@@ -61,15 +82,49 @@ export default function RegisterPage() {
         clearCart, resetRegistration,
     } = useRegistrationStore();
 
+    // ── React-Hook-Form for Step 1 ──────────────────────────────────────────
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isValid, touchedFields, dirtyFields },
+        setValue,
+        trigger,
+        watch,
+        reset,
+    } = useForm<PersonalInfoData>({
+        resolver: zodResolver(personalInfoSchema),
+        mode: "onChange",
+        defaultValues: {
+            fullName: formData.fullName || "",
+            email: formData.email || "",
+            phone: formData.phone || "",
+            college: formData.college || "",
+        },
+    });
+
+    // Sync session data into form
     useEffect(() => {
         if (session?.user) {
-            setFormData({
-                fullName: session.user.name || "",
-                email: session.user.email || "",
-            });
+            const name = session.user.name || "";
+            const email = session.user.email || "";
+            setValue("fullName", name, { shouldValidate: true });
+            setValue("email", email, { shouldValidate: true });
+            setFormData({ fullName: name, email });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [session?.user?.id]);
+
+    // Sync form values to zustand store
+    const watchedValues = watch();
+    useEffect(() => {
+        setFormData({
+            fullName: watchedValues.fullName,
+            email: watchedValues.email,
+            phone: watchedValues.phone,
+            college: watchedValues.college,
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [watchedValues.fullName, watchedValues.email, watchedValues.phone, watchedValues.college]);
 
     const handleGoogleSignIn = async () => {
         setSigningIn(true);
@@ -81,8 +136,6 @@ export default function RegisterPage() {
     };
 
     // ── Local state ─────────────────────────────────────────────────────────
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [touched, setTouched] = useState<Record<string, boolean>>({});
     const [activeCategory, setActiveCategory] = useState("All");
     const [showMobileSummary, setShowMobileSummary] = useState(false);
     const [screenshot, setScreenshot] = useState<File | null>(null);
@@ -114,57 +167,10 @@ export default function RegisterPage() {
         [selectedEventObjects]
     );
 
-    // ── Validation ───────────────────────────────────────────────────────────
-    const validateField = (name: string, value: string): string | undefined => {
-        switch (name) {
-            case "fullName":
-                if (!value.trim()) return "Full name is required";
-                if (value.trim().length < 2) return "Name must be at least 2 characters";
-                return undefined;
-            case "email":
-                if (!value.trim()) return "Email is required";
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Enter a valid email address";
-                return undefined;
-            case "phone":
-                if (!value.trim()) return "Phone number is required";
-                if (!/^\d{10}$/.test(value.replace(/\s/g, ""))) return "Enter a valid 10-digit phone number";
-                return undefined;
-            case "college":
-                if (!value.trim()) return "College name is required";
-                return undefined;
-            default:
-                return undefined;
-        }
-    };
-
-    const handleInputChange = (name: keyof typeof formData, value: string) => {
-        setFormData({ [name]: value });
-        if (touched[name]) {
-            setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
-        }
-    };
-
-    const handleBlur = (name: keyof typeof formData) => {
-        setTouched((prev) => ({ ...prev, [name]: true }));
-        setErrors((prev) => ({ ...prev, [name]: validateField(name, formData[name]) }));
-    };
-
-    const isFormValid = () =>
-        !validateField("fullName", formData.fullName) &&
-        !validateField("email", formData.email) &&
-        !validateField("phone", formData.phone) &&
-        !validateField("college", formData.college);
-
-    const handleContinue = () => {
-        const newErrors: FormErrors = {
-            fullName: validateField("fullName", formData.fullName),
-            email: validateField("email", formData.email),
-            phone: validateField("phone", formData.phone),
-            college: validateField("college", formData.college),
-        };
-        setErrors(newErrors);
-        setTouched({ fullName: true, email: true, phone: true, college: true });
-        if (isFormValid()) setStep(2);
+    // ── Step 1 submit ────────────────────────────────────────────────────────
+    const onStep1Submit = (data: PersonalInfoData) => {
+        setFormData(data);
+        setStep(2);
     };
 
     const handleSubmitRegistration = () => {
@@ -240,17 +246,36 @@ export default function RegisterPage() {
         }
     };
 
-    // ── Form fields config ───────────────────────────────────────────────────
-    const formFields: {
-        name: keyof typeof formData;
-        label: string;
-        type: string;
-        icon: React.ReactNode;
-    }[] = [
-        { name: "fullName", label: "Full Name", type: "text", icon: <User className="h-4 w-4 text-yellow-400/60" /> },
-        { name: "email", label: "Email Address", type: "email", icon: <Mail className="h-4 w-4 text-yellow-400/60" /> },
-        { name: "phone", label: "Phone (WhatsApp)", type: "tel", icon: <Phone className="h-4 w-4 text-yellow-400/60" /> },
-        { name: "college", label: "College Name", type: "text", icon: null },
+    // ── Form field config ────────────────────────────────────────────────────
+    const formFields = [
+        {
+            name: "fullName" as const,
+            label: "Full Name",
+            type: "text",
+            placeholder: "Enter your full name",
+            icon: <User className="h-4 w-4" />,
+        },
+        {
+            name: "email" as const,
+            label: "Email Address",
+            type: "email",
+            placeholder: "your.email@example.com",
+            icon: <Mail className="h-4 w-4" />,
+        },
+        {
+            name: "phone" as const,
+            label: "Phone (WhatsApp)",
+            type: "tel",
+            placeholder: "10-digit WhatsApp number",
+            icon: <Phone className="h-4 w-4" />,
+        },
+        {
+            name: "college" as const,
+            label: "College Name",
+            type: "text",
+            placeholder: "Enter your college name",
+            icon: <Building2 className="h-4 w-4" />,
+        },
     ];
 
     // ── Shared step-indicator ────────────────────────────────────────────────
@@ -263,12 +288,12 @@ export default function RegisterPage() {
             ].map((s, i) => (
                 <div key={s.num} className="flex items-center gap-2">
                     <div className="flex items-center gap-1.5">
-                        <div className={`w-7 h-7 flex items-center justify-center text-xs font-bold transition-all duration-500 rounded-full ${step >= s.num ? "bg-gradient-to-br from-yellow-400 to-orange-500 text-black shadow-lg shadow-yellow-500/30" : "bg-white/10 text-white/40 border border-white/10"}`}>
+                        <div className={`w-8 h-8 flex items-center justify-center text-xs font-bold transition-all duration-500 rounded-full ${step >= s.num ? "bg-white text-black shadow-lg" : "bg-neutral-800 text-neutral-500 border border-neutral-700"}`}>
                             {step > s.num ? <Check className="h-3.5 w-3.5" /> : s.num}
                         </div>
-                        <span className={`text-[11px] font-medium hidden sm:block ${step >= s.num ? "text-white" : "text-white/30"}`}>{s.label}</span>
+                        <span className={`text-[11px] font-medium hidden sm:block ${step >= s.num ? "text-white" : "text-neutral-600"}`}>{s.label}</span>
                     </div>
-                    {i < 2 && <div className={`w-6 sm:w-10 h-px transition-all duration-500 ${step >= s.num + 1 ? "bg-gradient-to-r from-yellow-400 to-orange-500" : "bg-white/15"}`} />}
+                    {i < 2 && <div className={`w-6 sm:w-10 h-px transition-all duration-500 ${step >= s.num + 1 ? "bg-white" : "bg-neutral-800"}`} />}
                 </div>
             ))}
         </div>
@@ -305,8 +330,8 @@ export default function RegisterPage() {
 
                         {/* Loading */}
                         {sessionLoading ? (
-                            <div className={`${glassCard} rounded-3xl p-10 flex items-center justify-center`}>
-                                <Loader2 className="h-8 w-8 text-yellow-400 animate-spin" />
+                            <div className={`${cardStyle} p-10 flex items-center justify-center`}>
+                                <Loader2 className="h-8 w-8 text-white animate-spin" />
                             </div>
 
                         /* Not signed in */
@@ -315,19 +340,19 @@ export default function RegisterPage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                className={`${glassCard} rounded-3xl p-8 sm:p-10 text-center`}
+                                className={`${cardStyle} p-8 sm:p-10 text-center`}
                             >
                                 <motion.div
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 flex items-center justify-center mx-auto mb-5"
+                                    className="w-16 h-16 rounded-2xl bg-neutral-800 border border-neutral-700 flex items-center justify-center mx-auto mb-5"
                                 >
-                                    <LogIn className="h-7 w-7 text-yellow-400" />
+                                    <LogIn className="h-7 w-7 text-white" />
                                 </motion.div>
                                 <h2 className="text-2xl font-bold text-white mb-2">Sign in to Register</h2>
-                                <p className="text-white/50 text-sm mb-7 max-w-xs mx-auto">
-                                    Sign in with your Google account to register for <span className="text-yellow-400 font-semibold">Ikyam 2026</span> events
+                                <p className="text-neutral-500 text-sm mb-7 max-w-xs mx-auto">
+                                    Sign in with your Google account to register for <span className="text-white font-semibold">Ikyam 2026</span> events
                                 </p>
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
@@ -350,7 +375,7 @@ export default function RegisterPage() {
 
                         /* Signed in — multi-step form */
                         ) : (
-                            <div className={`${glassCard} rounded-3xl overflow-hidden`}>
+                            <div className={`${cardStyle} overflow-hidden`}>
                                 {/* Card header */}
                                 <div className="px-6 pt-6 pb-0">
                                     <StepIndicator />
@@ -365,58 +390,106 @@ export default function RegisterPage() {
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -30 }}
                                             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                                            className="p-6 space-y-1"
+                                            className="p-6"
                                         >
                                             <h2 className="text-xl font-bold text-white mb-1">Your Information</h2>
-                                            <p className="text-white/40 text-xs mb-5">All fields are required</p>
+                                            <p className="text-neutral-500 text-xs mb-5">All fields are required</p>
 
-                                            <div className="space-y-4">
-                                                {formFields.map((field, idx) => (
-                                                    <motion.div
-                                                        key={field.name}
-                                                        initial={{ opacity: 0, y: 12 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        transition={{ delay: 0.05 + idx * 0.07 }}
-                                                    >
-                                                        <AnimatedInput
-                                                            label={field.label}
-                                                            value={formData[field.name]}
-                                                            onChange={(v) => handleInputChange(field.name, v)}
-                                                            icon={field.icon}
-                                                            inputClassName={`!bg-white/5 !border-white/10 !text-white !rounded-xl focus:!border-yellow-500/60 placeholder:!text-white/20 ${
-                                                                errors[field.name] && touched[field.name] ? "!border-red-400/60" : ""
-                                                            }`}
-                                                            labelClassName="!text-white/50 !bg-transparent"
-                                                        />
-                                                        <AnimatePresence>
-                                                            {errors[field.name] && touched[field.name] && (
-                                                                <motion.p
-                                                                    initial={{ opacity: 0, height: 0 }}
-                                                                    animate={{ opacity: 1, height: "auto" }}
-                                                                    exit={{ opacity: 0, height: 0 }}
-                                                                    className="text-red-400 text-xs mt-1 pl-2"
-                                                                >
-                                                                    {errors[field.name]}
-                                                                </motion.p>
+                                            <form onSubmit={handleSubmit(onStep1Submit)} className="space-y-4">
+                                                {formFields.map((field, idx) => {
+                                                    const fieldError = errors[field.name];
+                                                    const isTouched = touchedFields[field.name] || dirtyFields[field.name];
+                                                    const hasValue = !!watchedValues[field.name];
+                                                    const isFieldValid = isTouched && hasValue && !fieldError;
+
+                                                    return (
+                                                        <motion.div
+                                                            key={field.name}
+                                                            initial={{ opacity: 0, y: 12 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            transition={{ delay: 0.05 + idx * 0.07 }}
+                                                        >
+                                                            <label htmlFor={field.name} className="text-xs font-medium text-neutral-400 mb-1.5 block">
+                                                                {field.label}
+                                                            </label>
+                                                            <div className="relative">
+                                                                {/* Icon */}
+                                                                <span className={`absolute left-3.5 top-1/2 -translate-y-1/2 transition-colors duration-200 ${
+                                                                    fieldError && isTouched
+                                                                        ? "text-red-400"
+                                                                        : isFieldValid
+                                                                        ? "text-emerald-400"
+                                                                        : "text-neutral-600"
+                                                                }`}>
+                                                                    {field.icon}
+                                                                </span>
+
+                                                                <input
+                                                                    id={field.name}
+                                                                    type={field.type}
+                                                                    placeholder={field.placeholder}
+                                                                    {...register(field.name)}
+                                                                    className={`w-full bg-neutral-800/60 border rounded-xl py-3 pl-10 pr-10 text-sm text-white placeholder:text-neutral-600 outline-none transition-all duration-200 focus:ring-2 focus:ring-offset-0 ${
+                                                                        fieldError && isTouched
+                                                                            ? "border-red-500/50 focus:ring-red-500/20 focus:border-red-500/70"
+                                                                            : isFieldValid
+                                                                            ? "border-emerald-500/30 focus:ring-emerald-500/20 focus:border-emerald-500/50"
+                                                                            : "border-neutral-700 focus:ring-white/10 focus:border-neutral-500"
+                                                                    }`}
+                                                                />
+
+                                                                {/* Status icon on the right */}
+                                                                <span className="absolute right-3.5 top-1/2 -translate-y-1/2">
+                                                                    {fieldError && isTouched && (
+                                                                        <AlertCircle className="h-4 w-4 text-red-400" />
+                                                                    )}
+                                                                    {isFieldValid && (
+                                                                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                                                                    )}
+                                                                </span>
+                                                            </div>
+
+                                                            {/* Error message */}
+                                                            <AnimatePresence>
+                                                                {fieldError && isTouched && (
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, height: 0, y: -4 }}
+                                                                        animate={{ opacity: 1, height: "auto", y: 0 }}
+                                                                        exit={{ opacity: 0, height: 0, y: -4 }}
+                                                                        transition={{ duration: 0.2 }}
+                                                                        className="flex items-center gap-1.5 mt-1.5 pl-1"
+                                                                    >
+                                                                        <p className="text-red-400 text-xs">
+                                                                            {fieldError.message}
+                                                                        </p>
+                                                                    </motion.div>
+                                                                )}
+                                                            </AnimatePresence>
+
+                                                            {/* Phone helper text */}
+                                                            {field.name === "phone" && !fieldError && (
+                                                                <p className="text-neutral-600 text-[10px] mt-1 pl-1">
+                                                                    Enter your 10-digit Indian mobile number
+                                                                </p>
                                                             )}
-                                                        </AnimatePresence>
-                                                    </motion.div>
-                                                ))}
-                                            </div>
+                                                        </motion.div>
+                                                    );
+                                                })}
 
-                                            <motion.button
-                                                whileHover={isFormValid() ? { scale: 1.02, boxShadow: "0 0 24px rgba(234,179,8,0.35)" } : {}}
-                                                whileTap={isFormValid() ? { scale: 0.97 } : {}}
-                                                onClick={handleContinue}
-                                                disabled={!isFormValid()}
-                                                className={`w-full mt-6 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 uppercase tracking-wider transition-all duration-300 ${
-                                                    isFormValid()
-                                                        ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-[0_0_20px_rgba(234,179,8,0.3)]"
-                                                        : "bg-white/5 text-white/25 cursor-not-allowed"
-                                                }`}
-                                            >
-                                                Continue to Events <ChevronRight className="h-4 w-4" />
-                                            </motion.button>
+                                                <motion.button
+                                                    type="submit"
+                                                    whileHover={isValid ? { scale: 1.02, boxShadow: "0 0 24px rgba(255,255,255,0.15)" } : {}}
+                                                    whileTap={isValid ? { scale: 0.97 } : {}}
+                                                    disabled={!isValid}
+                                                    className={`w-full mt-2 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 uppercase tracking-wider transition-all duration-300 ${
+                                                        isValid
+                                                            ? "bg-white text-black shadow-lg hover:shadow-white/20"
+                                                            : "bg-neutral-800 text-neutral-600 cursor-not-allowed border border-neutral-700"
+                                                    }`}
+                                                >
+                                                    Continue to Events <ChevronRight className="h-4 w-4" />
+                                                </motion.button>
+                                            </form>
                                         </motion.div>
                                     )}
 
@@ -432,7 +505,7 @@ export default function RegisterPage() {
                                         >
                                             {/* Back + category tabs */}
                                             <div className="flex flex-col gap-3 mb-4">
-                                                <button onClick={() => setStep(1)} className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors text-xs w-fit">
+                                                <button onClick={() => setStep(1)} className="flex items-center gap-1.5 text-neutral-500 hover:text-white transition-colors text-xs w-fit">
                                                     <ChevronLeft className="h-4 w-4" /> Back
                                                 </button>
                                                 <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
@@ -442,8 +515,8 @@ export default function RegisterPage() {
                                                             onClick={() => setActiveCategory(cat)}
                                                             className={`px-3 py-1 text-xs font-medium whitespace-nowrap rounded-full transition-all duration-200 border ${
                                                                 activeCategory === cat
-                                                                    ? "bg-yellow-500/20 border-yellow-500/50 text-yellow-300"
-                                                                    : "border-white/10 text-white/40 hover:text-white hover:border-white/20"
+                                                                    ? "bg-white/10 border-white/30 text-white"
+                                                                    : "border-neutral-700 text-neutral-500 hover:text-white hover:border-neutral-600"
                                                             }`}
                                                         >
                                                             {cat}
@@ -465,23 +538,23 @@ export default function RegisterPage() {
                                                                 exit={{ opacity: 0, scale: 0.9 }}
                                                                 transition={{ delay: i * 0.03 }}
                                                                 onClick={() => toggleEvent(event.slug)}
-                                                                className={`relative cursor-pointer rounded-xl overflow-hidden aspect-[3/4] border transition-all duration-300 ${
-                                                                    isSelected ? "border-yellow-500/70 shadow-lg shadow-yellow-500/20" : "border-white/10"
+                                                                className={`relative cursor-pointer rounded-[18px] overflow-hidden aspect-[3/4] border transition-all duration-300 ${
+                                                                    isSelected ? "border-white/50 shadow-lg shadow-white/10" : "border-neutral-800 hover:border-neutral-700"
                                                                 }`}
                                                             >
                                                                 <Image src={event.image || "/placeholder.svg"} fill alt={event.name} className="object-cover object-top" />
                                                                 <div className={`absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r ${event.gradient}`} />
                                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                                                                 {isSelected && (
-                                                                    <div className="absolute inset-0 bg-yellow-500/15 flex items-center justify-center">
-                                                                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center shadow-lg">
+                                                                    <div className="absolute inset-0 bg-white/10 flex items-center justify-center">
+                                                                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-lg">
                                                                             <Check className="h-4 w-4 text-black" />
                                                                         </div>
                                                                     </div>
                                                                 )}
                                                                 <div className="absolute bottom-0 left-0 right-0 p-2.5">
                                                                     <p className="text-white font-semibold text-xs leading-tight">{event.name}</p>
-                                                                    <p className={`text-xs font-bold mt-0.5 bg-gradient-to-r ${event.gradient} bg-clip-text text-transparent`}>₹{event.price}</p>
+                                                                    <p className="text-neutral-400 text-xs font-bold mt-0.5">₹{event.price}</p>
                                                                 </div>
                                                             </motion.div>
                                                         );
@@ -491,18 +564,18 @@ export default function RegisterPage() {
 
                                             {/* Cart summary */}
                                             {selectedEvents.length > 0 && (
-                                                <div className="border-t border-white/10 pt-3">
+                                                <div className="border-t border-neutral-800 pt-3">
                                                     <div className="flex items-center justify-between mb-3">
-                                                        <span className="text-white/50 text-xs"><NumberFlow value={selectedEvents.length} className="inline" /> selected</span>
+                                                        <span className="text-neutral-500 text-xs"><NumberFlow value={selectedEvents.length} className="inline" /> selected</span>
                                                         <div className="flex items-center gap-1 text-white font-bold">
                                                             <span>₹</span><NumberFlow value={totalPrice} />
                                                         </div>
                                                     </div>
                                                     <motion.button
-                                                        whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(234,179,8,0.3)" }}
+                                                        whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(255,255,255,0.15)" }}
                                                         whileTap={{ scale: 0.97 }}
                                                         onClick={handleSubmitRegistration}
-                                                        className="w-full py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-sm flex items-center justify-center gap-2"
+                                                        className="w-full py-3 rounded-xl bg-white text-black font-bold text-sm flex items-center justify-center gap-2 shadow-lg"
                                                     >
                                                         Proceed to Payment <ChevronRight className="h-4 w-4" />
                                                     </motion.button>
@@ -523,45 +596,45 @@ export default function RegisterPage() {
                                         >
                                             {!submitted ? (
                                                 <div className="space-y-5">
-                                                    <button onClick={() => setStep(2)} className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors text-xs">
+                                                    <button onClick={() => setStep(2)} className="flex items-center gap-1.5 text-neutral-500 hover:text-white transition-colors text-xs">
                                                         <ChevronLeft className="h-4 w-4" /> Back to Events
                                                     </button>
 
                                                     <div className="flex items-center gap-2">
-                                                        <QrCode className="h-4 w-4 text-yellow-400" />
+                                                        <QrCode className="h-4 w-4 text-white" />
                                                         <h2 className="text-lg font-bold text-white">Complete Payment</h2>
                                                     </div>
 
                                                     {/* Order recap */}
-                                                    <div className="bg-white/5 rounded-xl p-3 space-y-1.5">
+                                                    <div className="bg-neutral-800/50 rounded-xl p-3 space-y-1.5 border border-neutral-800">
                                                         {selectedEventObjects.map((e) => (
                                                             <div key={e.slug} className="flex items-center justify-between text-xs">
                                                                 <div className="flex items-center gap-1.5">
                                                                     <div className={`w-1 h-3 rounded-full bg-gradient-to-b ${e.gradient}`} />
-                                                                    <span className="text-white/70">{e.name}</span>
+                                                                    <span className="text-neutral-400">{e.name}</span>
                                                                 </div>
-                                                                <span className="text-white/70">₹{e.price}</span>
+                                                                <span className="text-neutral-400">₹{e.price}</span>
                                                             </div>
                                                         ))}
-                                                        <div className="border-t border-white/10 pt-2 flex items-center justify-between">
+                                                        <div className="border-t border-neutral-700 pt-2 flex items-center justify-between">
                                                             <span className="text-white font-bold text-xs">Total</span>
-                                                            <span className="text-yellow-400 font-bold">₹{totalPrice}</span>
+                                                            <span className="text-white font-bold">₹{totalPrice}</span>
                                                         </div>
                                                     </div>
 
                                                     {/* QR code */}
                                                     <div className="flex flex-col items-center">
-                                                        <div className="bg-white p-3 rounded-xl shadow-lg shadow-yellow-500/10">
+                                                        <div className="bg-white p-3 rounded-xl shadow-lg">
                                                             <div className="relative w-44 h-44">
                                                                 <Image src="/upi.jpeg" alt="QR Code" fill className="object-contain" priority />
                                                             </div>
                                                         </div>
-                                                        <p className="text-white/40 text-xs mt-2 text-center">Scan to pay <span className="text-yellow-400 font-bold">₹{totalPrice}</span> · Any UPI app</p>
+                                                        <p className="text-neutral-500 text-xs mt-2 text-center">Scan to pay <span className="text-white font-bold">₹{totalPrice}</span> · Any UPI app</p>
                                                     </div>
 
                                                     {/* Screenshot upload */}
                                                     <div>
-                                                        <label className="text-xs font-medium text-white/60 block mb-2">Upload Payment Screenshot</label>
+                                                        <label className="text-xs font-medium text-neutral-400 block mb-2">Upload Payment Screenshot</label>
                                                         <input ref={fileInputRef} type="file" accept="image/*" onChange={(e) => handleFileChange(e.target.files?.[0] || null)} className="hidden" />
                                                         {!screenshotPreview ? (
                                                             <div
@@ -569,19 +642,19 @@ export default function RegisterPage() {
                                                                 onDragLeave={() => setIsDragging(false)}
                                                                 onDrop={handleDrop}
                                                                 onClick={() => fileInputRef.current?.click()}
-                                                                className={`cursor-pointer border-2 border-dashed rounded-xl p-6 text-center transition-all ${isDragging ? "border-yellow-500/70 bg-yellow-500/5" : "border-white/15 hover:border-white/30 bg-white/[0.03]"}`}
+                                                                className={`cursor-pointer border-2 border-dashed rounded-xl p-6 text-center transition-all ${isDragging ? "border-white/40 bg-white/5" : "border-neutral-700 hover:border-neutral-600 bg-neutral-800/30"}`}
                                                             >
-                                                                <Upload className={`h-7 w-7 mx-auto mb-2 ${isDragging ? "text-yellow-400" : "text-white/20"}`} />
-                                                                <p className="text-white/40 text-xs">{isDragging ? "Drop here" : "Click or drag & drop"}</p>
+                                                                <Upload className={`h-7 w-7 mx-auto mb-2 ${isDragging ? "text-white" : "text-neutral-600"}`} />
+                                                                <p className="text-neutral-500 text-xs">{isDragging ? "Drop here" : "Click or drag & drop"}</p>
                                                             </div>
                                                         ) : (
-                                                            <div className="relative rounded-xl overflow-hidden border border-white/10">
+                                                            <div className="relative rounded-xl overflow-hidden border border-neutral-800">
                                                                 <div className="relative w-full aspect-video">
                                                                     <Image src={screenshotPreview} alt="Screenshot" fill className="object-contain" />
                                                                 </div>
-                                                                <div className="flex items-center justify-between p-2 bg-white/5 border-t border-white/10">
-                                                                    <span className="text-xs text-white/50 flex items-center gap-1.5"><ImageIcon className="h-3 w-3 text-green-400" />{screenshot?.name}</span>
-                                                                    <button onClick={() => { setScreenshot(null); setScreenshotPreview(null); if (fileInputRef.current) fileInputRef.current.value = ""; }} className="text-white/30 hover:text-red-400 transition-colors">
+                                                                <div className="flex items-center justify-between p-2 bg-neutral-800/50 border-t border-neutral-800">
+                                                                    <span className="text-xs text-neutral-400 flex items-center gap-1.5"><ImageIcon className="h-3 w-3 text-emerald-400" />{screenshot?.name}</span>
+                                                                    <button onClick={() => { setScreenshot(null); setScreenshotPreview(null); if (fileInputRef.current) fileInputRef.current.value = ""; }} className="text-neutral-500 hover:text-red-400 transition-colors">
                                                                         <X className="h-3.5 w-3.5" />
                                                                     </button>
                                                                 </div>
@@ -590,15 +663,23 @@ export default function RegisterPage() {
                                                     </div>
 
                                                     {/* UTR */}
-                                                    <AnimatedInput
-                                                        label="UTR / Transaction ID"
-                                                        value={utr}
-                                                        onChange={setUtr}
-                                                        icon={<Hash className="h-4 w-4 text-yellow-400/60" />}
-                                                        inputClassName="!bg-white/5 !border-white/10 !text-white !rounded-xl focus:!border-yellow-500/60"
-                                                        labelClassName="!text-white/50 !bg-transparent"
-                                                    />
-                                                    <p className="text-white/25 text-xs -mt-2 pl-2">Found in your UPI app payment history</p>
+                                                    <div>
+                                                        <label htmlFor="utr" className="text-xs font-medium text-neutral-400 mb-1.5 block">UTR / Transaction ID</label>
+                                                        <div className="relative">
+                                                            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-600">
+                                                                <Hash className="h-4 w-4" />
+                                                            </span>
+                                                            <input
+                                                                id="utr"
+                                                                type="text"
+                                                                value={utr}
+                                                                onChange={(e) => setUtr(e.target.value)}
+                                                                placeholder="Enter UTR or transaction ID"
+                                                                className="w-full bg-neutral-800/60 border border-neutral-700 rounded-xl py-3 pl-10 pr-4 text-sm text-white placeholder:text-neutral-600 outline-none transition-all duration-200 focus:ring-2 focus:ring-white/10 focus:border-neutral-500"
+                                                            />
+                                                        </div>
+                                                        <p className="text-neutral-600 text-[10px] mt-1 pl-1">Found in your UPI app payment history</p>
+                                                    </div>
 
                                                     {submitError && (
                                                         <motion.p initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="text-red-400 text-xs text-center bg-red-500/10 border border-red-500/20 rounded-xl p-3">
@@ -613,8 +694,8 @@ export default function RegisterPage() {
                                                         disabled={!screenshot || !utr.trim() || submitting}
                                                         className={`w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 uppercase tracking-wider transition-all duration-300 ${
                                                             screenshot && utr.trim() && !submitting
-                                                                ? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-[0_0_20px_rgba(234,179,8,0.3)]"
-                                                                : "bg-white/5 text-white/25 cursor-not-allowed"
+                                                                ? "bg-white text-black shadow-lg hover:shadow-white/20"
+                                                                : "bg-neutral-800 text-neutral-600 cursor-not-allowed border border-neutral-700"
                                                         }`}
                                                     >
                                                         {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Submitting…</> : <>Submit Registration <ChevronRight className="h-4 w-4" /></>}
@@ -624,75 +705,81 @@ export default function RegisterPage() {
                                             ) : (
                                                 /* Success */
                                                 <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: "spring", stiffness: 120 }} className="space-y-5 text-center py-2">
-                                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring", stiffness: 200 }} className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto shadow-lg shadow-green-500/30">
+                                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: "spring", stiffness: 200 }} className="w-16 h-16 rounded-2xl bg-emerald-500 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/30">
                                                         <CheckCircle2 className="h-8 w-8 text-white" />
                                                     </motion.div>
 
                                                     <div>
                                                         <h2 className="text-xl font-bold text-white mb-1">Registration Submitted!</h2>
-                                                        <p className="text-white/50 text-sm max-w-xs mx-auto">
-                                                            Thanks, <span className="text-white font-medium">{formData.fullName}</span>! We'll verify your payment and confirm at <span className="text-yellow-400">{formData.email}</span>.
+                                                        <p className="text-neutral-500 text-sm max-w-xs mx-auto">
+                                                            Thanks, <span className="text-white font-medium">{formData.fullName}</span>! We'll verify your payment and confirm at <span className="text-white">{formData.email}</span>.
                                                         </p>
                                                     </div>
 
-                                                    <div className="bg-white/5 rounded-xl p-3 text-left space-y-1.5">
+                                                    <div className="bg-neutral-800/50 rounded-xl p-3 text-left space-y-1.5 border border-neutral-800">
                                                         {selectedEventObjects.map((e) => (
                                                             <div key={e.slug} className="flex items-center gap-2 text-xs">
-                                                                <Check className="h-3.5 w-3.5 text-green-400 shrink-0" />
-                                                                <span className="text-white/70">{e.name}</span>
+                                                                <Check className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                                                                <span className="text-neutral-400">{e.name}</span>
                                                             </div>
                                                         ))}
-                                                        <div className="border-t border-white/10 pt-2 flex justify-between">
-                                                            <span className="text-white/50 text-xs font-medium">Paid</span>
-                                                            <span className="text-green-400 font-bold text-xs">₹{totalPrice}</span>
+                                                        <div className="border-t border-neutral-700 pt-2 flex justify-between">
+                                                            <span className="text-neutral-500 text-xs font-medium">Paid</span>
+                                                            <span className="text-emerald-400 font-bold text-xs">₹{totalPrice}</span>
                                                         </div>
                                                     </div>
 
-                                                    <p className="text-white/25 text-xs">WhatsApp confirmation → {formData.phone}</p>
+                                                    <p className="text-neutral-600 text-xs">WhatsApp confirmation → {formData.phone}</p>
 
                                                     {/* Join WhatsApp Query Group */}
                                                     <a
                                                         href="https://chat.whatsapp.com/HQZ5bjRYkJlEinHlmp1lG8"
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="block w-full py-3 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-sm text-center shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all"
+                                                        className="block w-full py-3 rounded-xl bg-emerald-500 text-white font-bold text-sm text-center shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 transition-all"
                                                     >
                                                         <span className="flex items-center justify-center gap-2">
                                                             <Phone className="h-4 w-4" /> Join WhatsApp Group for Queries
                                                         </span>
                                                     </a>
 
-                                                    <div className="border-t border-white/10 pt-4">
-                                                        <p className="text-white/60 text-sm font-medium mb-1">Want to register for more?</p>
-                                                        <p className="text-white/30 text-xs mb-4">Submit a separate registration with another payment.</p>
+                                                    <div className="border-t border-neutral-800 pt-4">
+                                                        <p className="text-neutral-400 text-sm font-medium mb-1">Want to register for more?</p>
+                                                        <p className="text-neutral-600 text-xs mb-4">Submit a separate registration with another payment.</p>
                                                         <motion.button
-                                                            whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(234,179,8,0.3)" }}
+                                                            whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(255,255,255,0.15)" }}
                                                             whileTap={{ scale: 0.97 }}
                                                             onClick={() => {
                                                                 const saved = { ...formData };
                                                                 resetRegistration();
                                                                 setFormData(saved);
+                                                                reset({
+                                                                    fullName: saved.fullName,
+                                                                    email: saved.email,
+                                                                    phone: saved.phone,
+                                                                    college: saved.college,
+                                                                });
                                                                 setScreenshot(null);
                                                                 setScreenshotPreview(null);
                                                                 setCompressedBase64(null);
                                                                 setSubmitError(null);
                                                                 setStep(2);
                                                             }}
-                                                            className="w-full py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold text-sm flex items-center justify-center gap-2"
+                                                            className="w-full py-3 rounded-xl bg-white text-black font-bold text-sm flex items-center justify-center gap-2"
                                                         >
                                                             <Sparkles className="h-4 w-4" /> Register for More Events
                                                         </motion.button>
                                                     </div>
 
-                                                    <div className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
-                                                        <p className="text-white/50 text-xs font-medium mb-1">Made a mistake?</p>
-                                                        <p className="text-white/30 text-xs mb-3">Wrong events or incorrect details? Reach out and we'll fix it.</p>
+                                                    <div className="bg-neutral-800/40 border border-neutral-800 rounded-xl p-4">
+                                                        <p className="text-neutral-400 text-xs font-medium mb-1">Made a mistake?</p>
+                                                        <p className="text-neutral-600 text-xs mb-3">Wrong events or incorrect details? Reach out and we'll fix it.</p>
                                                         <div className="flex items-center justify-center gap-3 text-xs">
-                                                            <a href="mailto:ikyam2026@example.com" className="text-yellow-400 hover:text-yellow-300 flex items-center gap-1 transition-colors">
+                                                            <a href="mailto:ikyam2026@example.com" className="text-white hover:text-neutral-300 flex items-center gap-1 transition-colors">
                                                                 <Mail className="h-3.5 w-3.5" /> Email us
                                                             </a>
-                                                            <span className="text-white/20">·</span>
-                                                            <a href="https://chat.whatsapp.com/HQZ5bjRYkJlEinHlmp1lG8" target="_blank" rel="noopener noreferrer" className="text-green-400 hover:text-green-300 flex items-center gap-1 transition-colors">
+                                                            <span className="text-neutral-700">·</span>
+                                                            <a href="https://chat.whatsapp.com/HQZ5bjRYkJlEinHlmp1lG8" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 flex items-center gap-1 transition-colors">
                                                                 <Phone className="h-3.5 w-3.5" /> WhatsApp
                                                             </a>
                                                         </div>
@@ -719,7 +806,7 @@ export default function RegisterPage() {
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                             className="relative"
                         >
-                            <div className="absolute -inset-6 rounded-full bg-yellow-500/10 blur-2xl" />
+                            <div className="absolute -inset-6 rounded-full bg-white/5 blur-2xl" />
                             <div className="relative w-40 h-40">
                                 <Image src="/logo.png" alt="Ikyam 2026" fill className="object-contain drop-shadow-2xl" priority />
                             </div>
@@ -739,7 +826,7 @@ export default function RegisterPage() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
+                                className="text-2xl font-bold text-neutral-400"
                             >
                                 2026
                             </motion.p>
@@ -747,7 +834,7 @@ export default function RegisterPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.5 }}
-                                className="text-white/40 text-sm mt-3 tracking-widest uppercase"
+                                className="text-neutral-600 text-sm mt-3 tracking-widest uppercase"
                             >
                                 Vemana Institute of Technology
                             </motion.p>
@@ -766,8 +853,8 @@ export default function RegisterPage() {
                                 { label: "Year", value: "'26" },
                             ].map((stat) => (
                                 <div key={stat.label} className="text-center">
-                                    <p className="text-2xl font-black text-yellow-400">{stat.value}</p>
-                                    <p className="text-white/30 text-xs uppercase tracking-wider">{stat.label}</p>
+                                    <p className="text-2xl font-black text-white">{stat.value}</p>
+                                    <p className="text-neutral-600 text-xs uppercase tracking-wider">{stat.label}</p>
                                 </div>
                             ))}
                         </motion.div>
