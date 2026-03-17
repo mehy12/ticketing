@@ -1,4 +1,4 @@
-﻿import { Event } from "@/lib/types";
+import { Event } from "@/lib/types";
 
 export const evento: Event[] = [
   //solo dance
@@ -571,27 +571,26 @@ export const evento: Event[] = [
     gradient: "from-emerald-500 to-teal-600",
     price: 349,
   },
-  //rap and boxing
+  //rap and beatboxing duo
   {
-    slug: "rap-boxing",
-    name: "Rap & Boxing",
-    tagline: "Unleash the Flow. Own the Mic.",
+    slug: "rap-beatboxing-duo",
+    name: "Rap & Beatboxing Duo",
+    tagline: "Spit Bars. Drop Beats. Own the Stage.",
     description:
-      "A platform to showcase vocal talent and musical expression. Participants can perform songs from any genre, including classical, semi-classical, light music, folk, or film songs. Karaoke tracks are allowed and live instruments are permitted.",
+      "A high-energy duo event where one rapper and one beatboxer team up to deliver a completely live and original performance. No backtrack music — just raw talent, rhythm, and lyrical fire.",
     date: "March 28, 2026",
     time: "4:30 PM",
     venue: "Vemana Institute of Technology",
     category: "Music",
     image: "/events/rap-and-boxing.jpg",
     rules: [
-      "Solo participant only (one performer per entry).",
-      "Each participant will be given 3–4 minutes to perform.",
-      "Exceeding the time limit may lead to point deduction.",
-      "Participants may perform songs from any genre, including classical, semi-classical, light music, folk, or film songs.",
-      "Karaoke tracks are allowed and must be brought by the participant via pen drive or mobile phone.",
-      "Live instruments are permitted, but pre-recorded vocals are strictly prohibited.",
-      "Participants must report one hour early and carry their college ID card for verification.",
-      "Judged on: Vocal quality and pitch accuracy, Rhythm and tempo, Song selection and difficulty level, Expression, clarity, and stage presence.",
+      "This is a duo event.",
+      "Each team must consist of two participants only: One Rapper and One Beatboxer.",
+      "No backtrack music is allowed.",
+      "All beats must be performed live by the beatboxer.",
+      "Performance must be completely live and original.",
+      "Use of recorded music, instrumental tracks, or pre-mixed audio is strictly prohibited.",
+      "Time limit: 3–5 minutes.",
       "The judges' decision is final.",
       "The organizing committee reserves the right to modify rules or timings if necessary.",
     ],
@@ -641,20 +640,20 @@ export const evento: Event[] = [
     ],
     faqs: [
       {
-        question: "Can I perform only beatboxing?",
-        answer: "Yes, participants can perform rap, beatboxing, or both.",
+        question: "Can one person do both rapping and beatboxing?",
+        answer: "No. Each team must have one dedicated rapper and one dedicated beatboxer.",
       },
       {
         question: "Are explicit lyrics allowed?",
         answer: "No. Any vulgar or offensive content will lead to disqualification.",
       },
       {
-        question: "What are the judging criteria?",
-        answer: "Vocal quality and pitch accuracy, rhythm and tempo, song selection and difficulty level, expression, clarity, and stage presence.",
+        question: "Can we use any background music or tracks?",
+        answer: "No. All beats must be performed live by the beatboxer. No backtrack music or pre-recorded audio is allowed.",
       },
     ],
-    minTeamSize: 1,
-    maxTeamSize: 1,
+    minTeamSize: 2,
+    maxTeamSize: 2,
     featured: false,
     gradient: "from-red-500 to-orange-600",
     price: 149,
@@ -1152,15 +1151,15 @@ export const evento: Event[] = [
     faqs: [
       {
         question: "Can we participate individually?",
-        answer: "No. The quiz is strictly a team event with 2 members per team.",
+        answer: "No. The quiz is strictly a team event with 3 members per team.",
       },
       {
         question: "What happens in case of a tie?",
         answer: "A rapid-fire round will be conducted to determine the winner.",
       },
     ],
-    minTeamSize: 2,
-    maxTeamSize: 2,
+    minTeamSize: 3,
+    maxTeamSize: 3,
     featured: false,
     gradient: "from-cyan-500 to-blue-600",
     price: 199,
