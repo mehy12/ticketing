@@ -573,7 +573,7 @@ export const evento: Event[] = [
   },
   //rap and beatboxing duo
   {
-    slug: "rap-beatboxing-duo",
+    slug: "rap-boxing",
     name: "Rap & Beatboxing Duo",
     tagline: "Spit Bars. Drop Beats. Own the Stage.",
     description:
