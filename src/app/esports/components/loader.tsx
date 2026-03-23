@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export const Loader = () => {
@@ -14,7 +14,7 @@ export const Loader = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const leafVariants = {
+  const leafVariants: Variants = {
     hidden: { scale: 0, opacity: 0 },
     visible: (i: number) => ({
       scale: 1,

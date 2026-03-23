@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { LiquidGlassCard } from "@/components/liquid-glass";
 import {
   Calendar,
@@ -42,7 +42,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
     link.click();
     document.body.removeChild(link);
   };
-  const fadeIn = {
+  const fadeIn: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
       opacity: 1,
@@ -55,7 +55,7 @@ export default function EventPageClient({ event }: EventPageClientProps) {
     }),
   };
 
-  const staggerContainer = {
+  const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
