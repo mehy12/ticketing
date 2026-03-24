@@ -1,4 +1,4 @@
-import db from "@/index";
+import { festDb as db } from "@/lib/db/fest";
 import { participants, type NewParticipant, type Participant } from "./schema";
 import { eq, desc, count, and, sql } from "drizzle-orm";
 
