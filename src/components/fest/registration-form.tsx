@@ -169,11 +169,11 @@ export default function RegistrationForm() {
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="rounded-2xl border border-white/20 bg-black/40 p-6 backdrop-blur-xl space-y-5 shadow-2xl">
                     {/* Name */}
                     <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
+                        <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-white/70">
                             Full Name
                         </label>
                         <input
@@ -183,14 +183,14 @@ export default function RegistrationForm() {
                             onChange={handleChange}
                             required
                             placeholder="Enter your full name"
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all"
+                            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all font-medium"
                         />
                     </div>
 
                     {/* USN */}
                     <div className="space-y-3">
                         <div className="flex items-center justify-between">
-                            <label className="block text-xs font-semibold uppercase tracking-wider text-white/50">
+                            <label className="block text-xs font-bold uppercase tracking-wider text-white/70">
                                 USN / Registration Number
                             </label>
                             <label className="flex items-center gap-2 cursor-pointer group">
@@ -201,9 +201,9 @@ export default function RegistrationForm() {
                                         setNoUsn(e.target.checked);
                                         if (e.target.checked) setFormData(prev => ({ ...prev, usn: "" }));
                                     }}
-                                    className="h-4 w-4 rounded border-white/10 bg-white/5 text-yellow-500 focus:ring-yellow-500/30 transition-all cursor-pointer"
+                                    className="h-4 w-4 rounded border-white/20 bg-black/40 text-yellow-500 focus:ring-yellow-500/30 transition-all cursor-pointer"
                                 />
-                                <span className="text-[10px] uppercase font-bold tracking-tighter text-white/30 group-hover:text-white/50 transition-colors">
+                                <span className="text-[10px] uppercase font-bold tracking-tighter text-white/40 group-hover:text-white/60 transition-colors">
                                     I don&apos;t have a USN
                                 </span>
                             </label>
@@ -216,14 +216,14 @@ export default function RegistrationForm() {
                                 onChange={handleChange}
                                 required
                                 placeholder="Enter your USN (e.g. 1VE22CS001)"
-                                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white uppercase placeholder:text-white/30 placeholder:normal-case outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all animate-in fade-in slide-in-from-top-1 duration-200"
+                                className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white uppercase placeholder:text-white/40 placeholder:normal-case outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all animate-in fade-in slide-in-from-top-1 duration-200 font-medium"
                             />
                         )}
                     </div>
 
                     {/* Department */}
                     <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
+                        <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-white/70">
                             Department
                         </label>
                         <select
@@ -231,9 +231,9 @@ export default function RegistrationForm() {
                             value={formData.department}
                             onChange={handleChange}
                             required
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all appearance-none"
+                            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all appearance-none font-medium"
                         >
-                            <option value="" disabled className="bg-[#1c1c1d] text-white/50">
+                            <option value="" disabled className="bg-[#1c1c1d] text-white/40">
                                 Select your department
                             </option>
                             {DEPARTMENTS.map((dept) => (
@@ -246,7 +246,7 @@ export default function RegistrationForm() {
 
                     {/* Email */}
                     <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
+                        <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-white/70">
                             Email
                         </label>
                         <input
@@ -256,13 +256,13 @@ export default function RegistrationForm() {
                             onChange={handleChange}
                             required
                             placeholder="your.email@example.com"
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all"
+                            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all font-medium"
                         />
                     </div>
 
                     {/* Phone */}
                     <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
+                        <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-white/70">
                             Phone Number
                         </label>
                         <input
@@ -273,14 +273,14 @@ export default function RegistrationForm() {
                             required
                             placeholder="10-digit mobile number"
                             pattern="[0-9]{10}"
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all"
+                            className="w-full rounded-lg border border-white/10 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all font-medium"
                         />
                     </div>
 
                     {/* ID Card Upload */}
                     <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
-                            Photo ID Proof <span className="text-white/20 font-normal normal-case ml-1">(College ID, Aadhar, or PAN)</span>
+                        <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-white/70">
+                            Photo ID Proof <span className="text-white/40 font-normal normal-case ml-1">(College ID, Aadhar, or PAN)</span>
                         </label>
                         <input
                             ref={fileInputRef}
@@ -291,7 +291,7 @@ export default function RegistrationForm() {
                         />
                         {idCardUrl ? (
                             <div className="relative">
-                                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-white/10">
+                                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-white/20">
                                     <Image
                                         src={idCardUrl}
                                         alt="ID Card"
@@ -306,7 +306,7 @@ export default function RegistrationForm() {
                                         setIdCardUrl(null);
                                         if (fileInputRef.current) fileInputRef.current.value = "";
                                     }}
-                                    className="absolute -top-2 -right-2 rounded-full bg-red-500 p-1 text-xs text-white hover:bg-red-400 transition-colors"
+                                    className="absolute -top-2 -right-2 rounded-full bg-red-500 p-1 text-xs text-white hover:bg-red-400 transition-colors shadow-lg"
                                 >
                                     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -318,20 +318,20 @@ export default function RegistrationForm() {
                                 type="button"
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={uploading}
-                                className="w-full rounded-lg border-2 border-dashed border-white/10 bg-white/5 py-8 text-center hover:border-yellow-500/30 hover:bg-white/10 transition-all cursor-pointer group disabled:opacity-50 disabled:cursor-wait"
+                                className="w-full rounded-lg border-2 border-dashed border-white/10 bg-black/20 py-8 text-center hover:border-yellow-500/30 hover:bg-black/30 transition-all cursor-pointer group disabled:opacity-50 disabled:cursor-wait"
                             >
                                 {uploading ? (
                                     <>
                                         <div className="text-3xl mb-2">⏳</div>
-                                        <p className="text-sm text-white/50">Uploading...</p>
+                                        <p className="text-sm text-white/60 font-medium">Uploading...</p>
                                     </>
                                 ) : (
                                     <>
                                         <div className="text-3xl mb-2">📷</div>
-                                        <p className="text-sm text-white/50 group-hover:text-white/70">
+                                        <p className="text-sm text-white/70 font-bold group-hover:text-white">
                                             Click to upload ID proof
                                         </p>
-                                        <p className="mt-1 text-xs text-white/30 px-4">
+                                        <p className="mt-1 text-xs text-white/50 px-4 font-medium">
                                             College ID, Aadhar Card, or PAN Card (JPG/PNG up to 5MB)
                                         </p>
                                     </>
