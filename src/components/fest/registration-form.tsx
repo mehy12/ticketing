@@ -280,7 +280,7 @@ export default function RegistrationForm() {
                     {/* ID Card Upload */}
                     <div>
                         <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
-                            ID Card Photo
+                            Photo ID Proof <span className="text-white/20 font-normal normal-case ml-1">(College ID, Aadhar, or PAN)</span>
                         </label>
                         <input
                             ref={fileInputRef}
@@ -329,10 +329,10 @@ export default function RegistrationForm() {
                                     <>
                                         <div className="text-3xl mb-2">📷</div>
                                         <p className="text-sm text-white/50 group-hover:text-white/70">
-                                            Click to upload your ID card
+                                            Click to upload ID proof
                                         </p>
-                                        <p className="mt-1 text-xs text-white/30">
-                                            JPG, PNG up to 5MB
+                                        <p className="mt-1 text-xs text-white/30 px-4">
+                                            College ID, Aadhar Card, or PAN Card (JPG/PNG up to 5MB)
                                         </p>
                                     </>
                                 )}
@@ -366,6 +366,20 @@ export default function RegistrationForm() {
                         "Register & Get QR Code"
                     )}
                 </Button>
+
+                <div className="mt-8 text-center pb-8">
+                    <p className="text-sm text-white/40">
+                        For any queries, WhatsApp us at{" "}
+                        <a 
+                            href="https://wa.me/916362029195" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-yellow-500 hover:text-yellow-400 transition-colors font-semibold underline decoration-yellow-500/30 underline-offset-4"
+                        >
+                            +91 6362029195
+                        </a>
+                    </p>
+                </div>
             </form>
         </div>
     );
