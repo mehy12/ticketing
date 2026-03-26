@@ -1,0 +1,49 @@
+```typescript
+import 'dotenv/config';
+import { festDb } from './src/lib/db/fest';
+import { participants } from './src/lib/fest/schema';
+import { v2 as cloudinary } from 'cloudinary';
+import { eq, like } from 'drizzle-orm';
+
+cloudinary.config({
+    secure: true,
+});
+
+async function migrate() {
+    console.log("Starting migration to Cloudinary...");
+    
+    // Fetch only IDs first to avoid memory issues and pulling all 500MB into RAM
+    const queue = await festDb
+        .select({ id: participants.id })
+        .from(participants)
+        .where(like(participants.idCardUrl, 'data:image/%'));
+
+    console.log(`Found ${queue.length} records to migrate.`);
+
+    let successCount = 0;
+    for (const record of queue) {
+        try {
+            const [p] = await festDb.select().from(participants).where(eq(participants.id, record.id));
+            if (!p || !p.idCardUrl || !p.idCardUrl.startsWith('data:image/')) continue;
+
+            console.log(`Uploading ID ${p.id}...`);
+            const uploadRes = await cloudinary.uploader.upload(p.idCardUrl, {
+                folder: "fest2k26_id_cards",
+            });
+            
+            console.log(`Uploaded! Updating DB for ID ${p.id}...`);
+            await festDb.update(participants)
+                .set({ idCardUrl: uploadRes.secure_url })
+                .where(eq(participants.id, p.id));
+                
+            console.log(`Success for ${p.id}.`);
+            successCount++;
+        } catch (e) {
+            console.error(`Error migrating ${record.id}:`, e);
+        }
+    }
+    
+    console.log(`Migration finished. Successfully migrated ${successCount} out of ${queue.length} records.`);
+}
+
+migrate();

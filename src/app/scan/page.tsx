@@ -106,7 +106,7 @@ export default function ScanPage() {
         setCheckedIn(false);
 
         try {
-            const res = await fetch(`/fest/api/getParticipant?id=${id}`);
+            const res = await fetch(`/api/participant?id=${id}`);
             if (!res.ok) {
                 const err = await res.json();
                 throw new Error(err.error || "Participant not found");
@@ -126,12 +126,13 @@ export default function ScanPage() {
         setError(null);
 
         try {
-            const res = await fetch("/fest/api/checkin", {
+            const res = await fetch("/api/checkin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     id: participant.id,
                     coordinatorName,
+                    source: (participant as any).source,
                 }),
             });
 

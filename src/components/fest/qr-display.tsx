@@ -13,7 +13,7 @@ export default function QRDisplay({ participantId, participantName }: QRDisplayP
     const [dataUrl, setDataUrl] = useState<string>("");
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const qrUrl = `${baseUrl}/fest/p/${participantId}`;
+    const qrUrl = `${baseUrl}/p/${participantId}`;
 
     useEffect(() => {
         if (!canvasRef.current) return;

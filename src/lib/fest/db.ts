@@ -1,4 +1,5 @@
-import { festDb as db } from "@/lib/db/fest";
+import { festDb as dbNew } from "@/lib/db/fest";
+import dbOld from "@/index";
 import { participants, type NewParticipant, type Participant } from "./schema";
 import { eq, desc, count, and, sql } from "drizzle-orm";
 
@@ -7,28 +8,44 @@ import { eq, desc, count, and, sql } from "drizzle-orm";
 export async function insertParticipant(
     data: Omit<NewParticipant, "id" | "createdAt" | "entryChecked" | "entryTime" | "checkedInBy">
 ): Promise<Participant> {
-    const [row] = await db.insert(participants).values(data).returning();
+    const [row] = await dbNew.insert(participants).values(data).returning();
     return row;
 }
 
 // ─── Read ───────────────────────────────────────────────────────────────────
 
-export async function getParticipant(id: string): Promise<Participant | null> {
-    const [row] = await db
+export async function getParticipant(id: string): Promise<(Participant & { source: "new" | "old" }) | null> {
+    // 1. Search New DB (Primary)
+    let [row] = await dbNew
         .select()
         .from(participants)
         .where(eq(participants.id, id))
         .limit(1);
-    return row ?? null;
+        
+    if (row) return { ...row, source: "new" };
+
+    // 2. Search Old DB (Fallback)
+    [row] = await dbOld
+        .select()
+        .from(participants)
+        .where(eq(participants.id, id))
+        .limit(1);
+
+    if (row) return { ...row, source: "old" };
+
+    return null;
 }
 
 // ─── Check-in ───────────────────────────────────────────────────────────────
 
 export async function checkInParticipant(
     id: string,
-    coordinatorName: string
+    coordinatorName: string,
+    source: "new" | "old"
 ): Promise<Participant | null> {
-    const [row] = await db
+    const targetDb = source === "new" ? dbNew : dbOld;
+
+    const [row] = await targetDb
         .update(participants)
         .set({
             entryChecked: true,
@@ -52,26 +69,26 @@ export type AdminStats = {
 };
 
 export async function getAdminStats(): Promise<AdminStats> {
-    const [totalResult] = await db
+    const [totalResult] = await dbNew
         .select({ value: count() })
         .from(participants);
 
-    const [checkedInResult] = await db
+    const [checkedInResult] = await dbNew
         .select({ value: count() })
         .from(participants)
         .where(eq(participants.entryChecked, true));
 
-    const [internalResult] = await db
+    const [internalResult] = await dbNew
         .select({ value: count() })
         .from(participants)
         .where(eq(participants.type, "internal"));
 
-    const [externalResult] = await db
+    const [externalResult] = await dbNew
         .select({ value: count() })
         .from(participants)
         .where(eq(participants.type, "external"));
 
-    const recentCheckIns = await db
+    const recentCheckIns = await dbNew
         .select()
         .from(participants)
         .where(eq(participants.entryChecked, true))

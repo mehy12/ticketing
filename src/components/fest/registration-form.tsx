@@ -25,6 +25,7 @@ export default function RegistrationForm() {
         phone: "",
     });
     const [idCardUrl, setIdCardUrl] = useState<string | null>(null);
+    const [idCardFile, setIdCardFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -50,16 +51,9 @@ export default function RegistrationForm() {
         setError(null);
 
         try {
-            const reader = new FileReader();
-            reader.onload = () => {
-                setIdCardUrl(reader.result as string);
-                setUploading(false);
-            };
-            reader.onerror = () => {
-                setError("Failed to read image. Please try again.");
-                setUploading(false);
-            };
-            reader.readAsDataURL(file);
+            setIdCardFile(file);
+            setIdCardUrl(URL.createObjectURL(file));
+            setUploading(false);
         } catch {
             setError("Failed to process image. Please try again.");
             setUploading(false);
@@ -72,10 +66,36 @@ export default function RegistrationForm() {
         setError(null);
 
         try {
-            const res = await fetch("/fest/api/register", {
+            let secureUrl = null;
+
+            if (idCardFile) {
+                const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dmitw9qcc";
+                const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "fest_id_cards";
+
+                const formData = new FormData();
+                formData.append("file", idCardFile);
+                formData.append("upload_preset", uploadPreset);
+                formData.append("folder", "fest2k26_id_cards");
+
+                const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!cloudRes.ok) {
+                    const errorData = await cloudRes.json();
+                    console.error("Cloudinary Error:", errorData);
+                    throw new Error(`Image upload failed: ${errorData.error?.message || "Please check your network connection"}`);
+                }
+
+                const cloudData = await cloudRes.json();
+                secureUrl = cloudData.secure_url;
+            }
+
+            const res = await fetch("/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, idCardUrl }),
+                body: JSON.stringify({ ...formData, idCardUrl: secureUrl }),
             });
 
             if (!res.ok) {

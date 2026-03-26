@@ -28,12 +28,13 @@ export default function ParticipantCard({
         setError(null);
 
         try {
-            const res = await fetch("/fest/api/checkin", {
+            const res = await fetch("/api/checkin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     id: data.id,
                     coordinatorName,
+                    source: (data as any).source,
                 }),
             });
 

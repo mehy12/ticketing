@@ -4,11 +4,11 @@ import { getParticipant, checkInParticipant } from "@/lib/fest/db";
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { id, coordinatorName } = body;
+        const { id, coordinatorName, source } = body;
 
-        if (!id || !coordinatorName) {
+        if (!id || !coordinatorName || !source) {
             return NextResponse.json(
-                { error: "Missing required fields: id, coordinatorName" },
+                { error: "Missing required fields: id, coordinatorName, source" },
                 { status: 400 }
             );
         }
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Perform check-in (atomic — WHERE entry_checked = false)
-        const updated = await checkInParticipant(id, coordinatorName.trim());
+        const updated = await checkInParticipant(id, coordinatorName.trim(), source);
 
         if (!updated) {
             // Race condition: someone else checked them in between our read and update

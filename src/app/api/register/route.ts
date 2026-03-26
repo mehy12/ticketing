@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { insertParticipant } from "@/lib/fest/db";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dmitw9qcc",
+    api_key: "885428386916257",
+    api_secret: "Z6KfjGx7tsaNcl6Qz7X27cJJEt0",
+    secure: true,
+});
 
 export async function POST(request: NextRequest) {
     try {
@@ -37,10 +45,10 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json({ id: participant.id }, { status: 201 });
-    } catch (error) {
-        console.error("[fest/api/register] Error:", error);
+    } catch (error: any) {
+        console.error("[fest/api/register] CRITICAL ERROR:", error);
         return NextResponse.json(
-            { error: "Registration failed. Please try again." },
+            { error: `Registration failed: ${error.message || "Unknown database error"}` },
             { status: 500 }
         );
     }

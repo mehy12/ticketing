@@ -19,6 +19,15 @@ const nextConfig: NextConfig = {
 
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/fest/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ]
   }
 };
 

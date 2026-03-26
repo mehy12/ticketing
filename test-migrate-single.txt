@@ -1,0 +1,47 @@
+import 'dotenv/config';
+import { festDb } from './src/lib/db/fest.ts';
+import { participants } from './src/lib/fest/schema.ts';
+import { v2 as cloudinary } from 'cloudinary';
+import { eq, like } from 'drizzle-orm';
+
+cloudinary.config({
+    secure: true,
+});
+
+async function migrateSingle() {
+    console.log("Fetching one record...");
+    const [record] = await festDb
+        .select({ id: participants.id })
+        .from(participants)
+        .where(like(participants.idCardUrl, 'data:image/%'))
+        .limit(1);
+
+    if (!record) {
+        console.log("No records found.");
+        return;
+    }
+
+    console.log("Found ID:", record.id);
+    
+    try {
+        const [p] = await festDb.select().from(participants).where(eq(participants.id, record.id));
+        console.log("Fetched full record. Uploading to Cloudinary...");
+        
+        const uploadRes = await cloudinary.uploader.upload(p.idCardUrl, {
+            folder: "fest2k26_id_cards",
+        });
+        
+        console.log("Uploaded! secure_url:", uploadRes.secure_url.substring(0, 50) + "...");
+        console.log("Updating database...");
+        
+        await festDb.update(participants)
+            .set({ idCardUrl: uploadRes.secure_url })
+            .where(eq(participants.id, p.id));
+            
+        console.log("Successfully updated the record!");
+    } catch (e) {
+        console.error("Error during migration:", e);
+    }
+}
+
+migrateSingle();

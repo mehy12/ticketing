@@ -33,7 +33,7 @@ export default function FestAdminPage() {
         setLoading(true);
         setError(null);
         try {
-            const res = await fetch("/fest/api/admin", {
+            const res = await fetch("/api/admin", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ password: pw }),
