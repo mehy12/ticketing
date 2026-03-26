@@ -36,8 +36,10 @@ export async function getParticipant(id: string): Promise<(Participant & { sourc
     return null;
 }
 
-export async function getParticipantByUsn(usn: string): Promise<(Participant & { source: "new" | "old" }) | null> {
+export async function getParticipantByUsn(usn: string | null): Promise<(Participant & { source: "new" | "old" }) | null> {
+    if (!usn) return null;
     const formattedUsn = usn.trim().toUpperCase();
+    if (!formattedUsn) return null;
 
     // 1. Search New DB
     try {

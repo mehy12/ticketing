@@ -14,6 +14,7 @@ const DEPARTMENTS = [
     "Artificial Intelligence & Machine Learning",
     "Cyber Security",
     "Information Science & Engineering",
+    "Other",
 ];
 
 export default function RegistrationForm() {
@@ -29,6 +30,7 @@ export default function RegistrationForm() {
     const [uploading, setUploading] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [noUsn, setNoUsn] = useState(false);
     const [registeredId, setRegisteredId] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -145,6 +147,7 @@ export default function RegistrationForm() {
                         setRegisteredId(null);
                         setFormData({ name: "", usn: "", department: "", email: "", phone: "" });
                         setIdCardUrl(null);
+                        setNoUsn(false);
                     }}
                     className="mt-6 text-sm text-white/40 hover:text-white/70 transition-colors"
                 >
@@ -159,10 +162,10 @@ export default function RegistrationForm() {
         <div className="mx-auto max-w-lg">
             <div className="mb-8 text-center">
                 <h1 className="text-3xl font-bold text-white">
-                    Internal Registration
+                    Vemanothsav 2026 Registration
                 </h1>
                 <p className="mt-2 text-white/60">
-                    Register for Vemanothsav 2026 and get your entry QR code
+                    Register now and get your entry QR code
                 </p>
             </div>
 
@@ -185,19 +188,37 @@ export default function RegistrationForm() {
                     </div>
 
                     {/* USN */}
-                    <div>
-                        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-white/50">
-                            USN
-                        </label>
-                        <input
-                            type="text"
-                            name="usn"
-                            value={formData.usn}
-                            onChange={handleChange}
-                            required
-                            placeholder="e.g. 1VE22CS001"
-                            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white uppercase placeholder:text-white/30 placeholder:normal-case outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all"
-                        />
+                    <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                            <label className="block text-xs font-semibold uppercase tracking-wider text-white/50">
+                                USN / Registration Number
+                            </label>
+                            <label className="flex items-center gap-2 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    checked={noUsn}
+                                    onChange={(e) => {
+                                        setNoUsn(e.target.checked);
+                                        if (e.target.checked) setFormData(prev => ({ ...prev, usn: "" }));
+                                    }}
+                                    className="h-4 w-4 rounded border-white/10 bg-white/5 text-yellow-500 focus:ring-yellow-500/30 transition-all cursor-pointer"
+                                />
+                                <span className="text-[10px] uppercase font-bold tracking-tighter text-white/30 group-hover:text-white/50 transition-colors">
+                                    I don&apos;t have a USN
+                                </span>
+                            </label>
+                        </div>
+                        {!noUsn && (
+                            <input
+                                type="text"
+                                name="usn"
+                                value={formData.usn}
+                                onChange={handleChange}
+                                required
+                                placeholder="Enter your USN (e.g. 1VE22CS001)"
+                                className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white uppercase placeholder:text-white/30 placeholder:normal-case outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all animate-in fade-in slide-in-from-top-1 duration-200"
+                            />
+                        )}
                     </div>
 
                     {/* Department */}
@@ -213,7 +234,7 @@ export default function RegistrationForm() {
                             className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/30 transition-all appearance-none"
                         >
                             <option value="" disabled className="bg-[#1c1c1d] text-white/50">
-                                Select department
+                                Select your department
                             </option>
                             {DEPARTMENTS.map((dept) => (
                                 <option key={dept} value={dept} className="bg-[#1c1c1d] text-white">

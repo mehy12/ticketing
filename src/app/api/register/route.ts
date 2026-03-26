@@ -16,9 +16,9 @@ export async function POST(request: NextRequest) {
         const { name, usn, department, email, phone, idCardUrl } = body;
 
         // Validate required fields
-        if (!name || !usn || !department || !email || !phone) {
+        if (!name || !email || !phone) {
             return NextResponse.json(
-                { error: "Missing required fields: name, usn, department, email, phone" },
+                { error: "Missing required fields: name, email, phone" },
                 { status: 400 }
             );
         }
@@ -46,9 +46,9 @@ export async function POST(request: NextRequest) {
             email: email.trim().toLowerCase(),
             phone: phone.trim(),
             college: "Vemana Institute of Technology",
-            type: "internal",
-            usn: usn.trim().toUpperCase(),
-            department: department.trim(),
+            type: usn?.trim() ? "internal" : "external",
+            usn: usn?.trim().toUpperCase() || null,
+            department: department?.trim() || null,
             paid: false,
             idCardUrl: idCardUrl || null,
         });
