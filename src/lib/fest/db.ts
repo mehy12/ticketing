@@ -40,20 +40,28 @@ export async function getParticipantByUsn(usn: string): Promise<(Participant & {
     const formattedUsn = usn.trim().toUpperCase();
 
     // 1. Search New DB
-    let [row] = await dbNew
-        .select()
-        .from(participants)
-        .where(eq(participants.usn, formattedUsn))
-        .limit(1);
-    if (row) return { ...row, source: "new" };
+    try {
+        const [row] = await dbNew
+            .select({ id: participants.id })
+            .from(participants)
+            .where(eq(participants.usn, formattedUsn))
+            .limit(1);
+        if (row) return { ...row, source: "new" } as any;
+    } catch (err) {
+        console.error("New DB USN lookup failed:", err);
+    }
 
-    // 2. Search Old DB
-    [row] = await dbOld
-        .select()
-        .from(participants)
-        .where(eq(participants.usn, formattedUsn))
-        .limit(1);
-    if (row) return { ...row, source: "old" };
+    // 2. Search Old DB (Resilient lookup)
+    try {
+        const [row] = await dbOld
+            .select({ id: participants.id })
+            .from(participants)
+            .where(eq(participants.usn, formattedUsn))
+            .limit(1);
+        if (row) return { ...row, source: "old" } as any;
+    } catch (err) {
+        console.warn("Old DB USN lookup failed (likely schema mismatch):", err);
+    }
 
     return null;
 }

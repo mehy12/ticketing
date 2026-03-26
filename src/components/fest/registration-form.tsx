@@ -72,10 +72,11 @@ export default function RegistrationForm() {
                 const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dmitw9qcc";
                 const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "fest_id_cards";
 
+                console.log("Cloudinary Upload Start:", { cloudName, uploadPreset });
+
                 const formData = new FormData();
                 formData.append("file", idCardFile);
                 formData.append("upload_preset", uploadPreset);
-                formData.append("folder", "fest2k26_id_cards");
 
                 const cloudRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
                     method: "POST",
@@ -84,7 +85,7 @@ export default function RegistrationForm() {
 
                 if (!cloudRes.ok) {
                     const errorData = await cloudRes.json();
-                    console.error("Cloudinary Error:", errorData);
+                    console.error("Cloudinary Error Log:", errorData);
                     throw new Error(`Image upload failed: ${errorData.error?.message || "Please check your network connection"}`);
                 }
 
