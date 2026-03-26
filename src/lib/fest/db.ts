@@ -139,3 +139,11 @@ export async function getAdminStats(): Promise<AdminStats> {
         recentCheckIns,
     };
 }
+
+export async function getAllParticipants(): Promise<Participant[]> {
+    return await dbNew
+        .select()
+        .from(participants)
+        .orderBy(desc(participants.createdAt));
+}
+

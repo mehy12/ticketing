@@ -11,6 +11,7 @@ type AdminStats = {
     internal: number;
     external: number;
     recentCheckIns: Participant[];
+    participants: Participant[];
 };
 
 export default function FestAdminPage() {
@@ -19,6 +20,8 @@ export default function FestAdminPage() {
     const [stats, setStats] = useState<AdminStats | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [view, setView] = useState<"overview" | "registrations">("overview");
+    const [searchTerm, setSearchTerm] = useState("");
     const [storedPassword, setStoredPassword] = useState<string | null>(null);
 
     useEffect(() => {
@@ -160,19 +163,39 @@ export default function FestAdminPage() {
                             Vemanothsav 2026 — Entry Analytics
                         </p>
                     </div>
-                    <Button
-                        onClick={handleRefresh}
-                        disabled={loading}
-                        variant="outline"
-                        className="border-white/10 text-white/70 hover:text-white hover:bg-white/10"
-                    >
-                        {loading ? "⟳" : "↻"} Refresh
-                    </Button>
+                    <div className="flex items-center gap-2">
+                        <Button
+                            onClick={handleRefresh}
+                            disabled={loading}
+                            variant="outline"
+                            className="border-white/10 text-white/70 hover:text-white hover:bg-white/10"
+                        >
+                            {loading ? "⟳" : "↻"} Refresh
+                        </Button>
+                    </div>
                 </div>
 
                 {stats && (
                     <>
-                        {/* Stats Grid */}
+                        {/* Tabs */}
+                        <div className="mb-6 flex gap-2 border-b border-white/10 pb-px">
+                            <button
+                                onClick={() => setView("overview")}
+                                className={`px-4 py-2 text-sm font-medium transition-all ${view === "overview" ? "border-b-2 border-yellow-500 text-yellow-500" : "text-white/40 hover:text-white/60"}`}
+                            >
+                                Overview
+                            </button>
+                            <button
+                                onClick={() => setView("registrations")}
+                                className={`px-4 py-2 text-sm font-medium transition-all ${view === "registrations" ? "border-b-2 border-yellow-500 text-yellow-500" : "text-white/40 hover:text-white/60"}`}
+                            >
+                                Registrations ({stats.total})
+                            </button>
+                        </div>
+
+                        {view === "overview" ? (
+                            <>
+                                {/* Stats Grid */}
                         <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
                             <StatCard
                                 label="Total"
@@ -276,9 +299,101 @@ export default function FestAdminPage() {
                             )}
                         </div>
                     </>
+                ) : (
+                    <div className="space-y-6">
+                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                            <div className="relative flex-1">
+                                <input
+                                    type="text"
+                                    placeholder="Search by name, USN, or phone..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    className="w-full rounded-lg border border-white/10 bg-white/5 py-2 pl-4 pr-10 text-sm text-white focus:border-yellow-500/50 outline-none"
+                                />
+                            </div>
+                            <Button
+                                onClick={() => {
+                                    const headers = ["Name", "Email", "Phone", "USN", "Department", "Type", "Checked In", "Entry Time", "Created At"];
+                                    const csvContent = [
+                                        headers.join(","),
+                                        ...stats.participants.map(p => [
+                                            `"${p.name}"`,
+                                            p.email,
+                                            p.phone,
+                                            p.usn || "N/A",
+                                            `"${p.department || "N/A"}"`,
+                                            p.type,
+                                            p.entryChecked ? "Yes" : "No",
+                                            p.entryTime ? new Date(p.entryTime).toLocaleString() : "-",
+                                            new Date(p.createdAt || Date.now()).toLocaleString()
+                                        ].join(","))
+                                    ].join("\n");
+                                    const blob = new Blob([csvContent], { type: "text/csv" });
+                                    const url = window.URL.createObjectURL(blob);
+                                    const a = document.createElement("a");
+                                    a.href = url;
+                                    a.download = `registrations_${new Date().toISOString().split('T')[0]}.csv`;
+                                    a.click();
+                                }}
+                                className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-4"
+                            >
+                                📥 Download CSV
+                            </Button>
+                        </div>
+
+                        <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-x-auto">
+                            <table className="w-full text-left text-sm">
+                                <thead className="border-b border-white/10 text-xs font-semibold uppercase tracking-wider text-white/40">
+                                    <tr>
+                                        <th className="px-5 py-3">Participant</th>
+                                        <th className="px-5 py-3">Details</th>
+                                        <th className="px-5 py-3">Verification</th>
+                                        <th className="px-5 py-3">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-white/5">
+                                    {stats.participants
+                                        .filter(p => 
+                                            p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                            p.usn?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                            p.phone.includes(searchTerm)
+                                        )
+                                        .map((p) => (
+                                        <tr key={p.id} className="hover:bg-white/[0.02] transition-colors">
+                                            <td className="px-5 py-4">
+                                                <p className="font-medium text-white">{p.name}</p>
+                                                <p className="text-xs text-white/40">{p.email}</p>
+                                            </td>
+                                            <td className="px-5 py-4">
+                                                <p className="text-white/70">{p.phone}</p>
+                                                <p className="text-xs text-white/40">{p.type.toUpperCase()}</p>
+                                            </td>
+                                            <td className="px-5 py-4">
+                                                <p className="text-white/70 truncate max-w-[150px]">{p.usn || "N/A"}</p>
+                                                <p className="text-xs text-white/40 truncate max-w-[150px]">{p.department || "None"}</p>
+                                            </td>
+                                            <td className="px-5 py-4">
+                                                {p.entryChecked ? (
+                                                    <span className="inline-flex rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-400">
+                                                        CHECKED IN
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-flex rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-white/40">
+                                                        PENDING
+                                                    </span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 )}
-            </div>
-        </div>
+            </>
+        )}
+    </div>
+</div>
     );
 }
 

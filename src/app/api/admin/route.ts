@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminStats } from "@/lib/fest/db";
+import { getAdminStats, getAllParticipants } from "@/lib/fest/db";
 
 export async function POST(request: NextRequest) {
     try {
@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
         }
 
         const stats = await getAdminStats();
-        return NextResponse.json(stats);
+        const participants = await getAllParticipants();
+        return NextResponse.json({ ...stats, participants });
     } catch (error) {
         console.error("[fest/api/admin] Error:", error);
         return NextResponse.json(
