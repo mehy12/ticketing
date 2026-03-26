@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { insertParticipant } from "@/lib/fest/db";
+import { insertParticipant, getParticipantByUsn } from "@/lib/fest/db";
 import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
@@ -28,6 +28,15 @@ export async function POST(request: NextRequest) {
         if (!emailRegex.test(email)) {
             return NextResponse.json(
                 { error: "Invalid email format" },
+                { status: 400 }
+            );
+        }
+
+        // Check for existing USN
+        const existingParticipant = await getParticipantByUsn(usn);
+        if (existingParticipant) {
+            return NextResponse.json(
+                { error: "This USN is already registered!" },
                 { status: 400 }
             );
         }

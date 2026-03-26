@@ -36,6 +36,28 @@ export async function getParticipant(id: string): Promise<(Participant & { sourc
     return null;
 }
 
+export async function getParticipantByUsn(usn: string): Promise<(Participant & { source: "new" | "old" }) | null> {
+    const formattedUsn = usn.trim().toUpperCase();
+
+    // 1. Search New DB
+    let [row] = await dbNew
+        .select()
+        .from(participants)
+        .where(eq(participants.usn, formattedUsn))
+        .limit(1);
+    if (row) return { ...row, source: "new" };
+
+    // 2. Search Old DB
+    [row] = await dbOld
+        .select()
+        .from(participants)
+        .where(eq(participants.usn, formattedUsn))
+        .limit(1);
+    if (row) return { ...row, source: "old" };
+
+    return null;
+}
+
 // ─── Check-in ───────────────────────────────────────────────────────────────
 
 export async function checkInParticipant(
