@@ -59,21 +59,33 @@ export default function ScanPage() {
                 await scanner.start(
                     { facingMode: "environment" },
                     {
-                        fps: 10,
+                        fps: 20,
                         qrbox: { width: 250, height: 250 },
                     },
                     (decodedText: string) => {
-                        // Extract UUID from the scanned URL
-                        const uuidMatch = decodedText.match(
-                            /\/fest\/p\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i
-                        );
+                        console.log("[scanner] Scanned:", decodedText);
+                        
+                        // Look for UUID pattern anywhere in text
+                        const uuidPattern = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
+                        const match = decodedText.match(uuidPattern);
 
-                        if (uuidMatch) {
+                        if (match) {
+                            const uuid = match[0];
+                            console.log("[scanner] Found UUID:", uuid);
+                            
+                            // Immediately stop scanning once we have a match
                             scanner.stop().then(() => scanner.clear()).catch(() => {});
                             html5QrCodeRef.current = null;
+                            
                             if (mounted) {
-                                fetchParticipant(uuidMatch[1]);
+                                fetchParticipant(uuid);
                             }
+                        } else {
+                            // If something else was scanned, show a brief error but keep scanning
+                            setError("Invalid QR Code: Not a participant ID");
+                            setTimeout(() => {
+                                if (mounted) setError(null);
+                            }, 3000);
                         }
                     },
                     () => {
